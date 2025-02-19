@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./Desarrolladores.css"; // Importa los estilos
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFacebook, faTwitter, faLinkedin, faInstagram } from "@fortawesome/free-brands-svg-icons";
+
 
 const Desarrolladores = () => {
 
@@ -152,9 +155,11 @@ const Desarrolladores = () => {
         </div>
       </section>
 
+
       {/* Sección de Equipo */}
       <section className="team-section" id="equipo">
         <h2>Nuestro Equipo</h2>
+        <h3 className="sub-title">Conoce a los desarrolladores detrás de nuestras soluciones</h3> {/* Subtítulo */}
         <div className="cards-container">
           {developers.map((dev, index) => (
             <div 
@@ -182,11 +187,6 @@ const Desarrolladores = () => {
 
 
 
-
-
-
-      
-
       {/* Sección de Stack Tecnológico */}
       <section className="tech-stack-section" id="stack">
         <h2>Stack Tecnológico</h2>
@@ -204,6 +204,50 @@ const Desarrolladores = () => {
           ))}
         </div>
       </section>
+
+
+
+
+      {/* Sección del Footer */}
+      <footer className="footer-section" id="contacto">
+        <div className="footer-content">
+          <div className="footer-logo">
+            <img src="/img/logo_blanco.png" alt="Logo" className="footer-logo-img" />
+            <p className="footer-slogan">Innovación, tecnología y soluciones a medida</p>
+          </div>
+          <div className="footer-contact">
+            <h3>Contacto</h3>
+            <p>Email: 3devs.soluciones@gmail.com</p>
+            <p>Teléfono: +54 9 1234 5678</p>
+            <p>Dirección: San Francisco/Rafaela, Argentina</p>
+          </div>
+
+
+
+          <div className="footer-social">
+            <h3>Síguenos</h3>
+            <ul>
+              <li>
+                <a href="https://linkedin.com/company/3devsolutions" target="_blank" rel="noopener noreferrer">
+                  <FontAwesomeIcon icon={faLinkedin} />
+                </a>
+              </li>
+              <li>
+                <a href="https://instagram.com/3devsolutions" target="_blank" rel="noopener noreferrer">
+                  <FontAwesomeIcon icon={faInstagram} />
+                </a>
+              </li>
+            </ul>
+          </div>
+
+
+
+
+        </div>
+        <div className="footer-bottom">
+          <p>&copy; {new Date().getFullYear()} 3 Devs Solutions. Todos los derechos reservados.</p>
+        </div>
+      </footer>
 
 
 

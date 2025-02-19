@@ -174,7 +174,7 @@ body{
   text-align: center;
   width: 100%;
   background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-  padding: 80px 0;
+  padding: 60px 0;
 }
 
 .about-content {
@@ -184,7 +184,6 @@ body{
 .about-content h2 {
     font-size: 32px;
     color: #333;
-    margin-bottom: 20px;
 }
 
 .about-content p {
@@ -233,29 +232,36 @@ body{
 
 
 
-/* Sección de tarjetas del equipo */
 .team-section {
   background: radial-gradient(circle, #26354b, #4a6fa5);
   color: white;
   text-align: center;
-  padding: 80px 20px;
+  padding: 40px 20px; /* Reducir el padding superior e inferior */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra todo el contenido de la sección */
 }
 
 .team-section h2 {
   font-size: 32px;
-  margin-bottom: 40px;
+  margin-bottom: 5px; /* Espacio entre el título y el subtítulo */
 }
 
-/* Contenedor de tarjetas */
+.sub-title {
+  font-size: 18px;
+  color: #ccc;
+  margin-bottom: 40px; /* Espacio entre el subtítulo y las tarjetas */
+  font-weight: 300;
+}
+
 .cards-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: center; /* Asegura que las tarjetas se centren horizontalmente */
   gap: 30px;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 0 auto; /* Centra el contenedor dentro del contenedor principal */
   padding: 0 20px;
-  /* Contenedor general con tamaño fijo */
   height: 100%;
   max-height: 1200px;
 }
@@ -274,12 +280,12 @@ body{
   position: relative;
   height: 260px; /* Altura base cuando la tarjeta está cerrada */
   max-height: 600px;  /* Límite máximo de altura */
+  border: 1px solid white;
 }
 
 .card.expanded {
   height: 420px;  /* Se ajusta automáticamente cuando se expande */
 }
-  
 
 /* Efecto hover */
 .card:hover {
@@ -350,9 +356,6 @@ body{
     left: 0; /* El punto está alineado con el borde izquierdo del li */
     top: 0; /* Asegura que el punto esté alineado con la primera palabra */
 }
-
-
-
 
 /* Botón de más información */
 .more-btn {
@@ -451,6 +454,17 @@ body{
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 /* Estilos para la sección de Stack Tecnológico */
 .tech-stack-section {
   padding: 60px 20px;
@@ -467,7 +481,7 @@ body{
 .tech-subtitle {
   font-size: 1.2rem;
   color: #555;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
@@ -518,7 +532,7 @@ body{
   padding: 10px;
   transition: all 0.4s ease;
   border: 1px solid rgba(221, 221, 221, 0.5); /* Borde sutil */
-  margin-bottom: 10px; /* Espacio entre el ícono y el texto */
+  margin-bottom: 25px; /* Espacio entre el ícono y el texto */
 }
 
 .tech-icon img {
@@ -559,7 +573,7 @@ body{
   opacity: 0; /* Ocultar por defecto */
   transition: opacity 0.3s ease;
   position: absolute;
-  top: 110px; /* Posición fija debajo del ícono */
+  top: 108px; /* Posición fija debajo del ícono */
   left: 50%;
   transform: translateX(-50%);
   white-space: nowrap; /* Evitar que el texto se divida en varias líneas */
@@ -590,6 +604,137 @@ body{
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Estilos generales del footer */
+.footer-section {
+  background-color: #222;
+  color: #fff;
+  padding: 50px 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Contenedor del contenido del footer */
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 80%;
+  margin: 0 auto;
+  gap: 30px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 40px;
+}
+
+/* Estilos para el logo y el eslogan */
+.footer-logo {
+  flex: 1;
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.footer-logo-img {
+  max-width: 180px;
+}
+
+.footer-slogan {
+  font-size: 15.5px;
+  margin-top: 10px;
+  color: #bbb;
+}
+
+/* Estilos para la sección de contacto */
+.footer-contact {
+  flex: 1;
+  min-width: 250px;
+}
+
+.footer-contact h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #f8f8f8;
+  border-bottom: 2px solid #0073b1;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.footer-contact p {
+  font-size: 15.5px;
+  color: #ddd;
+  margin: 5px 0;
+}
+
+/* Estilos para la sección de redes sociales */
+.footer-social {
+  flex: 1;
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.footer-social h3 {
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: #f8f8f8;
+  border-bottom: 2px solid #0073b1;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.footer-social ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 20px;
+}
+
+.footer-social ul li a {
+  color: #fff;
+  font-size: 24px;
+  transition: color 0.3s ease;
+}
+
+.footer-social ul li a:hover {
+  color: #0073b1;
+}
+
+/* Estilos para la parte inferior del footer */
+.footer-bottom {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 14px;
+  color: #bbb;
+}
 
 
 
