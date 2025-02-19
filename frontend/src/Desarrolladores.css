@@ -1,0 +1,618 @@
+/* Contenedor principal de la página */
+body{
+  scroll-behavior: smooth;
+}
+.page-container {
+  width: 100%;
+  scroll-behavior: smooth;
+}
+
+/* Contenedor de fondo con imagen solo cubre la pantalla inicial */
+.background-container {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Solo ocupa la pantalla inicial */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Capa de oscurecimiento SOLO para la imagen de fondo */
+.background-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(68, 68, 68, 0.5); /* Oscurece solo el fondo */
+}
+
+/* Ajuste para que el texto y el overlay no se vean afectados */
+.overlay {
+  position: relative; /* Ahora ya no es absoluto */
+  z-index: 2; /* Asegura que el texto quede encima del filtro */
+  text-align: center;
+  color: white;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(400px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.main-title {
+  font-size: 48px;
+  font-weight: 700;
+  text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.5);
+  margin-bottom: 10px;
+  animation: slideUp 1s ease-out;
+}
+
+.subtitle {
+  font-size: 20px;
+  font-weight: 400;
+  text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+  animation: slideUp 1.2s ease-out;
+}
+
+
+
+
+
+/* Barra de navegación inicial (sin fondo) */
+/* Barra de navegación inicial (sin fondo) */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 8%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 0;
+  z-index: 1000;
+  background-color: transparent; /* Sin fondo inicialmente */
+  transition: background-color 0.5s ease, height 0.5s ease; /* Transición suave */
+}
+
+/* Barra de navegación con fondo al hacer scroll */
+.navbar-scrolled {
+  background-color: rgba(68, 68, 68, 0.9); /* Fondo oscuro con transparencia */
+  backdrop-filter: blur(10px); /* Efecto de desenfoque */
+  height: 6%; /* Se reduce suavemente */
+}
+
+
+
+
+
+/* Contenedor de los logos */
+/* Contenedor de los logos */
+.logo-container {
+  display: flex;
+  align-items: center;
+  margin-left: 50px;
+}
+
+/* Logos alineados y del mismo tamaño */
+.logo {
+  height: 100px; /* Tamaño uniforme */
+  width: auto;
+  transition: filter 0.5s ease; /* Transición suave para el filtro */
+}
+
+/* Cuando la navbar tiene fondo, aplica un filtro para invertir los colores */
+.navbar-scrolled .logo {
+  filter: brightness(0) invert(1); /* Cambia el logo a blanco */
+}
+
+/* Oculta el logo blanco por defecto */
+.logo-scrolled {
+  display: none;
+}
+
+/* Cuando la navbar tiene fondo, se muestra el logo blanco y se oculta el otro */
+.navbar-scrolled .logo-default {
+  display: none;
+}
+
+.navbar-scrolled .logo-scrolled {
+  display: block;
+}
+
+
+/* Enlaces del menú alineados a la derecha */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 50px;
+  margin-left: auto;
+  margin-right: 100px; /* Espaciado del menú con el borde derecho */
+}
+
+/* Elementos del menú */
+.nav-links li {
+  display: inline;
+}
+
+/* Enlaces del menú */
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #6a82fb;
+}
+
+
+
+
+
+
+
+
+/* Sección debajo del inicio */
+.about-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  padding: 80px 0;
+}
+
+.about-content {
+  max-width: 80%;
+}
+
+.about-content h2 {
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.about-content p {
+    font-size: 18px;
+    color: #555;
+    line-height: 1.6;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Sección de tarjetas del equipo */
+.team-section {
+  background: radial-gradient(circle, #26354b, #4a6fa5);
+  color: white;
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.team-section h2 {
+  font-size: 32px;
+  margin-bottom: 40px;
+}
+
+/* Contenedor de tarjetas */
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  /* Contenedor general con tamaño fijo */
+  height: 100%;
+  max-height: 1200px;
+}
+
+/* Tarjeta individual */
+.card {
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  width: 250px;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  height: 260px; /* Altura base cuando la tarjeta está cerrada */
+  max-height: 600px;  /* Límite máximo de altura */
+}
+
+.card.expanded {
+  height: 420px;  /* Se ajusta automáticamente cuando se expande */
+}
+  
+
+/* Efecto hover */
+.card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Avatar */
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 4px solid #6a82fb;
+  margin-bottom: 15px;
+  object-fit: cover;
+}
+
+/* Nombre */
+.name {
+  font-size: 18px;
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+/* Rol */
+.role {
+  font-size: 14px;
+  color: #6c757d;
+  font-weight: 400;
+}
+
+.info {
+    font-size: 14px;
+    color: #333; /* Color del texto */
+    margin-top: 20px;
+    margin-bottom: 20px;
+    line-height: 1.6; /* Espaciado entre líneas */
+    padding-left: 10px; /* Espacio para los puntos */
+    list-style: none; /* Elimina los puntos predeterminados */
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    text-align: left; /* Alineación del texto a la izquierda */
+}
+
+/* Estilo de los elementos cuando la tarjeta está expandida */
+.card.expanded .info {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Cambiar color de los puntos */
+.info li {
+    margin-bottom: 12px;
+    position: relative;
+    display: flex;
+    align-items: baseline; /* Alinea el punto con la primera palabra */
+    padding-left: 25px; /* Espacio entre el punto y el texto */
+}
+
+/* Cambiar color del punto con ::before */
+.info li::before {
+    content: '•'; /* Bullet personalizado */
+    font-size: 20px; /* Tamaño del bullet */
+    color: #6a82fb; /* Cambia este color a tu elección */
+    position: absolute;
+    left: 0; /* El punto está alineado con el borde izquierdo del li */
+    top: 0; /* Asegura que el punto esté alineado con la primera palabra */
+}
+
+
+
+
+/* Botón de más información */
+.more-btn {
+  background: #6a82fb;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 10px;
+  position: absolute;
+  bottom: 10px; /* Mantiene el botón al fondo */
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.card.expanded .more-btn {
+  bottom: 10px; /* Se restablece cuando la tarjeta se expande */
+}
+
+.more-btn:hover {
+  background: #4f67e5;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Estilos para la sección de Stack Tecnológico */
+.tech-stack-section {
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  text-align: center;
+}
+
+.tech-stack-section h2 {
+  font-size: 2rem;
+  margin-bottom: 0;
+  color: #333;
+}
+
+.tech-subtitle {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 25px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Contenedor de tarjetas */
+.tech-stack-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Tarjeta individual */
+.tech-card {
+  width: 120px; /* Ancho fijo */
+  height: 120px; /* Alto igual al ancho para hacerla cuadrada */
+  display: flex;
+  flex-direction: column; /* Alinear ícono y texto verticalmente */
+  justify-content: center; /* Centra el contenido verticalmente */
+  align-items: center; /* Centra el contenido horizontalmente */
+  background: linear-gradient(135deg, #ffffff, #f1f1f1); /* Degradado suave */
+  border-radius: 5px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  padding: 15px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(221, 221, 221, 0.5); /* Borde sutil */
+}
+
+/* Efecto hover: selección sin movimiento */
+.tech-card:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
+}
+
+/* Ícono */
+.tech-icon {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  border-radius: 10%;
+  padding: 10px;
+  transition: all 0.4s ease;
+  border: 1px solid rgba(221, 221, 221, 0.5); /* Borde sutil */
+  margin-bottom: 10px; /* Espacio entre el ícono y el texto */
+}
+
+.tech-icon img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  transition: transform 0.4s ease;
+}
+
+/* Efecto hover: el icono cambia de fondo y de forma */
+.tech-card:hover .tech-icon {
+  border-radius: 50%;
+  background: #4a6fa5; /* Cambio de color al hover */
+}
+
+/* Ajustar posición de los logos de HTML y CSS al hacer hover */
+.tech-card:hover .tech-icon img[src*="html_logo"],
+.tech-card:hover .tech-icon img[src*="css_logo"] {
+  margin-top: 6px;
+}
+
+/* Cambiar el ícono a blanco solo si no es el logo de JavaScript */
+.tech-card:hover .tech-icon img:not([src*="js_logo"]) {
+  filter: brightness(0) invert(1); /* Cambia el ícono a blanco */
+}
+
+/* Escalar todos los íconos ligeramente al hacer hover */
+.tech-card:hover .tech-icon img {
+  transform: scale(0.9);
+}
+
+/* Texto debajo del ícono */
+.tech-name {
+  font-family: 'Arial', sans-serif; /* Cambia la tipografía */
+  font-size: 0.9rem;
+  color: #333;
+  text-align: center;
+  opacity: 0; /* Ocultar por defecto */
+  transition: opacity 0.3s ease;
+  position: absolute;
+  top: 110px; /* Posición fija debajo del ícono */
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap; /* Evitar que el texto se divida en varias líneas */
+}
+
+/* Mostrar el texto al hacer hover */
+.tech-card:hover .tech-name {
+  opacity: 1; /* Mostrar el texto */
+}
+
+/* Efecto de brillo al hacer hover */
+.tech-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.tech-card:hover::before {
+  opacity: 1; /* Muestra el efecto de brillo */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
