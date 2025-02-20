@@ -1,7 +1,8 @@
-/* Contenedor principal de la página */
-body{
+html {
   scroll-behavior: smooth;
 }
+
+
 .page-container {
   width: 100%;
   scroll-behavior: smooth;
@@ -70,16 +71,54 @@ body{
 
 
 
-/* Barra de navegación inicial (sin fondo) */
+
+
+
+
+
+
+
+.language-button {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  background: transparent;
+  border: none;
+}
+
+.language-text {
+  margin-left: 5px;
+  font-size: 13px;
+  font-weight: bold;
+  color: #fff; /* Or any other color you prefer */
+}
+
+.flag-icon {
+  width: 30px; /* Ajusta el tamaño de la bandera */
+  height: 20px;
+  border-radius: 3px; /* Bordes redondeados */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+
+
+
+
+
+
+
+
+
+
 /* Barra de navegación inicial (sin fondo) */
 .navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   position: fixed;
   top: 0;
   width: 100%;
   height: 8%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   padding: 15px 0;
   z-index: 1000;
   background-color: transparent; /* Sin fondo inicialmente */
@@ -201,6 +240,27 @@ body{
 
 
 
+/* Estilos para el divisor de onda */
+.wave-divider {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+}
+
+.wave-divider svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 100px;
+}
+
+.shape-fill {
+  fill: #4a6fa5; /* Color de la onda */
+}
 
 
 
@@ -233,18 +293,19 @@ body{
 
 
 .team-section {
-  background: radial-gradient(circle, #26354b, #4a6fa5);
-  color: white;
-  text-align: center;
-  padding: 40px 20px; /* Reducir el padding superior e inferior */
   display: flex;
   flex-direction: column;
   align-items: center; /* Centra todo el contenido de la sección */
+  background: radial-gradient(circle, #26354b, #4a6fa5);
+  color: white;
+  text-align: center;
+  padding: 60px 20px; /* Reducir el padding superior e inferior */
 }
 
 .team-section h2 {
   font-size: 32px;
-  margin-bottom: 5px; /* Espacio entre el título y el subtítulo */
+  margin-bottom: 3px; /* Espacio entre el título y el subtítulo */
+  margin-top: 0px;
 }
 
 .sub-title {
@@ -264,6 +325,7 @@ body{
   padding: 0 20px;
   height: 100%;
   max-height: 1200px;
+  margin-bottom: 10px;
 }
 
 /* Tarjeta individual */
@@ -280,7 +342,6 @@ body{
   position: relative;
   height: 260px; /* Altura base cuando la tarjeta está cerrada */
   max-height: 600px;  /* Límite máximo de altura */
-  border: 1px solid white;
 }
 
 .card.expanded {
@@ -468,7 +529,7 @@ body{
 /* Estilos para la sección de Stack Tecnológico */
 .tech-stack-section {
   padding: 60px 20px;
-  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  background: radial-gradient(circle, #f5f7fa, #c3cfe2);
   text-align: center;
 }
 
@@ -476,6 +537,7 @@ body{
   font-size: 2rem;
   margin-bottom: 0;
   color: #333;
+  margin-top: 0px;
 }
 
 .tech-subtitle {
@@ -495,6 +557,7 @@ body{
   gap: 25px;
   max-width: 900px;
   margin: 0 auto;
+  margin-bottom: 8px;
 }
 
 /* Tarjeta individual */
@@ -549,9 +612,9 @@ body{
 }
 
 /* Ajustar posición de los logos de HTML y CSS al hacer hover */
-.tech-card:hover .tech-icon img[src*="html_logo"],
-.tech-card:hover .tech-icon img[src*="css_logo"] {
-  margin-top: 6px;
+.tech-card .tech-icon img[src*="html_logo"],
+.tech-card .tech-icon img[src*="css_logo"] {
+  margin-top: 3px;
 }
 
 /* Cambiar el ícono a blanco solo si no es el logo de JavaScript */
