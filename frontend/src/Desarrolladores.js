@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Desarrolladores.css"; // Importa los estilos
+import miImagen from "./Imagen de WhatsApp 2025-02-11 a .jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin, faInstagram } from "@fortawesome/free-brands-svg-icons";
 
@@ -19,6 +20,9 @@ const Desarrolladores = () => {
       welcome: "Bienvenido a 3 Devs Solutions",
       subtitle: "Innovación, tecnología y soluciones a medida",
       aboutTitle: "Sobre Nosotros",
+      trabajos: "Trabajos",
+      mas: "Más",
+      servicios: "Servicios",
       aboutText1:
         "En <strong>3 Devs Solutions</strong>, nos especializamos en el desarrollo de software a medida, combinando innovación y tecnología para ofrecer soluciones eficientes y personalizadas que se adaptan a las necesidades específicas de cada cliente.",
       aboutText2:
@@ -45,6 +49,9 @@ const Desarrolladores = () => {
       welcome: "Welcome to 3 Devs Solutions",
       subtitle: "Innovation, technology, and tailored solutions",
       aboutTitle: "About Us",
+      trabajos: "Works",
+      mas: "More",
+      servicios: "Services",
       aboutText1:
         "At <strong>3 Devs Solutions</strong>, we specialize in custom software development, combining innovation and technology to deliver efficient and personalized solutions tailored to each client's specific needs.",
       aboutText2:
@@ -68,6 +75,45 @@ const Desarrolladores = () => {
       copyright: "All rights reserved.",
     },
   };
+
+
+  const servicios = [
+    {
+      title: { es: "Desarrollo Web", en: "Web Development" },
+      description: {
+        es: "Creamos soluciones personalizadas para tu presencia en línea.",
+        en: "We create customized solutions for your online presence.",
+      },
+      image: "/path/to/your/image1.jpg",
+    },
+    {
+      title: { es: "Consultoría Técnica", en: "Technical Consulting" },
+      description: {
+        es: "Asesoría experta para optimizar tus procesos tecnológicos.",
+        en: "Expert advice to optimize your technological processes.",
+      },
+      image: "/path/to/your/image2.jpg",
+    },
+    {
+      title: { es: "Mantenimiento de Sistemas", en: "System Maintenance" },
+      description: {
+        es: "Mantenemos tus sistemas actualizados y funcionando correctamente.",
+        en: "We keep your systems up to date and running smoothly.",
+      },
+      image: "/path/to/your/image3.jpg",
+    },
+  ];
+  
+
+ const trabajos = [
+  {
+    image: miImagen, // Reemplaza con la ruta de tu imagen
+    description: {
+      es: "LALCEC, Liga Argentina de Lucha Contra el Cáncer en la localidad de San Francisco, es una organización sin fines de lucro que trabaja en la prevención y detección temprana del cáncer. Desarrollamos una aplicación web para la gestión de socios y el manejo de cobro de las cuotas, facilitando la comunicación entre los socios y los de LALCEC. Donde se puede editar, agregar, eliminar socios, visualizar los pagos realizados y pendientes, entre otras funcionalidades.",
+      en: "LALCEC, the Argentine League Against Cancer in the town of San Francisco, is a non-profit organization that works in the prevention and early detection of cancer. We developed a web application for managing members and handling membership fees, facilitating communication between members and LALCEC. It allows editing, adding, and deleting members, viewing payments made and pending, among other features."
+    }
+  }
+];
 
   // Cambiar idioma
   const toggleLanguage = () => {
@@ -177,6 +223,7 @@ const Desarrolladores = () => {
             <li><a href="#inicio">{language === "es" ? "Inicio" : "Home"}</a></li>
             <li><a href="#nosotros">{language === "es" ? "Nosotros" : "About Us"}</a></li>
             <li><a href="#stack">{language === "es" ? "Stack Tecnológico" : "Tech Stack"}</a></li>
+            <li><a href="#trabajos">{language === "es" ? "Trabajos" : "jobs"}</a></li>
             <li><a href="#servicios">{language === "es" ? "Servicios" : "Services"}</a></li>
             <li><a href="#contacto">{language === "es" ? "Contacto" : "Contact"}</a></li>
 
@@ -270,6 +317,46 @@ const Desarrolladores = () => {
           ))}
         </div>
       </section>
+      
+  
+
+{/* Sección de trabajos */}
+<section className="trabajos-section bg-gradient-radial from-[#26354b] to-[#4a6fa5] text-gray-200 py-12" id="trabajos">
+  <h2 className="text-3xl font-extrabold text-center text-white mb-8 capitalize">
+    {translations[language].trabajos}
+  </h2>
+
+  <div className="trabajos-container flex flex-col items-center gap-6">
+    {trabajos.map((trabajo, index) => (
+      <div key={index} className="trabajos-card bg-white/10 backdrop-blur-lg rounded-xl p-6 max-w-lg text-center shadow-lg">
+        <img src={trabajo.image} alt="Imagen" className="trabajos-image w-full h-60 object-cover rounded-lg mb-4" />
+        <p className="max-w-md mx-auto text-white">{trabajo.description[language]}</p>
+        <a href={trabajo.link} className="btn-details bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-lg mt-4 inline-block transition transform hover:scale-105">
+          {translations[language].mas}
+        </a>
+      </div>
+    ))}
+  </div>
+</section>
+
+{/* Sección de servicios */}
+<section className="servicios-section bg-gradient-radial from-[#26354b] to-[#4a6fa5] text-gray-200 py-12" id="servicios">
+  <h2 className="text-3xl font-extrabold text-center text-white mb-8 capitalize">
+    {translations[language].servicios}
+  </h2>
+
+  <div className="servicios-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {servicios.map((servicio, index) => (
+      <div key={index} className="servicio-card bg-white/10 backdrop-blur-lg rounded-xl p-6 text-center shadow-lg">
+        <img src={servicio.image} alt="Imagen Servicio" className="servicio-image w-full h-60 object-cover rounded-lg mb-4" />
+        <h3 className="text-xl font-semibold text-white mb-2">{servicio.title[language]}</h3>
+        <p className="text-gray-300">{servicio.description[language]}</p>
+      </div>
+    ))}
+  </div>
+</section>
+
+
 
       {/* Sección del Footer */}
       <footer className="footer-section" id="contacto">
