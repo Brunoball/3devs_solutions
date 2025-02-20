@@ -59,7 +59,7 @@ const Desarrolladores = () => {
         "<strong>Contact us today and discover how we can transform your business!</strong>",
       teamTitle: "Our Team",
       teamSubtitle: "Meet the developers behind our solutions",
-      stackTitle: "Tech Stack",
+      stackTitle: "Technological Stack",
       stackSubtitle:
         "Technologies and tools we use to develop efficient solutions.",
       contactTitle: "Contact",
@@ -118,7 +118,7 @@ const Desarrolladores = () => {
     },
     {
       name: language === "es" ? "Franco Valverde" : "Franco Valverde",
-      role: language === "es" ? "Líder de Equipo de Software" : "Software Team Lead",
+      role: language === "es" ? "Líder del Equipo de Software" : "Software Team Lead",
       img: "/img/dev1.avif",
       info:
         language === "es"
@@ -185,11 +185,11 @@ const Desarrolladores = () => {
             <li>
               <button onClick={toggleLanguage} className="language-button">
                 <img
-                  src={language === "es" ? esFlag : usFlag}
+                  src={language === "es" ? usFlag : esFlag}
                   alt={language === "es" ? "Español" : "English"}
                   className="flag-icon"
                 />
-                <span className="language-text">{language === "es" ? "ES" : "EN"}</span> {/* Add the language text here */}
+                <span className="language-text">{language === "es" ? "EN" : "ES"}</span> {/* Add the language text here */}
               </button>
             </li>
 
