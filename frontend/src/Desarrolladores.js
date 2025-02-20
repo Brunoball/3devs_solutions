@@ -32,7 +32,7 @@ const Desarrolladores = () => {
       ]
     },
     { 
-      name: "Bruno Ballarino rtetetertret", 
+      name: "Bruno Ballarino", 
       role: "Software Developer", 
       img: "/img/dev1.avif",
       info: [
