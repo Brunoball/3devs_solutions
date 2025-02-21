@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import "./Desarrolladores.css"; // Importa los estilos
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin, faInstagram } from "@fortawesome/free-brands-svg-icons";
+import { faCheck, faCheckSquare } from '@fortawesome/free-solid-svg-icons';
+
 
 // Importa las banderas (puedes usar imágenes o íconos)
 const esFlag = "/img/es-flag.png";
@@ -19,6 +21,10 @@ const Desarrolladores = () => {
       welcome: "Bienvenido a 3 Devs Solutions",
       subtitle: "Innovación, tecnología y soluciones a medida",
       aboutTitle: "Sobre Nosotros",
+      trabajos: "Trabajos",
+      trabajos_subtitle: "Trabajos que reflejan nuestra pasión por la tecnología",
+      mas: "Más",
+      servicios: "Servicios",
       aboutText1:
         "En <strong>3 Devs Solutions</strong>, nos especializamos en el desarrollo de software a medida, combinando innovación y tecnología para ofrecer soluciones eficientes y personalizadas que se adaptan a las necesidades específicas de cada cliente.",
       aboutText2:
@@ -45,6 +51,10 @@ const Desarrolladores = () => {
       welcome: "Welcome to 3 Devs Solutions",
       subtitle: "Innovation, technology, and tailored solutions",
       aboutTitle: "About Us",
+      trabajos: "Projects",
+      trabajos_subtitle: "Projects that reflect our passion for technology",
+      mas: "More",
+      servicios: "Services",
       aboutText1:
         "At <strong>3 Devs Solutions</strong>, we specialize in custom software development, combining innovation and technology to deliver efficient and personalized solutions tailored to each client's specific needs.",
       aboutText2:
@@ -69,6 +79,44 @@ const Desarrolladores = () => {
     },
   };
 
+
+  const servicios = [
+    {
+      title: { es: "Desarrollo Web", en: "Web Development" },
+      description: {
+        es: "Creamos soluciones personalizadas para tu presencia en línea.",
+        en: "We create customized solutions for your online presence.",
+      },
+      image: "/path/to/your/image1.jpg",
+    },
+    {
+      title: { es: "Consultoría Técnica", en: "Technical Consulting" },
+      description: {
+        es: "Asesoría experta para optimizar tus procesos tecnológicos.",
+        en: "Expert advice to optimize your technological processes.",
+      },
+      image: "/path/to/your/image2.jpg",
+    },
+    {
+      title: { es: "Mantenimiento de Sistemas", en: "System Maintenance" },
+      description: {
+        es: "Mantenemos tus sistemas actualizados y funcionando correctamente.",
+        en: "We keep your systems up to date and running smoothly.",
+      },
+      image: "/path/to/your/image3.jpg",
+    },
+  ];
+  
+
+  const trabajos = [
+    {
+      description: {
+        es: "Nuestro equipo desarrolló una plataforma web exclusiva para la asociación LALCEC (San Francisco), diseñada para optimizar la gestión interna de socios y el control de pagos. Esta herramienta es accesible únicamente para los administradores de la institución, asegurando la confidencialidad y seguridad de la información de los miembros.",
+        en: "Our team developed an exclusive web platform for the LALCEC association (San Francisco), designed to optimize the internal management of members and payment control. This tool is accessible only to the institution's administrators, ensuring the confidentiality and security of member information."
+      }
+    }
+  ];
+  
   // Cambiar idioma
   const toggleLanguage = () => {
     setLanguage((prevLang) => (prevLang === "es" ? "en" : "es"));
@@ -177,6 +225,7 @@ const Desarrolladores = () => {
             <li><a href="#inicio">{language === "es" ? "Inicio" : "Home"}</a></li>
             <li><a href="#nosotros">{language === "es" ? "Nosotros" : "About Us"}</a></li>
             <li><a href="#stack">{language === "es" ? "Stack Tecnológico" : "Tech Stack"}</a></li>
+            <li><a href="#trabajos">{language === "es" ? "Trabajos" : "jobs"}</a></li>
             <li><a href="#servicios">{language === "es" ? "Servicios" : "Services"}</a></li>
             <li><a href="#contacto">{language === "es" ? "Contacto" : "Contact"}</a></li>
 
@@ -270,6 +319,177 @@ const Desarrolladores = () => {
           ))}
         </div>
       </section>
+      
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {/* Sección de trabajos */}
+    <section className="trabajos-section" id="trabajos">
+      <h2 className="trabajos-title">
+        {translations[language].trabajos}
+      </h2>
+      {/* Subtítulo agregado */}
+      <h3 className="trabajos-subtitle">
+        {translations[language].trabajos_subtitle}
+      </h3>
+
+      
+      <div className="box_work"> 
+        <div className="trabajos-container">
+          {trabajos.map((trabajo, index) => (
+            <div key={index} className="trabajos-card">
+              {/* Imagen con difuminado */}
+              <img src="/img/lalcec_app.png" alt="Imagen" className="trabajo-img" />
+              
+              {/* Contenedor con logo y texto superpuestos */}
+              <div className="overlay-container">
+                <img src="/img/logo_lalcec.png" alt="Logo LALCEC" className="overlay-logo" />
+                <span className="overlay-text">LALCEC</span>
+              </div>
+              
+              <p>{trabajo.description[language]}</p>
+            </div>
+          ))}
+        </div>
+        <div className="trabajos-container">
+          {trabajos.map((trabajo, index) => (
+            <div key={index} className="trabajos-card">
+              {/* Imagen con difuminado */}
+              <img src="/img/lalcec_app.png" alt="Imagen" className="trabajo-img" />
+              
+              {/* Contenedor con logo y texto superpuestos */}
+              <div className="overlay-container">
+                <img src="/img/logo_lalcec.png" alt="Logo LALCEC" className="overlay-logo" />
+                <span className="overlay-text">LALCEC</span>
+              </div>
+              
+              <p>{trabajo.description[language]}</p>
+            </div>
+          ))}
+        </div>
+        <div className="trabajos-container">
+          {trabajos.map((trabajo, index) => (
+            <div key={index} className="trabajos-card">
+              {/* Imagen con difuminado */}
+              <img src="/img/lalcec_app.png" alt="Imagen" className="trabajo-img" />
+              
+              {/* Contenedor con logo y texto superpuestos */}
+              <div className="overlay-container">
+                <img src="/img/logo_lalcec.png" alt="Logo LALCEC" className="overlay-logo" />
+                <span className="overlay-text">LALCEC</span>
+              </div>
+              
+              <p>{trabajo.description[language]}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+
+
+
+
+
+
+
+{/* Servicios */}
+
+    <section className="servicios">
+      <h2>Servicios</h2>
+
+      <div className="servicios-container">
+        <div className="proyecto-card">
+          <img src="/img/icono_web.png" className="proyecto-img" alt="Desarrollo Web" />
+          <h3>Desarrollo Web</h3>
+          <p>Creación de sitios web modernos y funcionales.</p>
+          <FontAwesomeIcon icon={faCheckSquare} style={{ color: "green", fontSize: "24px" }} /> <span>Texto aquí</span>
+          <FontAwesomeIcon icon={faCheckSquare} style={{ color: "green", fontSize: "24px" }} /> <span>Texto aquí</span>
+
+        </div>
+
+        <div className="proyecto-card">
+          <img src="/img/icono_escritorio.png" className="proyecto-img" alt="Consultoría Técnica" />
+          <h3>Desarrollo de Escritorio</h3>
+          <p>Asesoramiento experto en tecnología.</p>
+        </div>
+
+        <div className="proyecto-card">
+          <img src="/img/icono_mov.png" className="proyecto-img" alt="Mantenimiento de Sistemas" />
+          <h3>Desarrollo movil</h3>
+          <p>Optimización y soporte técnico continuo.</p>
+        </div>
+      </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       {/* Sección del Footer */}
       <footer className="footer-section" id="contacto">
