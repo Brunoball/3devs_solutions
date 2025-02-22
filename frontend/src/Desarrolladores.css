@@ -2,13 +2,13 @@
 
 html {
   scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 
-.page-container {
-  width: 100%;
-  scroll-behavior: smooth;
-}
+
 
 /* Contenedor de fondo con imagen solo cubre la pantalla inicial */
 .background-container {
@@ -773,173 +773,149 @@ html {
 
 
 
-
-
-
-
 .servicios {
+  text-align: center;
+  padding: 40px 0;
+  background: #f5f7fa;
+}
+
+.servicios-container {
+  width: 98%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+}
+
+.servicios-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 28%;
+  height: 470px; /* Ajusta la altura si es necesario */
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.titulo-serv{
+  font-size: 32px;
+
+}
+
+
+.pros-contras-container {
   width: 100%;
   height: auto;
-  background: radial-gradient(circle, #f5f7fa, #c3cfe2);
-  padding: 20px;
-  text-align: center;
-}
-
-.servicios-container {
+  min-height: 200px; /* Ajusta según el contenido más largo */
   display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: space-around;
-  flex-wrap: wrap;
-}
-
-.proyecto-card {
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  border: 2px solid #000;
-  border-radius: 15px;
-  width: 250px;
-  height: 350px;
-  background-color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  text-align: center;
-}
-
-.proyecto-img {
-  width: 100px;
-  height: 100px;
-  object-fit: contain;
-  margin-bottom: 10px;
-}
-
-.proyecto-card h3 {
-  font-size: 1.2rem;
-  margin-bottom: 8px;
-}
-
-.proyecto-card p {
-  font-size: 0.9rem;
-  color: #333;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*seccion de servicios*/
-
-.servicios-section {
-  background: linear-gradient(135deg, #f5f7fa, #c3cfe2); /* Fondo con gradiente */
-  color: #4a4a4a; /* Un color gris oscuro para el texto principal */
-  padding: 50px 30px;
-  text-align: center;
-}
-
-.servicios-section h2 {
-  font-size: 2.5rem;
-  color: #2d2d2d; /* Título en un tono más oscuro para resaltar */
-  margin-bottom: 20px;
-  text-transform: capitalize;
-  font-weight: 600;
-  letter-spacing: 1.5px;
-}
-
-.servicios-container {
-  display: flex;
-  flex-wrap: wrap;
+  align-items: flex-start;
   justify-content: center;
-  gap: 20px; /* Espacio entre las tarjetas */
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-.servicio-card {
-  background: rgba(255, 255, 255, 0.8); /* Fondo blanco suave para las tarjetas */
-  backdrop-filter: blur(8px);
-  border-radius: 12px;
-  padding: 20px;
-  width: 280px;
-  display: flex;
   flex-direction: column;
-  align-items: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra ligera para un efecto sutil */
+  margin-bottom: 5px;
 }
 
-.servicio-card img {
-  width: 100%;
-  height: 180px;
-  border-radius: 10px;
-  object-fit: cover;
-  margin-bottom: 15px; /* Ajustamos el espacio entre imagen y texto */
+.pros-contras-container p {
+  margin: 0; /* Reinicia el margen predeterminado */
+  margin-left: 10px; /* Aplica el margen izquierdo que desees */
 }
 
-.servicio-card h3 {
+.servicios-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Ajuste de imagen más pegada al título */
+.servicios-img {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 5px; /* Reducido de 10px a 5px */
+}
+
+h3 {
   font-size: 1.5rem;
-  color: #2d2d2d; /* Título de cada servicio con un color más oscuro para contraste */
-  margin-bottom: 10px;
+  text-align: center;
+  margin-top: -10px;
 }
 
-.servicio-card p {
+.subtitulo {
   font-size: 1rem;
-  color: #6b6b6b; /* Color gris para las descripciones */
-  text-align: justify;
-  margin-bottom: 15px;
-  line-height: 1.5;
-  max-width: 250px;
-  word-wrap: break-word;
-  letter-spacing: normal;
-  white-space: normal;
+  text-align: center;
+  margin-top: -30px;
 }
 
-.servicio-card .btn-details {
-  background: #a1c4fd; /* Color azul suave */
-  color: #fff;
-  padding: 10px 18px;
+
+/* Subtítulo con menos espacio */
+.subtitulo {
+  font-size: 1rem;
+  text-align: center;
+  margin-bottom: 15px; /* Reducción de espacio para acercar más al contenido inferior */
+}
+
+
+
+/* Ajuste de párrafos de pros y contras */
+.servicios-card p:not(.subtitulo) {
+  gap: 10px;
+  font-size: 0.9rem;
+  margin: 5px 0; /* Añadí un pequeño margen para que los párrafos no se amontonen */
+}
+
+
+/* Botón con margen ajustado */
+.servicios-boton-container {
+  width: 100%;
+  text-align: center;
+  margin-top: 15px;
+  display: flex; /* Activa flexbox */
+  align-items: center; /* Centra verticalmente */
+  justify-content: center;
+}
+
+.servicios-boton {
+  background-color: #006400;
+  color: white;
+  padding: 10px 20px;
   border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: bold;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
   text-decoration: none;
 }
 
-.servicio-card .btn-details:hover {
-  background: #7a9bff; /* Un tono más oscuro de azul para el hover */
-  transform: scale(1.05);
+.servicios-boton:hover {
+  background-color: #004d00;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
