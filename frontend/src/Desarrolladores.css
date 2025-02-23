@@ -208,6 +208,16 @@ html {
 
 
 
+
+
+
+
+
+
+
+
+
+
 /* Sección debajo del inicio */
 .about-section {
   display: flex;
@@ -219,13 +229,14 @@ html {
   padding: 60px 0;
 }
 
-.about-content {
-  max-width: 80%;
-}
-
 .about-content h2 {
   font-size: 32px;
   color: #333;
+  margin-top: 0;
+}
+
+.about-content {
+  max-width: 80%;
 }
 
 .about-content p {
@@ -266,7 +277,7 @@ html {
 
 
 
-
+/* Estilos para la sección del Equipo*/
 .team-section {
   display: flex;
   flex-direction: column;
@@ -274,20 +285,21 @@ html {
   background: radial-gradient(circle, #26354b, #4a6fa5);
   color: white;
   text-align: center;
-  padding: 60px 20px; /* Reducir el padding superior e inferior */
+  padding: 60px 0; /* Reducir el padding superior e inferior */
 }
 
 .team-section h2 {
   font-size: 32px;
   margin-bottom: 3px; /* Espacio entre el título y el subtítulo */
   margin-top: 0px;
+  color: #fff;
 }
 
 .sub-title {
   font-size: 18px;
   color: #ccc;
   margin-bottom: 40px; /* Espacio entre el subtítulo y las tarjetas */
-  font-weight: 300;
+  font-weight: 350;
 }
 
 .cards-container {
@@ -509,19 +521,17 @@ html {
 }
 
 .tech-stack-section h2 {
-  font-size: 2rem;
-  margin-bottom: 0;
-  color: #333;
+  font-size: 32px;
+  margin-bottom: 3px; /* Espacio entre el título y el subtítulo */
   margin-top: 0px;
+  color: #000;
 }
 
 .tech-subtitle {
-  font-size: 1.2rem;
-  color: #555;
-  margin-bottom: 30px;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
+  font-size: 18px;
+  color: #000;
+  margin-bottom: 40px; /* Espacio entre el subtítulo y las tarjetas */
+  font-weight: 350;
 }
 
 /* Contenedor de tarjetas */
@@ -664,7 +674,7 @@ html {
 
 
 
-
+/*Estilos para la sección de Nuestros Trabajos*/
 .trabajos-section {
   display: flex;
   justify-content: center;
@@ -699,16 +709,18 @@ html {
 }
 
 .trabajos-title{
-  color: #fff;
   font-size: 32px;
+  margin-bottom: 3px; /* Espacio entre el título y el subtítulo */
+  margin-top: 0px;
+  color: #fff;
 }
 
 .trabajos-subtitle {
   font-size: 18px;
   color: #ccc;
-  margin-top: -20px;
-  margin-bottom: 40px; /* Espacio entre el subtítulo y las tarjetas */
-  font-weight: 300;
+  margin-bottom: 30px; /* Espacio entre el subtítulo y las tarjetas */
+  font-weight: 350;
+  margin-top: 0;
 }
 
 .trabajo-img {
@@ -773,6 +785,9 @@ html {
 
 
 
+
+
+/* Estilos para la sección de Servicios*/
 .servicios {
   text-align: center;
   padding: 40px 0;
@@ -784,7 +799,9 @@ html {
   margin: 0 auto;
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
 }
+
 
 .servicios-card {
   display: flex;
@@ -792,19 +809,29 @@ html {
   justify-content: space-between;
   align-items: center;
   width: 28%;
-  height: 470px; /* Ajusta la altura si es necesario */
+  height: 65vh; /* Ajusta la altura si es necesario */
   background: #fff;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease-in-out;
+  flex-shrink: 0;
 }
+
 
 .titulo-serv{
   font-size: 32px;
-
+  margin-bottom: 3px; /* Espacio entre el título y el subtítulo */
+  margin-top: 0px;
+  color: #000;
 }
 
+.subtitulo-servicios{
+  font-size: 18px;
+  color: #000;
+  margin-bottom: 40px; /* Espacio entre el subtítulo y las tarjetas */
+  font-weight: 350;
+}
 
 .pros-contras-container {
   width: 100%;
@@ -822,9 +849,6 @@ html {
   margin-left: 10px; /* Aplica el margen izquierdo que desees */
 }
 
-.servicios-card:hover {
-  transform: translateY(-5px);
-}
 
 /* Ajuste de imagen más pegada al título */
 .servicios-img {
@@ -833,7 +857,7 @@ html {
   margin-bottom: 5px; /* Reducido de 10px a 5px */
 }
 
-h3 {
+.servicios h3 {
   font-size: 1.5rem;
   text-align: center;
   margin-top: -10px;
@@ -845,23 +869,12 @@ h3 {
   margin-top: -30px;
 }
 
-
-/* Subtítulo con menos espacio */
-.subtitulo {
-  font-size: 1rem;
-  text-align: center;
-  margin-bottom: 15px; /* Reducción de espacio para acercar más al contenido inferior */
-}
-
-
-
 /* Ajuste de párrafos de pros y contras */
 .servicios-card p:not(.subtitulo) {
   gap: 10px;
   font-size: 0.9rem;
   margin: 5px 0; /* Añadí un pequeño margen para que los párrafos no se amontonen */
 }
-
 
 /* Botón con margen ajustado */
 .servicios-boton-container {
@@ -888,9 +901,6 @@ h3 {
 .servicios-boton:hover {
   background-color: #004d00;
 }
-
-
-
 
 
 

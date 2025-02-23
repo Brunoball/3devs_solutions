@@ -21,7 +21,7 @@ const Desarrolladores = () => {
       welcome: "Bienvenido a 3 Devs Solutions",
       subtitle: "Innovación, tecnología y soluciones a medida",
       aboutTitle: "Sobre Nosotros",
-      trabajos: "Trabajos",
+      trabajos: "Nuestros Trabajos",
       trabajos_subtitle: "Trabajos que reflejan nuestra pasión por la tecnología",
       mas: "Más",
       servicios: "Servicios",
@@ -51,7 +51,7 @@ const Desarrolladores = () => {
       welcome: "Welcome to 3 Devs Solutions",
       subtitle: "Innovation, technology, and tailored solutions",
       aboutTitle: "About Us",
-      trabajos: "Projects",
+      trabajos: "Our Work",
       trabajos_subtitle: "Projects that reflect our passion for technology",
       mas: "More",
       servicios: "Services",
@@ -80,32 +80,7 @@ const Desarrolladores = () => {
   };
 
 
-  const servicios = [
-    {
-      title: { es: "Desarrollo Web", en: "Web Development" },
-      description: {
-        es: "Creamos soluciones personalizadas para tu presencia en línea.",
-        en: "We create customized solutions for your online presence.",
-      },
-      image: "/path/to/your/image1.jpg",
-    },
-    {
-      title: { es: "Consultoría Técnica", en: "Technical Consulting" },
-      description: {
-        es: "Asesoría experta para optimizar tus procesos tecnológicos.",
-        en: "Expert advice to optimize your technological processes.",
-      },
-      image: "/path/to/your/image2.jpg",
-    },
-    {
-      title: { es: "Mantenimiento de Sistemas", en: "System Maintenance" },
-      description: {
-        es: "Mantenemos tus sistemas actualizados y funcionando correctamente.",
-        en: "We keep your systems up to date and running smoothly.",
-      },
-      image: "/path/to/your/image3.jpg",
-    },
-  ];
+
   
 
   const trabajos = [
@@ -215,6 +190,10 @@ const Desarrolladores = () => {
 
   return (
     <div className="page-container" id="inicio">
+
+
+
+      
       {/* Sección de Navegación */}
       <div className="background-container" style={{ backgroundImage: "url('/img/img_menu.jpg')" }}>
         <nav className={`navbar ${navbarBackground ? "navbar-scrolled" : ""}`}>
@@ -229,8 +208,6 @@ const Desarrolladores = () => {
             <li><a href="#servicios">{language === "es" ? "Servicios" : "Services"}</a></li>
             <li><a href="#contacto">{language === "es" ? "Contacto" : "Contact"}</a></li>
 
-
-
             <li>
               <button onClick={toggleLanguage} className="language-button">
                 <img
@@ -241,9 +218,6 @@ const Desarrolladores = () => {
                 <span className="language-text">{language === "es" ? "EN" : "ES"}</span> {/* Add the language text here */}
               </button>
             </li>
-
-
-
           </ul>
         </nav>
         <div className="overlay" id="inicio">
@@ -251,6 +225,12 @@ const Desarrolladores = () => {
           <p className="subtitle">{translations[language].subtitle}</p>
         </div>
       </div>
+
+
+
+
+
+
 
 
 
@@ -278,7 +258,7 @@ const Desarrolladores = () => {
       {/* Sección de Equipo */}
       <section className="team-section" id="equipo">
         <h2>{translations[language].teamTitle}</h2>
-        <h3 className="sub-title">{translations[language].teamSubtitle}</h3>
+        <p className="sub-title">{translations[language].teamSubtitle}</p>
         <div className="cards-container">
           {developers.map((dev, index) => (
             <div
@@ -320,186 +300,131 @@ const Desarrolladores = () => {
         </div>
       </section>
       
-  
 
 
 
 
+      {/* Sección de trabajos */}
+      <section className="trabajos-section" id="trabajos">
+        <h2 className="trabajos-title">
+          {translations[language].trabajos}
+        </h2>
+        {/* Subtítulo agregado */}
+        <p className="trabajos-subtitle">
+          {translations[language].trabajos_subtitle}
+        </p>
 
-
-
-
-
-
-
-
-
-
-    {/* Sección de trabajos */}
-    <section className="trabajos-section" id="trabajos">
-      <h2 className="trabajos-title">
-        {translations[language].trabajos}
-      </h2>
-      {/* Subtítulo agregado */}
-      <h3 className="trabajos-subtitle">
-        {translations[language].trabajos_subtitle}
-      </h3>
-
-      
-      <div className="box_work"> 
-        <div className="trabajos-container">
-          {trabajos.map((trabajo, index) => (
-            <div key={index} className="trabajos-card">
-              {/* Imagen con difuminado */}
-              <img src="/img/lalcec_app.png" alt="Imagen" className="trabajo-img" />
-              
-              {/* Contenedor con logo y texto superpuestos */}
-              <div className="overlay-container">
-                <img src="/img/logo_lalcec.png" alt="Logo LALCEC" className="overlay-logo" />
-                <span className="overlay-text">LALCEC</span>
+        
+        <div className="box_work"> 
+          <div className="trabajos-container">
+            {trabajos.map((trabajo, index) => (
+              <div key={index} className="trabajos-card">
+                {/* Imagen con difuminado */}
+                <img src="/img/lalcec_app.png" alt="Imagen" className="trabajo-img" />
+                
+                {/* Contenedor con logo y texto superpuestos */}
+                <div className="overlay-container">
+                  <img src="/img/logo_lalcec.png" alt="Logo LALCEC" className="overlay-logo" />
+                  <span className="overlay-text">LALCEC</span>
+                </div>
+                
+                <p>{trabajo.description[language]}</p>
               </div>
-              
-              <p>{trabajo.description[language]}</p>
+            ))}
+          </div>
+        </div>
+      </section>
+
+
+
+
+      <section className="servicios">
+        <h2 className="titulo-serv">Servicios</h2>
+        <p className="subtitulo-servicios">Ofrecemos soluciones personalizadas para satisfacer tus necesidades tecnológicas</p>
+        <div className="servicios-container">
+          <div className="servicios-card">
+            <img src="/img/icono_web.png" className="servicios-img" alt="Desarrollo Web" />
+            <h3>Desarrollo Web</h3>
+            <p className="subtitulo">Desarrollo de sitios web modernos, funcionales y optimizados.</p>
+
+            <div className="pros-contras-container">
+              <p><FontAwesomeIcon icon={faCheckCircle} style={{ color: "green" }} /> Accesible desde cualquier dispositivo con conexión a internet.</p>
+              <p><FontAwesomeIcon icon={faCheckCircle} style={{ color: "green" }} /> Fácil mantenimiento y escalabilidad.</p>
+              <p><FontAwesomeIcon icon={faCheckCircle} style={{ color: "green" }} /> No requiere instalación en los dispositivos del usuario.</p>
+              <p><FontAwesomeIcon icon={faCheckCircle} style={{ color: "green" }} /> Amplia visibilidad y mayor captación de clientes potenciales.</p>
+              <p><FontAwesomeIcon icon={faExclamationTriangle} style={{ color: "orange" }} /> El tiempo de desarrollo varía según el proyecto.</p>
+              <p><FontAwesomeIcon icon={faExclamationTriangle} style={{ color: "orange" }} /> Requiere servidores para su correcto funcionamiento.</p>
             </div>
-          ))}
-        </div>
-        <div className="trabajos-container">
-          {trabajos.map((trabajo, index) => (
-            <div key={index} className="trabajos-card">
-              {/* Imagen con difuminado */}
-              <img src="/img/lalcec_app.png" alt="Imagen" className="trabajo-img" />
-              
-              {/* Contenedor con logo y texto superpuestos */}
-              <div className="overlay-container">
-                <img src="/img/logo_lalcec.png" alt="Logo LALCEC" className="overlay-logo" />
-                <span className="overlay-text">LALCEC</span>
-              </div>
-              
-              <p>{trabajo.description[language]}</p>
+
+            <div className="servicios-boton-container">
+              <a 
+                href="https://api.whatsapp.com/send?phone=3492253860&text=¡Hola!,%20vengo%20de%20la%20web%20y%20estoy%20interesado%20en%20el%20servicio%20de%20Desarrollo%20Web.%20¿Podrían%20darme%20más%20información?"
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="servicios-boton"
+              >
+                Consultar servicio
+              </a>
             </div>
-          ))}
-        </div>
-        <div className="trabajos-container">
-          {trabajos.map((trabajo, index) => (
-            <div key={index} className="trabajos-card">
-              {/* Imagen con difuminado */}
-              <img src="/img/lalcec_app.png" alt="Imagen" className="trabajo-img" />
-              
-              {/* Contenedor con logo y texto superpuestos */}
-              <div className="overlay-container">
-                <img src="/img/logo_lalcec.png" alt="Logo LALCEC" className="overlay-logo" />
-                <span className="overlay-text">LALCEC</span>
-              </div>
-              
-              <p>{trabajo.description[language]}</p>
+          </div>
+
+          <div className="servicios-card">
+            <img src="/img/icono_escritorio.png" className="servicios-img" alt="Desarrollo de Escritorio" />
+            <h3>Desarrollo de Escritorio</h3>
+            <p className="subtitulo">Software eficiente y personalizado para entornos de escritorio.</p>
+
+            <div className="pros-contras-container">
+              <p><FontAwesomeIcon icon={faCheckCircle} style={{ color: "green" }} /> Funciona sin necesidad de conexión a internet.</p>
+              <p><FontAwesomeIcon icon={faCheckCircle} style={{ color: "green" }} /> Mayor rendimiento en tareas exigentes y especializadas.</p>
+              <p><FontAwesomeIcon icon={faCheckCircle} style={{ color: "green" }} /> No depende de servidores externos para su operatividad.</p>
+              <p><FontAwesomeIcon icon={faCheckCircle} style={{ color: "green" }} /> Mayor control y seguridad en el manejo de datos locales.</p>
+
+              <p><FontAwesomeIcon icon={faExclamationTriangle} style={{ color: "orange" }} /> Uso limitado al dispositivo en el que se instala.</p>
+              <p><FontAwesomeIcon icon={faExclamationTriangle} style={{ color: "orange" }} /> Puede requerir más recursos del sistema.</p>
+              <p><FontAwesomeIcon icon={faExclamationTriangle} style={{ color: "orange" }} /> Necesita instalación y actualizaciones manuales.</p>
             </div>
-          ))}
-        </div>
-      </div>
-    </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <section className="servicios">
-      <h2 className="titulo-serv">Servicios</h2>
-      <p className="subtitulo-servicios">Ofrecemos soluciones personalizadas para satisfacer tus necesidades tecnológicas</p>
-      <div className="servicios-container">
-        <div className="servicios-card">
-          <img src="/img/icono_web.png" className="servicios-img" alt="Desarrollo Web" />
-          <h3>Desarrollo Web</h3>
-          <p className="subtitulo">Desarrollo de sitios web modernos, funcionales y optimizados.</p>
-
-          <div className="pros-contras-container">
-            <p><FontAwesomeIcon icon={faCheckCircle} style={{ color: "green" }} /> Accesible desde cualquier dispositivo con conexión a internet.</p>
-            <p><FontAwesomeIcon icon={faCheckCircle} style={{ color: "green" }} /> Fácil mantenimiento y escalabilidad.</p>
-            <p><FontAwesomeIcon icon={faCheckCircle} style={{ color: "green" }} /> No requiere instalación en los dispositivos del usuario.</p>
-            <p><FontAwesomeIcon icon={faCheckCircle} style={{ color: "green" }} /> Amplia visibilidad y mayor captación de clientes potenciales.</p>
-            <p><FontAwesomeIcon icon={faExclamationTriangle} style={{ color: "orange" }} /> El tiempo de desarrollo varía según el proyecto.</p>
-            <p><FontAwesomeIcon icon={faExclamationTriangle} style={{ color: "orange" }} /> Requiere servidores para su correcto funcionamiento.</p>
+            <div className="servicios-boton-container">
+              <a 
+                href="https://api.whatsapp.com/send?phone=3492253860&text=¡Hola!,%20vengo%20de%20la%20web%20y%20estoy%20interesado%20en%20el%20servicio%20de%20Desarrollo%20de%20Escritorio.%20¿Podrían%20darme%20más%20información?"
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="servicios-boton"
+              >
+                Consultar servicio
+              </a>
+            </div>
           </div>
 
-          <div className="servicios-boton-container">
-            <a 
-              href="https://api.whatsapp.com/send?phone=3492253860&text=¡Hola!,%20vengo%20de%20la%20web%20y%20estoy%20interesado%20en%20el%20servicio%20de%20Desarrollo%20Web.%20¿Podrían%20darme%20más%20información?"
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="servicios-boton"
-            >
-              Consultar servicio
-            </a>
+          <div className="servicios-card">
+            <img src="/img/icono_mov.png" className="servicios-img" alt="Desarrollo Móvil" />
+            <h3>Desarrollo Móvil</h3>
+            <p className="subtitulo">Aplicaciones para dispositivos móviles adaptadas a tus necesidades.</p>
+
+            <div className="pros-contras-container">
+              <p><FontAwesomeIcon icon={faCheckCircle} style={{ color: "green" }} /> Fluidez y optimización para pantallas táctiles.</p>
+              <p><FontAwesomeIcon icon={faCheckCircle} style={{ color: "green" }} /> Mejor rendimiento al aprovechar los recursos del dispositivo.</p>
+              <p><FontAwesomeIcon icon={faCheckCircle} style={{ color: "green" }} /> Funciona sin conexión en varias tareas.</p>
+              <p><FontAwesomeIcon icon={faCheckCircle} style={{ color: "green" }} /> Mayor seguridad y control de datos.</p>
+
+              <p><FontAwesomeIcon icon={faExclamationTriangle} style={{ color: "orange" }} /> Depende del sistema operativo.</p>
+              <p><FontAwesomeIcon icon={faExclamationTriangle} style={{ color: "orange" }} /> Puede consumir más almacenamiento y batería.</p>
+              <p><FontAwesomeIcon icon={faExclamationTriangle} style={{ color: "orange" }} /> Requiere descargas y actualizaciones.</p>
+            </div>
+
+            <div className="servicios-boton-container">
+              <a 
+                href="https://api.whatsapp.com/send?phone=3492253860&text=¡Hola!,%20vengo%20de%20la%20web%20y%20estoy%20interesado%20en%20el%20servicio%20de%20Desarrollo%20Móvil.%20¿Podrían%20darme%20más%20información?"
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="servicios-boton"
+              >
+                Consultar servicio
+              </a>
+            </div>
           </div>
         </div>
-
-        <div className="servicios-card">
-          <img src="/img/icono_escritorio.png" className="servicios-img" alt="Desarrollo de Escritorio" />
-          <h3>Desarrollo de Escritorio</h3>
-          <p className="subtitulo">Software eficiente y personalizado para entornos de escritorio.</p>
-
-          <div className="pros-contras-container">
-            <p><FontAwesomeIcon icon={faCheckCircle} style={{ color: "green" }} /> Funciona sin necesidad de conexión a internet.</p>
-            <p><FontAwesomeIcon icon={faCheckCircle} style={{ color: "green" }} /> Mayor rendimiento en tareas exigentes y especializadas.</p>
-            <p><FontAwesomeIcon icon={faCheckCircle} style={{ color: "green" }} /> No depende de servidores externos para su operatividad.</p>
-            <p><FontAwesomeIcon icon={faCheckCircle} style={{ color: "green" }} /> Mayor control y seguridad en el manejo de datos locales.</p>
-
-            <p><FontAwesomeIcon icon={faExclamationTriangle} style={{ color: "orange" }} /> Uso limitado al dispositivo en el que se instala.</p>
-            <p><FontAwesomeIcon icon={faExclamationTriangle} style={{ color: "orange" }} /> Puede requerir más recursos del sistema.</p>
-            <p><FontAwesomeIcon icon={faExclamationTriangle} style={{ color: "orange" }} /> Necesita instalación y actualizaciones manuales.</p>
-          </div>
-
-          <div className="servicios-boton-container">
-            <a 
-              href="https://api.whatsapp.com/send?phone=3492253860&text=¡Hola!,%20vengo%20de%20la%20web%20y%20estoy%20interesado%20en%20el%20servicio%20de%20Desarrollo%20de%20Escritorio.%20¿Podrían%20darme%20más%20información?"
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="servicios-boton"
-            >
-              Consultar servicio
-            </a>
-          </div>
-        </div>
-
-        <div className="servicios-card">
-          <img src="/img/icono_mov.png" className="servicios-img" alt="Desarrollo Móvil" />
-          <h3>Desarrollo Móvil</h3>
-          <p className="subtitulo">Aplicaciones para dispositivos móviles adaptadas a tus necesidades.</p>
-
-          <div className="pros-contras-container">
-            <p><FontAwesomeIcon icon={faCheckCircle} style={{ color: "green" }} /> Fluidez y optimización para pantallas táctiles.</p>
-            <p><FontAwesomeIcon icon={faCheckCircle} style={{ color: "green" }} /> Mejor rendimiento al aprovechar los recursos del dispositivo.</p>
-            <p><FontAwesomeIcon icon={faCheckCircle} style={{ color: "green" }} /> Funciona sin conexión en varias tareas.</p>
-            <p><FontAwesomeIcon icon={faCheckCircle} style={{ color: "green" }} /> Mayor seguridad y control de datos.</p>
-
-            <p><FontAwesomeIcon icon={faExclamationTriangle} style={{ color: "orange" }} /> Depende del sistema operativo.</p>
-            <p><FontAwesomeIcon icon={faExclamationTriangle} style={{ color: "orange" }} /> Puede consumir más almacenamiento y batería.</p>
-            <p><FontAwesomeIcon icon={faExclamationTriangle} style={{ color: "orange" }} /> Requiere descargas y actualizaciones.</p>
-          </div>
-
-          <div className="servicios-boton-container">
-            <a 
-              href="https://api.whatsapp.com/send?phone=3492253860&text=¡Hola!,%20vengo%20de%20la%20web%20y%20estoy%20interesado%20en%20el%20servicio%20de%20Desarrollo%20Móvil.%20¿Podrían%20darme%20más%20información?"
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="servicios-boton"
-            >
-              Consultar servicio
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
+      </section>
 
 
 
