@@ -14,6 +14,7 @@ const Desarrolladores = () => {
   const [language, setLanguage] = useState("es"); // Estado para manejar el idioma
   const [expandedIndex, setExpandedIndex] = useState(null);
   const [navbarBackground, setNavbarBackground] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // Textos en español e inglés
   const translations = {
@@ -165,8 +166,6 @@ const Desarrolladores = () => {
 
 
 
-  
-
   const trabajos = [
     {
       description: {
@@ -278,20 +277,23 @@ const Desarrolladores = () => {
 
 
       
-      {/* Sección de Navegación */}
-      <div className="background-container" style={{ backgroundImage: "url('/img/img_menu.jpg')" }}>
+      <div className="background-container" style={{ backgroundImage: "url('/img/img_menu.png')" }}>
         <nav className={`navbar ${navbarBackground ? "navbar-scrolled" : ""}`}>
           <div className="logo-container">
             <img src="/img/logo_negro.png" alt="Logo" className={`logo ${navbarBackground ? "logo-scrolled" : ""}`} />
           </div>
-          <ul className="nav-links">
-            <li><a href="#inicio">{language === "es" ? "Inicio" : "Home"}</a></li>
-            <li><a href="#nosotros">{language === "es" ? "Nosotros" : "About Us"}</a></li>
-            <li><a href="#stack">{language === "es" ? "Stack Tecnológico" : "Tech Stack"}</a></li>
-            <li><a href="#trabajos">{language === "es" ? "Trabajos" : "jobs"}</a></li>
-            <li><a href="#servicios">{language === "es" ? "Servicios" : "Services"}</a></li>
-            <li><a href="#contacto">{language === "es" ? "Contacto" : "Contact"}</a></li>
-
+          <button className={`hamburger ${isMenuOpen ? "open" : ""}`} onClick={() => setIsMenuOpen(!isMenuOpen)}>
+            <div className="hamburger-line"></div>
+            <div className="hamburger-line"></div>
+            <div className="hamburger-line"></div>
+          </button>
+          <ul className={`nav-links ${isMenuOpen ? "open" : ""}`}>
+            <li><a href="#inicio" onClick={() => setIsMenuOpen(false)}>{language === "es" ? "Inicio" : "Home"}</a></li>
+            <li><a href="#nosotros" onClick={() => setIsMenuOpen(false)}>{language === "es" ? "Nosotros" : "About Us"}</a></li>
+            <li><a href="#stack" onClick={() => setIsMenuOpen(false)}>{language === "es" ? "Stack Tecnológico" : "Tech Stack"}</a></li>
+            <li><a href="#trabajos" onClick={() => setIsMenuOpen(false)}>{language === "es" ? "Trabajos" : "Jobs"}</a></li>
+            <li><a href="#servicios" onClick={() => setIsMenuOpen(false)}>{language === "es" ? "Servicios" : "Services"}</a></li>
+            <li><a href="#contacto" onClick={() => setIsMenuOpen(false)}>{language === "es" ? "Contacto" : "Contact"}</a></li>
             <li>
               <button onClick={toggleLanguage} className="language-button">
                 <img
@@ -299,7 +301,7 @@ const Desarrolladores = () => {
                   alt={language === "es" ? "Español" : "English"}
                   className="flag-icon"
                 />
-                <span className="language-text">{language === "es" ? "EN" : "ES"}</span> {/* Add the language text here */}
+                <span className="language-text">{language === "es" ? "EN" : "ES"}</span>
               </button>
             </li>
           </ul>
@@ -309,6 +311,8 @@ const Desarrolladores = () => {
           <p className="subtitle">{translations[language].subtitle}</p>
         </div>
       </div>
+
+    
 
 
 
@@ -327,7 +331,7 @@ const Desarrolladores = () => {
 
 
       {/* Sección de Nosotros */}
-      <section className="about-section">
+      <section className="about-section" id="nosotros">
         <div className="about-content">
           <h2>{translations[language].aboutTitle}</h2>
           <p dangerouslySetInnerHTML={{ __html: translations[language].aboutText1 }} />
@@ -369,7 +373,7 @@ const Desarrolladores = () => {
       </section>
 
       {/* Sección de Stack Tecnológico */}
-      <section className="tech-stack-section">
+      <section className="tech-stack-section" id="stack">
         <h2>{translations[language].stackTitle}</h2>
         <p className="tech-subtitle">{translations[language].stackSubtitle}</p>
         <div className="tech-stack-grid">
@@ -457,7 +461,7 @@ const Desarrolladores = () => {
 
 
 
-      <section className="servicios">
+      <section className="servicios" id="servicios">
         <div className="titles-container">
           <h2 className="titulo-serv">{translations[language].servicios}</h2>
           <p className="subtitulo-servicios">{translations[language].servicios_subtitle}</p>
