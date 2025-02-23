@@ -46,6 +46,48 @@ const Desarrolladores = () => {
       followTitle: "Síguenos",
       footerText: "Innovación, tecnología y soluciones a medida",
       copyright: "Todos los derechos reservados.",
+  
+      // Nuevas traducciones para la sección de Servicios
+      servicios_subtitle: "Ofrecemos soluciones personalizadas para satisfacer tus necesidades tecnológicas",
+      desarrollo_web: "Desarrollo Web",
+      desarrollo_web_subtitle: "Desarrollo de sitios web modernos, funcionales y optimizados.",
+      desarrollo_web_pros: [
+        "Accesible desde cualquier dispositivo con internet.",
+        "Fácil mantenimiento y escalabilidad.",
+        "No requiere instalación en los dispositivos del usuario.",
+        "Mayor visibilidad y captación de clientes.",
+      ],
+      desarrollo_web_contras: [
+        "El tiempo de desarrollo varía según el proyecto.",
+        "Requiere servidores para su correcto funcionamiento.",
+      ],
+      desarrollo_escritorio: "Desarrollo de Escritorio",
+      desarrollo_escritorio_subtitle: "Software eficiente y personalizado para entornos de escritorio.",
+      desarrollo_escritorio_pros: [
+        "Funciona sin necesidad de conexión a internet.",
+        "Mayor rendimiento en tareas exigentes y especializadas.",
+        "No depende de servidores externos para su operatividad.",
+        "Mayor control y seguridad en el manejo de datos locales.",
+      ],
+      desarrollo_escritorio_contras: [
+        "Uso limitado al dispositivo en el que se instala.",
+        "Puede requerir más recursos del sistema.",
+        "Necesita instalación y actualizaciones manuales.",
+      ],
+      desarrollo_movil: "Desarrollo Móvil",
+      desarrollo_movil_subtitle: "Aplicaciones para dispositivos móviles adaptadas a tus necesidades.",
+      desarrollo_movil_pros: [
+        "Fluidez y optimización para pantallas táctiles.",
+        "Mejor uso de los recursos del dispositivo.",
+        "Funciona sin conexión en varias tareas.",
+        "Mayor seguridad y control de datos.",
+      ],
+      desarrollo_movil_contras: [
+        "Depende del sistema operativo.",
+        "Puede consumir más almacenamiento y batería.",
+        "Requiere descargas y actualizaciones.",
+      ],
+      consultar_servicio: "Consultar servicio",
     },
     en: {
       welcome: "Welcome to 3 Devs Solutions",
@@ -76,6 +118,48 @@ const Desarrolladores = () => {
       followTitle: "Follow Us",
       footerText: "Innovation, technology, and tailored solutions",
       copyright: "All rights reserved.",
+  
+      // Nuevas traducciones para la sección de Servicios
+      servicios_subtitle: "We offer tailored solutions to meet your technological needs",
+      desarrollo_web: "Web Development",
+      desarrollo_web_subtitle: "Development of modern, functional, and optimized websites.",
+      desarrollo_web_pros: [
+        "Accessible from any device with internet.",
+        "Easy maintenance and scalability.",
+        "No installation required on user devices.",
+        "Greater visibility and customer acquisition.",
+      ],
+      desarrollo_web_contras: [
+        "Development time varies depending on the project.",
+        "Requires servers for proper functioning.",
+      ],
+      desarrollo_escritorio: "Desktop Development",
+      desarrollo_escritorio_subtitle: "Efficient and customized software for desktop environments.",
+      desarrollo_escritorio_pros: [
+        "Works without an internet connection.",
+        "Better performance for demanding and specialized tasks.",
+        "Does not depend on external servers for operation.",
+        "Greater control and security in handling local data.",
+      ],
+      desarrollo_escritorio_contras: [
+        "Limited to the device where it is installed.",
+        "May require more system resources.",
+        "Requires manual installation and updates.",
+      ],
+      desarrollo_movil: "Mobile Development",
+      desarrollo_movil_subtitle: "Mobile applications tailored to your needs.",
+      desarrollo_movil_pros: [
+        "Smooth and optimized for touch screens.",
+        "Better use of device resources.",
+        "Works offline for various tasks.",
+        "Greater security and data control.",
+      ],
+      desarrollo_movil_contras: [
+        "Dependent on the operating system.",
+        "May consume more storage and battery.",
+        "Requires downloads and updates.",
+      ],
+      consultar_servicio: "Inquire about the service",
     },
   };
 
@@ -304,6 +388,20 @@ const Desarrolladores = () => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       {/* Sección de trabajos */}
       <section className="trabajos-section" id="trabajos">
         <h2 className="trabajos-title">
@@ -338,88 +436,123 @@ const Desarrolladores = () => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       <section className="servicios">
-        <h2 className="titulo-serv">Servicios</h2>
-        <p className="subtitulo-servicios">Ofrecemos soluciones personalizadas para satisfacer tus necesidades tecnológicas</p>
+        <div className="titles-container">
+          <h2 className="titulo-serv">{translations[language].servicios}</h2>
+          <p className="subtitulo-servicios">{translations[language].servicios_subtitle}</p>
+        </div>
+
         <div className="servicios-container">
+          {/* Tarjeta de Desarrollo Web */}
           <div className="servicios-card">
             <img src="/img/icono_web.png" className="servicios-img" alt="Desarrollo Web" />
-            <h3>Desarrollo Web</h3>
-            <p className="subtitulo">Desarrollo de sitios web modernos, funcionales y optimizados.</p>
+            <h3 className="titulo">{translations[language].desarrollo_web}</h3>
+            <p className="subtitulo">{translations[language].desarrollo_web_subtitle}</p>
 
             <div className="pros-contras-container">
-              <p><FontAwesomeIcon icon={faCheckCircle} style={{ color: "green" }} /> Accesible desde cualquier dispositivo con conexión a internet.</p>
-              <p><FontAwesomeIcon icon={faCheckCircle} style={{ color: "green" }} /> Fácil mantenimiento y escalabilidad.</p>
-              <p><FontAwesomeIcon icon={faCheckCircle} style={{ color: "green" }} /> No requiere instalación en los dispositivos del usuario.</p>
-              <p><FontAwesomeIcon icon={faCheckCircle} style={{ color: "green" }} /> Amplia visibilidad y mayor captación de clientes potenciales.</p>
-              <p><FontAwesomeIcon icon={faExclamationTriangle} style={{ color: "orange" }} /> El tiempo de desarrollo varía según el proyecto.</p>
-              <p><FontAwesomeIcon icon={faExclamationTriangle} style={{ color: "orange" }} /> Requiere servidores para su correcto funcionamiento.</p>
+              {translations[language].desarrollo_web_pros.map((pro, index) => (
+                <p key={index}>
+                  <FontAwesomeIcon icon={faCheckCircle} style={{ color: "green" }} /> {pro}
+                </p>
+              ))}
+              {translations[language].desarrollo_web_contras.map((contra, index) => (
+                <p key={index}>
+                  <FontAwesomeIcon icon={faExclamationTriangle} style={{ color: "orange" }} /> {contra}
+                </p>
+              ))}
             </div>
 
             <div className="servicios-boton-container">
-              <a 
+              <a
                 href="https://api.whatsapp.com/send?phone=3492253860&text=¡Hola!,%20vengo%20de%20la%20web%20y%20estoy%20interesado%20en%20el%20servicio%20de%20Desarrollo%20Web.%20¿Podrían%20darme%20más%20información?"
-                target="_blank" 
+                target="_blank"
                 rel="noopener noreferrer"
                 className="servicios-boton"
               >
-                Consultar servicio
+                {translations[language].consultar_servicio}
               </a>
             </div>
           </div>
 
+          {/* Tarjeta de Desarrollo de Escritorio */}
           <div className="servicios-card">
             <img src="/img/icono_escritorio.png" className="servicios-img" alt="Desarrollo de Escritorio" />
-            <h3>Desarrollo de Escritorio</h3>
-            <p className="subtitulo">Software eficiente y personalizado para entornos de escritorio.</p>
+            <h3 className="titulo">{translations[language].desarrollo_escritorio}</h3>
+            <p className="subtitulo">{translations[language].desarrollo_escritorio_subtitle}</p>
 
             <div className="pros-contras-container">
-              <p><FontAwesomeIcon icon={faCheckCircle} style={{ color: "green" }} /> Funciona sin necesidad de conexión a internet.</p>
-              <p><FontAwesomeIcon icon={faCheckCircle} style={{ color: "green" }} /> Mayor rendimiento en tareas exigentes y especializadas.</p>
-              <p><FontAwesomeIcon icon={faCheckCircle} style={{ color: "green" }} /> No depende de servidores externos para su operatividad.</p>
-              <p><FontAwesomeIcon icon={faCheckCircle} style={{ color: "green" }} /> Mayor control y seguridad en el manejo de datos locales.</p>
-
-              <p><FontAwesomeIcon icon={faExclamationTriangle} style={{ color: "orange" }} /> Uso limitado al dispositivo en el que se instala.</p>
-              <p><FontAwesomeIcon icon={faExclamationTriangle} style={{ color: "orange" }} /> Puede requerir más recursos del sistema.</p>
-              <p><FontAwesomeIcon icon={faExclamationTriangle} style={{ color: "orange" }} /> Necesita instalación y actualizaciones manuales.</p>
+              {translations[language].desarrollo_escritorio_pros.map((pro, index) => (
+                <p key={index}>
+                  <FontAwesomeIcon icon={faCheckCircle} style={{ color: "green" }} /> {pro}
+                </p>
+              ))}
+              {translations[language].desarrollo_escritorio_contras.map((contra, index) => (
+                <p key={index}>
+                  <FontAwesomeIcon icon={faExclamationTriangle} style={{ color: "orange" }} /> {contra}
+                </p>
+              ))}
             </div>
 
             <div className="servicios-boton-container">
-              <a 
+              <a
                 href="https://api.whatsapp.com/send?phone=3492253860&text=¡Hola!,%20vengo%20de%20la%20web%20y%20estoy%20interesado%20en%20el%20servicio%20de%20Desarrollo%20de%20Escritorio.%20¿Podrían%20darme%20más%20información?"
-                target="_blank" 
+                target="_blank"
                 rel="noopener noreferrer"
                 className="servicios-boton"
               >
-                Consultar servicio
+                {translations[language].consultar_servicio}
               </a>
             </div>
           </div>
 
+          {/* Tarjeta de Desarrollo Móvil */}
           <div className="servicios-card">
             <img src="/img/icono_mov.png" className="servicios-img" alt="Desarrollo Móvil" />
-            <h3>Desarrollo Móvil</h3>
-            <p className="subtitulo">Aplicaciones para dispositivos móviles adaptadas a tus necesidades.</p>
+            <h3 className="titulo">{translations[language].desarrollo_movil}</h3>
+            <p className="subtitulo">{translations[language].desarrollo_movil_subtitle}</p>
 
             <div className="pros-contras-container">
-              <p><FontAwesomeIcon icon={faCheckCircle} style={{ color: "green" }} /> Fluidez y optimización para pantallas táctiles.</p>
-              <p><FontAwesomeIcon icon={faCheckCircle} style={{ color: "green" }} /> Mejor rendimiento al aprovechar los recursos del dispositivo.</p>
-              <p><FontAwesomeIcon icon={faCheckCircle} style={{ color: "green" }} /> Funciona sin conexión en varias tareas.</p>
-              <p><FontAwesomeIcon icon={faCheckCircle} style={{ color: "green" }} /> Mayor seguridad y control de datos.</p>
-
-              <p><FontAwesomeIcon icon={faExclamationTriangle} style={{ color: "orange" }} /> Depende del sistema operativo.</p>
-              <p><FontAwesomeIcon icon={faExclamationTriangle} style={{ color: "orange" }} /> Puede consumir más almacenamiento y batería.</p>
-              <p><FontAwesomeIcon icon={faExclamationTriangle} style={{ color: "orange" }} /> Requiere descargas y actualizaciones.</p>
+              {translations[language].desarrollo_movil_pros.map((pro, index) => (
+                <p key={index}>
+                  <FontAwesomeIcon icon={faCheckCircle} style={{ color: "green" }} /> {pro}
+                </p>
+              ))}
+              {translations[language].desarrollo_movil_contras.map((contra, index) => (
+                <p key={index}>
+                  <FontAwesomeIcon icon={faExclamationTriangle} style={{ color: "orange" }} /> {contra}
+                </p>
+              ))}
             </div>
 
             <div className="servicios-boton-container">
-              <a 
+              <a
                 href="https://api.whatsapp.com/send?phone=3492253860&text=¡Hola!,%20vengo%20de%20la%20web%20y%20estoy%20interesado%20en%20el%20servicio%20de%20Desarrollo%20Móvil.%20¿Podrían%20darme%20más%20información?"
-                target="_blank" 
+                target="_blank"
                 rel="noopener noreferrer"
                 className="servicios-boton"
               >
-                Consultar servicio
+                {translations[language].consultar_servicio}
               </a>
             </div>
           </div>

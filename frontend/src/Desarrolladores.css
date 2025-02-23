@@ -226,7 +226,7 @@ html {
   text-align: center;
   width: 100%;
   background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-  padding: 60px 0;
+  padding: 50px 0;
 }
 
 .about-content h2 {
@@ -290,8 +290,7 @@ html {
 
 .team-section h2 {
   font-size: 32px;
-  margin-bottom: 3px; /* Espacio entre el título y el subtítulo */
-  margin-top: 0px;
+  margin: 0px;
   color: #fff;
 }
 
@@ -301,6 +300,31 @@ html {
   margin-bottom: 40px; /* Espacio entre el subtítulo y las tarjetas */
   font-weight: 350;
 }
+
+
+.tech-stack-section h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #000;
+  margin: 0; /* Elimina el margen */
+  line-height: 1; /* Reduce el espacio entre líneas */
+}
+
+.tech-subtitle {
+  font-size: 1.2rem;
+  color: #555;
+  margin: 20px 0 40px 0;
+  line-height: 1; /* Ajusta la altura de línea */
+}
+
+
+
+
+
+
+
+
+
 
 .cards-container {
   display: flex;
@@ -515,24 +539,26 @@ html {
 
 /* Estilos para la sección de Stack Tecnológico */
 .tech-stack-section {
-  padding: 60px 20px;
+  padding: 60px 0;
   background: radial-gradient(circle, #f5f7fa, #c3cfe2);
   text-align: center;
 }
 
 .tech-stack-section h2 {
-  font-size: 32px;
-  margin-bottom: 3px; /* Espacio entre el título y el subtítulo */
-  margin-top: 0px;
+  font-size: 2rem;
+  font-weight: bold;
   color: #000;
+  margin: 0; /* Elimina el margen */
+  line-height: 1; /* Reduce el espacio entre líneas */
 }
 
 .tech-subtitle {
-  font-size: 18px;
-  color: #000;
-  margin-bottom: 40px; /* Espacio entre el subtítulo y las tarjetas */
-  font-weight: 350;
+  font-size: 1.2rem;
+  color: #555;
+  margin: 20px 0 40px 0;
+  line-height: 1; /* Ajusta la altura de línea */
 }
+
 
 /* Contenedor de tarjetas */
 .tech-stack-grid {
@@ -680,7 +706,7 @@ html {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 50px 0;
+  padding: 60px 0;
   background: radial-gradient(circle, #26354b, #4a6fa5);
   gap: 20px;
 }
@@ -709,18 +735,18 @@ html {
 }
 
 .trabajos-title{
-  font-size: 32px;
-  margin-bottom: 3px; /* Espacio entre el título y el subtítulo */
-  margin-top: 0px;
+  font-size: 2rem;
+  font-weight: bold;
   color: #fff;
+  margin: 0; /* Elimina el margen */
+  line-height: 1; /* Reduce el espacio entre líneas */
 }
 
 .trabajos-subtitle {
-  font-size: 18px;
+  font-size: 1.2rem;
   color: #ccc;
-  margin-bottom: 30px; /* Espacio entre el subtítulo y las tarjetas */
-  font-weight: 350;
-  margin-top: 0;
+  margin: 0 0 20px 0;
+  line-height: 1; /* Ajusta la altura de línea */
 }
 
 .trabajo-img {
@@ -785,122 +811,143 @@ html {
 
 
 
-
-
-/* Estilos para la sección de Servicios*/
+/* Estilos para la sección de Servicios */
+/* Ajuste del contenedor principal */
 .servicios {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Centra el contenido verticalmente */
   padding: 40px 0;
-  background: #f5f7fa;
+  background: radial-gradient(circle, #f5f7fa, #c3cfe2);
 }
+
+.titulo-serv {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0; /* Elimina el margen */
+  line-height: 1; /* Reduce el espacio entre líneas */
+}
+
+.subtitulo-servicios {
+  font-size: 1.2rem;
+  color: #555;
+  margin: 20px 0 50px 0;
+  line-height: 1; /* Ajusta la altura de línea */
+}
+
 
 .servicios-container {
-  width: 98%;
-  margin: 0 auto;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: stretch;
   flex-wrap: wrap;
+  gap: 30px;
+  width: 95%;
 }
 
-
+/* Estilos de cada tarjeta */
 .servicios-card {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
-  width: 28%;
-  height: 65vh; /* Ajusta la altura si es necesario */
-  background: #fff;
+  width: calc(33.33% - 20px); /* Tres tarjetas por fila */
+  min-width: 320px;
+  max-width: 400px;
   padding: 20px;
+  text-align: center;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
   transition: transform 0.3s ease-in-out;
-  flex-shrink: 0;
+}
+
+.servicios-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Imagen dentro de la tarjeta */
+.servicios-card img {
+  width: 80px;
+  height: 80px; /* Fija la altura para evitar variaciones */
+}
+
+/* Título de la tarjeta */
+.servicios-card .titulo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 15px 0;
+}
+
+/* Subtítulo de la tarjeta */
+.servicios-card .subtitulo {
+  font-size: 1rem;
+  color: #666;
+  margin-top: 0; /* Asegura que no haya espacio superior */
+  line-height: 1; /* Reduce la separación entre líneas */
+  height: 20px;
 }
 
 
-.titulo-serv{
-  font-size: 32px;
-  margin-bottom: 3px; /* Espacio entre el título y el subtítulo */
-  margin-top: 0px;
-  color: #000;
-}
-
-.subtitulo-servicios{
-  font-size: 18px;
-  color: #000;
-  margin-bottom: 40px; /* Espacio entre el subtítulo y las tarjetas */
-  font-weight: 350;
-}
-
+/* Contenedor de ventajas y desventajas */
 .pros-contras-container {
-  width: 100%;
-  height: auto;
-  min-height: 200px; /* Ajusta según el contenido más largo */
   display: flex;
   align-items: flex-start;
   justify-content: center;
   flex-direction: column;
-  margin-bottom: 5px;
+  width: 97%;
+  padding: 10px;
+  flex-grow: 0.2; /* Hace que todas las tarjetas sean del mismo tamaño */
+  margin: 10px 0;
 }
 
 .pros-contras-container p {
-  margin: 0; /* Reinicia el margen predeterminado */
-  margin-left: 10px; /* Aplica el margen izquierdo que desees */
-}
-
-
-/* Ajuste de imagen más pegada al título */
-.servicios-img {
-  width: 80px;
-  height: 80px;
-  margin-bottom: 5px; /* Reducido de 10px a 5px */
-}
-
-.servicios h3 {
-  font-size: 1.5rem;
-  text-align: center;
-  margin-top: -10px;
-}
-
-.subtitulo {
-  font-size: 1rem;
-  text-align: center;
-  margin-top: -30px;
-}
-
-/* Ajuste de párrafos de pros y contras */
-.servicios-card p:not(.subtitulo) {
-  gap: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   font-size: 0.9rem;
-  margin: 5px 0; /* Añadí un pequeño margen para que los párrafos no se amontonen */
+  margin: 5px 0;
 }
 
-/* Botón con margen ajustado */
+.pros-contras-container svg {
+  font-size: 0.9rem;
+}
+
+
+
+
+
+
+
+
+
+
+/* Botón de consulta */
 .servicios-boton-container {
   width: 100%;
-  text-align: center;
-  margin-top: 15px;
-  display: flex; /* Activa flexbox */
-  align-items: center; /* Centra verticalmente */
+  display: flex;
   justify-content: center;
+  margin-top: auto; /* Empuja el botón hacia abajo */
 }
 
 .servicios-boton {
-  background-color: #006400;
-  color: white;
+  display: inline-block;
   padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
   font-size: 1rem;
-  transition: background-color 0.3s ease;
+  font-weight: bold;
   text-decoration: none;
+  color: #fff;
+  background-color: #007bff;
+  border-radius: 5px;
+  transition: background 0.3s;
 }
 
 .servicios-boton:hover {
-  background-color: #004d00;
+  background-color: #0056b3;
 }
+
+
 
 
 
