@@ -266,104 +266,6 @@ html {
 
 
 
-/* Estilos para el menú en móviles */
-@media (max-width: 1000px) {
-  .navbar {
-    display: flex;
-    align-items: center; /* Centra verticalmente los elementos */
-    justify-content: space-between; /* Separa el logo y el botón de menú */
-    padding: 8px 0; /* Espaciado horizontal */
-  }
-
-  .hamburger {
-    display: flex; /* Mostrar solo en móviles */
-    flex-direction: column;
-    justify-content: space-around;
-    width: 30px;
-    height: 25px;
-    margin-right: 60px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    z-index: 1001;
-  }
-
-  .hamburger-line {
-    width: 100%;
-    height: 3px;
-    background: white;
-    transition: all 0.3s ease;
-  }
-
-  /* Logos alineados y del mismo tamaño */
-  .logo {
-    height: 90px; 
-    width: auto;
-    transition: filter 0.5s ease;
-  }
-
-  .nav-links {
-    position: fixed;
-    top: 0;
-    right: -100%; /* Oculto por defecto (completamente fuera de la pantalla) */
-    height: 100vh; /* Ocupa toda la altura de la pantalla */
-    width: 100%; /* Ocupa todo el ancho de la pantalla */
-    background: rgba(68, 68, 68, 0.973);
-    backdrop-filter: blur(10px);
-    flex-direction: column;
-    justify-content: center; /* Centra verticalmente */
-    align-items: center; /* Centra horizontalmente */
-    gap: 20px;
-    transition: right 0.3s ease; /* Transición suave */
-    z-index: 1000;
-    box-sizing: border-box; /* Evita problemas con el ancho */
-    padding: 0; /* Asegura que no haya padding adicional */
-    margin: 0; /* Asegura que no haya margen adicional */
-  }
-
-  .nav-links.open {
-    right: 0; /* Mostrar cuando está abierto (alineado con el borde derecho) */
-  }
-
-  .nav-links li {
-    margin: 15px 0;
-    text-align: center; /* Centra el texto dentro de cada elemento */
-  }
-
-  .nav-links a {
-    font-size: 20px;
-    width: 100%; /* Ocupa todo el ancho disponible */
-    display: block; /* Hace que el enlace ocupe toda la línea */
-  }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1335,3 +1237,122 @@ html {
 
 
 
+/* Estilos para el menú en móviles */
+@media (max-width: 1000px) {
+  .navbar {
+    display: flex;
+    align-items: center; /* Centra verticalmente los elementos */
+    justify-content: space-between; /* Separa el logo y el botón de menú */
+    padding: 8px 0; /* Espaciado horizontal */
+  }
+
+  .hamburger {
+    display: flex; /* Mostrar solo en móviles */
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    margin-right: 60px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+  }
+
+  .hamburger-line {
+    width: 100%;
+    height: 3px;
+    background: white;
+    transition: all 0.3s ease;
+  }
+
+  /* Logos alineados y del mismo tamaño */
+  .logo {
+    height: 90px; 
+    width: auto;
+    transition: filter 0.5s ease;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Oculto por defecto (completamente fuera de la pantalla) */
+    height: 100vh; /* Ocupa toda la altura de la pantalla */
+    width: 100%; /* Ocupa todo el ancho de la pantalla */
+    background: rgba(68, 68, 68, 0.973);
+    backdrop-filter: blur(10px);
+    flex-direction: column;
+    justify-content: center; /* Centra verticalmente */
+    align-items: center; /* Centra horizontalmente */
+    gap: 20px;
+    transition: right 0.3s ease; /* Transición suave */
+    z-index: 1000;
+    box-sizing: border-box; /* Evita problemas con el ancho */
+    padding: 0; /* Asegura que no haya padding adicional */
+    margin: 0; /* Asegura que no haya margen adicional */
+  }
+
+  .nav-links.open {
+    right: 0; /* Mostrar cuando está abierto (alineado con el borde derecho) */
+  }
+
+  .nav-links li {
+    margin: 15px 0;
+    text-align: center; /* Centra el texto dentro de cada elemento */
+  }
+
+  .nav-links a {
+    font-size: 20px;
+    width: 100%; /* Ocupa todo el ancho disponible */
+    display: block; /* Hace que el enlace ocupe toda la línea */
+  }
+
+
+  .about-section {
+    padding: 20px 0;
+  }
+
+  .about-content {
+    max-width: 95%;
+  }
+
+  .team-section {
+    padding: 20px 0; /* Reducir el padding superior e inferior */
+  }
+
+
+  /* Estilos para la sección de Stack Tecnológico */
+  .tech-stack-section {
+    padding: 30px 0;
+  }
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  /* Estilos de cada tarjeta */
+  .servicios-card {
+    min-width: 300px;
+  }
+
+
+
+
+
+
+  
+}

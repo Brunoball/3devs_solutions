@@ -29,9 +29,9 @@ const Desarrolladores = () => {
       aboutText1:
         "En <strong>3 Devs Solutions</strong>, nos especializamos en el desarrollo de software a medida, combinando innovación y tecnología para ofrecer soluciones eficientes y personalizadas que se adaptan a las necesidades específicas de cada cliente.",
       aboutText2:
-        "Fundada en 2024, nuestra misión es transformar ideas en realidad a través de soluciones tecnológicas que impulsen el crecimiento y la competitividad de tu negocio. Nos enorgullece ser un aliado estratégico para clientes que buscan optimizar sus procesos y alcanzar sus objetivos de manera eficaz.",
+        "Nos caracterizamos por nuestro compromiso con la excelencia y la satisfacción del cliente, desarrollando soluciones de alta calidad que se adaptan a las necesidades de cada proyecto. Implementamos metodologías ágiles que nos permiten optimizar tiempos, mejorar la eficiencia y garantizar entregas puntuales, manteniendo siempre un alto estándar en cada etapa del proceso.",
       aboutText3:
-        "Nuestro equipo está formado por estudiantes y profesionales en programación, todos comprometidos con la excelencia y la satisfacción del cliente. Trabajamos con metodologías ágiles para garantizar que cada proyecto se entregue a tiempo y con la más alta calidad.",
+        "Contamos con un equipo altamente comprometido, enfocado en la excelencia y en brindar la mejor satisfacción a nuestros clientes. Aplicamos metodologías ágiles para asegurar que cada proyecto se entregue puntualmente y con la más alta calidad, cumpliendo siempre con los más altos estándares.",
       aboutText4:
         "En <strong>3 Devs Solutions</strong>, creemos que cada negocio es único. Por eso, adoptamos un enfoque personalizado para cada proyecto, comenzando con un análisis detallado de tus necesidades y objetivos. Utilizamos tecnologías de vanguardia y las mejores prácticas de la industria para garantizar que nuestras soluciones no solo cumplan, sino que superen tus expectativas.",
       aboutText5:
@@ -100,10 +100,10 @@ const Desarrolladores = () => {
       servicios: "Services",
       aboutText1:
         "At <strong>3 Devs Solutions</strong>, we specialize in custom software development, combining innovation and technology to deliver efficient and personalized solutions tailored to each client's specific needs.",
-      aboutText2:
-        "Founded in 2024, our mission is to turn ideas into reality through technological solutions that drive growth and competitiveness for your business. We are proud to be a strategic ally for clients seeking to optimize their processes and achieve their goals effectively.",
-      aboutText3:
-        "Our team is made up of students and programming professionals, all committed to excellence and customer satisfaction. We work with agile methodologies to ensure that each project is delivered on time and with the highest quality.",
+      aboutText2: 
+        "We are characterized by our commitment to excellence and customer satisfaction, developing high-quality solutions that adapt to the needs of each project. We implement agile methodologies that allow us to optimize time, improve efficiency, and ensure timely deliveries, maintaining a high standard at every stage of the process.",
+      aboutText3: 
+        "We have a highly committed team focused on excellence and providing the best customer satisfaction. We apply agile methodologies to ensure that each project is delivered on time and with the highest quality, always meeting the highest standards.",
       aboutText4:
         "At <strong>3 Devs Solutions</strong>, we believe that every business is unique. That's why we adopt a personalized approach for each project, starting with a detailed analysis of your needs and objectives. We use cutting-edge technologies and industry best practices to ensure that our solutions not only meet but exceed your expectations.",
       aboutText5:
