@@ -4,16 +4,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin, faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { faCheckCircle, faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 
-
 // Importa las banderas (puedes usar imágenes o íconos)
 const esFlag = "/img/es-flag.png";
 const usFlag = "/img/us-flag.png";
 
-
 const Desarrolladores = () => {
   const [language, setLanguage] = useState("es"); // Estado para manejar el idioma
   const [expandedIndex, setExpandedIndex] = useState(null);
-  const [navbarBackground, setNavbarBackground] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // Textos en español e inglés
@@ -47,8 +44,6 @@ const Desarrolladores = () => {
       followTitle: "Síguenos",
       footerText: "Innovación, tecnología y soluciones a medida",
       copyright: "Todos los derechos reservados.",
-  
-      // Nuevas traducciones para la sección de Servicios
       servicios_subtitle: "Ofrecemos soluciones personalizadas para satisfacer tus necesidades tecnológicas",
       desarrollo_web: "Desarrollo Web",
       desarrollo_web_subtitle: "Desarrollo de sitios web modernos, funcionales y optimizados.",
@@ -119,8 +114,6 @@ const Desarrolladores = () => {
       followTitle: "Follow Us",
       footerText: "Innovation, technology, and tailored solutions",
       copyright: "All rights reserved.",
-  
-      // Nuevas traducciones para la sección de Servicios
       servicios_subtitle: "We offer tailored solutions to meet your technological needs",
       desarrollo_web: "Web Development",
       desarrollo_web_subtitle: "Development of modern, functional, and optimized websites.",
@@ -164,8 +157,6 @@ const Desarrolladores = () => {
     },
   };
 
-
-
   const trabajos = [
     {
       description: {
@@ -174,7 +165,7 @@ const Desarrolladores = () => {
       }
     }
   ];
-  
+
   // Cambiar idioma
   const toggleLanguage = () => {
     setLanguage((prevLang) => (prevLang === "es" ? "en" : "es"));
@@ -182,22 +173,6 @@ const Desarrolladores = () => {
 
   useEffect(() => {
     document.title = "3 Devs Solutions"; // Cambia el título de la página
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setNavbarBackground(true);
-      } else {
-        setNavbarBackground(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
   }, []);
 
   const toggleExpand = (index) => {
@@ -273,14 +248,10 @@ const Desarrolladores = () => {
 
   return (
     <div className="page-container" id="inicio">
-
-
-
-      
       <div className="background-container" style={{ backgroundImage: "url('/img/img_menu.png')" }}>
-        <nav className={`navbar ${navbarBackground ? "navbar-scrolled" : ""}`}>
+        <nav className="navbar">
           <div className="logo-container">
-            <img src="/img/logo_negro.png" alt="Logo" className={`logo ${navbarBackground ? "logo-scrolled" : ""}`} />
+            <img src="/img/logo_negro.png" alt="Logo" className="logo" />
           </div>
           <button className={`hamburger ${isMenuOpen ? "open" : ""}`} onClick={() => setIsMenuOpen(!isMenuOpen)}>
             <div className="hamburger-line"></div>
@@ -311,24 +282,6 @@ const Desarrolladores = () => {
           <p className="subtitle">{translations[language].subtitle}</p>
         </div>
       </div>
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
       {/* Sección de Nosotros */}
       <section className="about-section" id="nosotros">
@@ -387,49 +340,24 @@ const Desarrolladores = () => {
           ))}
         </div>
       </section>
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
       {/* Sección de trabajos */}
       <section className="trabajos-section" id="trabajos">
         <h2 className="trabajos-title">
           {translations[language].trabajos}
         </h2>
-        {/* Subtítulo agregado */}
         <p className="trabajos-subtitle">
           {translations[language].trabajos_subtitle}
         </p>
-
-        
         <div className="box_work"> 
           <div className="trabajos-container">
             {trabajos.map((trabajo, index) => (
               <div key={index} className="trabajos-card">
-                {/* Imagen con difuminado */}
                 <img src="/img/lalcec_app.png" alt="Imagen" className="trabajo-img" />
-                
-                {/* Contenedor con logo y texto superpuestos */}
                 <div className="overlay-container">
                   <img src="/img/logo_lalcec.png" alt="Logo LALCEC" className="overlay-logo" />
                   <span className="overlay-text">LALCEC</span>
                 </div>
-                
                 <p>{trabajo.description[language]}</p>
               </div>
             ))}
@@ -437,30 +365,7 @@ const Desarrolladores = () => {
         </div>
       </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      {/* Sección de Servicios */}
       <section className="servicios" id="servicios">
         <div className="titles-container">
           <h2 className="titulo-serv">{translations[language].servicios}</h2>
@@ -473,7 +378,6 @@ const Desarrolladores = () => {
             <img src="/img/icono_web.png" className="servicios-img" alt="Desarrollo Web" />
             <h3 className="titulo">{translations[language].desarrollo_web}</h3>
             <p className="subtitulo">{translations[language].desarrollo_web_subtitle}</p>
-
             <div className="pros-contras-container">
               {translations[language].desarrollo_web_pros.map((pro, index) => (
                 <p key={index}>
@@ -486,10 +390,9 @@ const Desarrolladores = () => {
                 </p>
               ))}
             </div>
-
             <div className="servicios-boton-container">
               <a
-                href="https://api.whatsapp.com/send?phone=3492253860&text=¡Hola!,%20vengo%20de%20la%20web%20y%20estoy%20interesado%20en%20el%20servicio%20de%20Desarrollo%20Web.%20¿Podrían%20darme%20más%20información?"
+                href="https://api.whatsapp.com/send?phone=3564672341&text=¡Hola!,%20vengo%20de%20la%20web%20y%20estoy%20interesado%20en%20el%20servicio%20de%20Desarrollo%20Web.%20¿Podrían%20darme%20más%20información?"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="servicios-boton"
@@ -504,7 +407,6 @@ const Desarrolladores = () => {
             <img src="/img/icono_escritorio.png" className="servicios-img" alt="Desarrollo de Escritorio" />
             <h3 className="titulo">{translations[language].desarrollo_escritorio}</h3>
             <p className="subtitulo">{translations[language].desarrollo_escritorio_subtitle}</p>
-
             <div className="pros-contras-container">
               {translations[language].desarrollo_escritorio_pros.map((pro, index) => (
                 <p key={index}>
@@ -517,10 +419,9 @@ const Desarrolladores = () => {
                 </p>
               ))}
             </div>
-
             <div className="servicios-boton-container">
               <a
-                href="https://api.whatsapp.com/send?phone=3492253860&text=¡Hola!,%20vengo%20de%20la%20web%20y%20estoy%20interesado%20en%20el%20servicio%20de%20Desarrollo%20de%20Escritorio.%20¿Podrían%20darme%20más%20información?"
+                href="https://api.whatsapp.com/send?phone=3564672341&text=¡Hola!,%20vengo%20de%20la%20web%20y%20estoy%20interesado%20en%20el%20servicio%20de%20Desarrollo%20de%20Escritorio.%20¿Podrían%20darme%20más%20información?"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="servicios-boton"
@@ -535,7 +436,6 @@ const Desarrolladores = () => {
             <img src="/img/icono_mov.png" className="servicios-img" alt="Desarrollo Móvil" />
             <h3 className="titulo">{translations[language].desarrollo_movil}</h3>
             <p className="subtitulo">{translations[language].desarrollo_movil_subtitle}</p>
-
             <div className="pros-contras-container">
               {translations[language].desarrollo_movil_pros.map((pro, index) => (
                 <p key={index}>
@@ -548,10 +448,9 @@ const Desarrolladores = () => {
                 </p>
               ))}
             </div>
-
             <div className="servicios-boton-container">
               <a
-                href="https://api.whatsapp.com/send?phone=3492253860&text=¡Hola!,%20vengo%20de%20la%20web%20y%20estoy%20interesado%20en%20el%20servicio%20de%20Desarrollo%20Móvil.%20¿Podrían%20darme%20más%20información?"
+                href="https://api.whatsapp.com/send?phone=3564672341&text=¡Hola!,%20vengo%20de%20la%20web%20y%20estoy%20interesado%20en%20el%20servicio%20de%20Desarrollo%20Móvil.%20¿Podrían%20darme%20más%20información?"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="servicios-boton"
@@ -563,67 +462,6 @@ const Desarrolladores = () => {
         </div>
       </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       {/* Sección del Footer */}
       <footer className="footer-section" id="contacto">
         <div className="footer-content">
@@ -634,7 +472,7 @@ const Desarrolladores = () => {
           <div className="footer-contact">
             <h3>{translations[language].contactTitle}</h3>
             <p>Email: 3devs.soluciones@gmail.com</p>
-            <p>Teléfono: +54 9 1234 5678</p>
+            <p>Teléfono: +54 3564-672341</p>
             <p>Dirección: San Francisco/Rafaela, Argentina</p>
           </div>
           <div className="footer-social">

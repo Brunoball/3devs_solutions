@@ -106,26 +106,21 @@ html {
 
 /* Barra de navegación inicial (sin fondo) */
 .navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  background-color: black; /* Fondo negro sólido */
   position: fixed;
-  top: 0;
   width: 100%;
-  height: 8%;
-  padding: 15px 0;
+  top: 0;
   z-index: 1000;
-  background-color: transparent; /* Sin fondo inicialmente */
-  transition: background-color 0.5s ease, height 0.5s ease; /* Transición suave */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 20px;
 }
 
 /* Barra de navegación con fondo al hacer scroll */
 .navbar-scrolled {
-  background-color: rgba(68, 68, 68, 0.9); /* Fondo oscuro con transparencia */
-  backdrop-filter: blur(10px); /* Efecto de desenfoque */
-  height: 6%; /* Se reduce suavemente */
+  background-color: black; /* Mantén el fondo negro incluso al hacer scroll */
 }
-
 
 
 
@@ -136,6 +131,7 @@ html {
   display: flex;
   align-items: center;
   margin-left: 50px;
+  filter: brightness(0) invert(1); /* Convierte la imagen a blanco */
 }
 
 /* Logos alineados y del mismo tamaño */
