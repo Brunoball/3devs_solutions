@@ -1233,10 +1233,17 @@ html {
     display: flex;
     align-items: center; /* Centra verticalmente los elementos */
     justify-content: space-between; /* Separa el logo y el botón de menú */
-    padding: 8px 0; /* Espaciado horizontal */
+    padding: 3px 0; /* Espaciado horizontal */
     z-index: 10000;
+    height: 80px; /* Altura fija del navbar */
+    position: fixed; /* Fija el navbar en la parte superior */
+    top: 0; /* Lo pega en la parte superior */
+    left: 0; /* Lo alinea a la izquierda */
+    width: 100%; /* Ocupa todo el ancho de la pantalla */
+    background-color: rgba(36, 36, 36, 0.952); /* Color de fondo del navbar */
   }
 
+  
   .navbar-scrolled {
     height: 80px; /* Mantiene la altura inicial */
     background-color: rgba(36, 36, 36, 0.952); /* Evita cambios de color */
@@ -1253,19 +1260,6 @@ html {
     width: auto;
     transition: filter 0.5s ease;
   }
-
-
-
-
-
-
-
-
-
-
-
-  
-
 
   .hamburger {
     display: flex;
@@ -1299,11 +1293,10 @@ html {
     background-color: rgba(255, 255, 255, 0.7); /* Ligera opacidad cuando se pasa el ratón */
     transform: scaleX(1.1); /* Escala levemente en el eje X para resaltar */
   }
-  
 
   .nav-links {
     position: fixed;
-    top: 13%; /* Comienza justo debajo del navbar */
+    top: 86px; /* Comienza justo debajo del navbar (ajusta según la altura del navbar) */
     right: -100%; /* Oculto por defecto (completamente fuera de la pantalla) */
     height: calc(100vh - 80px); /* Ajusta la altura para que no se superponga con el navbar */
     width: 100%; /* Ocupa todo el ancho de la pantalla */
@@ -1318,6 +1311,11 @@ html {
     box-sizing: border-box; /* Evita problemas con el ancho */
     padding: 0; /* Asegura que no haya padding adicional */
     margin: 0; /* Asegura que no haya margen adicional */
+  }
+
+  /* Clase para mostrar el menú */
+  .nav-links.active {
+    right: 0; /* Muestra el menú deslizándolo desde la derecha */
   }
 
 
