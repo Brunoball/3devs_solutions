@@ -453,7 +453,7 @@ const Desarrolladores = () => {
                 href="https://api.whatsapp.com/send?phone=3564672341&text=¡Hola!,%20vengo%20de%20la%20web%20y%20estoy%20interesado%20en%20el%20servicio%20de%20Desarrollo%20Móvil.%20¿Podrían%20darme%20más%20información?"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="servicios-boton"
+                className="servicios-boton" 
               >
                 {translations[language].consultar_servicio}
               </a>

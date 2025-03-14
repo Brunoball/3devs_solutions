@@ -286,7 +286,9 @@ html {
   text-align: center;
   width: 100%;
   background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-  padding: 50px 0;
+  padding: 120px 0;
+  padding-top: 120px; /* Ajusta este valor según la altura de tu barra de navegación */
+
 }
 
 .about-content h2 {
