@@ -17,13 +17,14 @@ html {
   height: 100vh; /* Solo ocupa la pantalla inicial */
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
+  background-attachment: scroll; /* Cambia de 'fixed' a 'scroll' para evitar el movimiento */
   background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+
 
 /* Capa de oscurecimiento SOLO para la imagen de fondo */
 .background-container::before {
@@ -100,83 +101,72 @@ html {
   width: 30px; /* Ajusta el tamaño de la bandera */
   height: 20px;
   border-radius: 3px; /* Bordes redondeados */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Sombra suave */
 }
 
 
-/* Barra de navegación inicial (sin fondo) */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  background-color: rgba(36, 36, 36, 0.952); /* Fondo negro sólido */
   position: fixed;
-  top: 0;
   width: 100%;
-  height: 8%;
-  padding: 15px 0;
+  top: 0;
   z-index: 1000;
-  background-color: transparent; /* Sin fondo inicialmente */
-  transition: background-color 0.5s ease, height 0.5s ease; /* Transición suave */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  transition: all 0.3s ease-in-out;
+  height: 80px; /* Altura inicial */
 }
 
-/* Barra de navegación con fondo al hacer scroll */
+/* Navbar reducida cuando se hace scroll */
 .navbar-scrolled {
-  background-color: rgba(68, 68, 68, 0.9); /* Fondo oscuro con transparencia */
-  backdrop-filter: blur(10px); /* Efecto de desenfoque */
-  height: 6%; /* Se reduce suavemente */
+  background-color: black;
+  height: 70px; /* Altura reducida */
+}
+
+/* Logo normal */
+.logo {
+  height: 100px; /* Tamaño original */
+  transition: all 0.3s ease-in-out;
 }
 
 
 
-
-
-/* Contenedor de los logos */
-/* Contenedor de los logos */
+/* Contenedor del logo */
 .logo-container {
   display: flex;
   align-items: center;
   margin-left: 50px;
+  filter: brightness(0) invert(1); /* Convierte la imagen a blanco */
 }
 
-/* Logos alineados y del mismo tamaño */
-.logo {
-  height: 100px; /* Tamaño uniforme */
-  width: auto;
-  transition: filter 0.5s ease; /* Transición suave para el filtro */
-}
-
-/* Cuando la navbar tiene fondo, aplica un filtro para invertir los colores */
-.navbar-scrolled .logo {
-  filter: brightness(0) invert(1); /* Cambia el logo a blanco */
-}
-
-/* Oculta el logo blanco por defecto */
-.logo-scrolled {
-  display: none;
-}
-
-/* Cuando la navbar tiene fondo, se muestra el logo blanco y se oculta el otro */
-.navbar-scrolled .logo-default {
-  display: none;
-}
-
-.navbar-scrolled .logo-scrolled {
-  display: block;
-}
-
-
-/* Enlaces del menú alineados a la derecha */
+/* Menú de navegación */
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 50px;
-  margin-left: auto;
-  margin-right: 100px; /* Espaciado del menú con el borde derecho */
-}
-
-/* Elementos del menú */
-.nav-links li {
-  display: inline;
+  gap: 40px;
+  margin-right: 50px;
+  transition: all 0.3s ease-in-out;
 }
 
 /* Enlaces del menú */
@@ -290,7 +280,7 @@ html {
   text-align: center;
   width: 100%;
   background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-  padding: 50px 0;
+  padding: 80px 0;
 }
 
 .about-content h2 {
@@ -304,25 +294,20 @@ html {
 }
 
 .about-content p {
-    font-size: 18px;
-    color: #555;
-    line-height: 1.6;
+  font-size: 18px;
+  color: #555;
+  line-height: 1.6;
 }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+.about-section,
+#stack,
+#trabajos,
+#servicios,
+#contacto {
+  scroll-margin-top: 80px; /* Ajusta este valor según la altura de tu navbar */
+}
 
 
 
@@ -1239,32 +1224,27 @@ html {
 
 /* Estilos para el menú en móviles */
 @media (max-width: 1000px) {
+  .background-container {
+    background-attachment: scroll; /* Evita el efecto fijo en dispositivos móviles */
+    background-size: cover; /* Mantiene la imagen de fondo proporcional sin redimensionarse */
+  }
+
   .navbar {
     display: flex;
     align-items: center; /* Centra verticalmente los elementos */
     justify-content: space-between; /* Separa el logo y el botón de menú */
     padding: 8px 0; /* Espaciado horizontal */
+    z-index: 10000;
   }
 
-  .hamburger {
-    display: flex; /* Mostrar solo en móviles */
-    flex-direction: column;
-    justify-content: space-around;
-    width: 30px;
-    height: 25px;
-    margin-right: 60px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    z-index: 1001;
+  .navbar-scrolled {
+    height: 80px; /* Mantiene la altura inicial */
+    background-color: rgba(36, 36, 36, 0.952); /* Evita cambios de color */
   }
 
-  .hamburger-line {
-    width: 100%;
-    height: 3px;
-    background: white;
-    transition: all 0.3s ease;
+  /* Contenedor del logo */
+  .logo-container {
+    margin-left: 5%; /* Pega el logo a la izquierda con 5% de separación */
   }
 
   /* Logos alineados y del mismo tamaño */
@@ -1274,11 +1254,58 @@ html {
     transition: filter 0.5s ease;
   }
 
+
+
+
+
+
+
+
+
+
+
+  
+
+
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    margin-right: 1%; /* Mueve el botón de menú a la izquierda */
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    position: absolute; /* Lo posicionamos de manera absoluta */
+    right: 5%; /* Lo colocamos exactamente en la posición deseada */
+    top: 50%;
+    transform: translateY(-50%); /* Centra verticalmente */
+    z-index: 1001;
+  }
+
+  .hamburger-line {
+    width: 100%;
+    height: 4px;
+    background: #fff; /* Blanco brillante para resaltar sobre fondos oscuros */
+    border-radius: 5px; /* Bordes redondeados para un toque más suave */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Sombra sutil para profundidad */
+    transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease; /* Transición suave */
+  }
+  
+  /* Efecto de cambio al interactuar */
+  .hamburger-line:hover {
+    background-color: rgba(255, 255, 255, 0.7); /* Ligera opacidad cuando se pasa el ratón */
+    transform: scaleX(1.1); /* Escala levemente en el eje X para resaltar */
+  }
+  
+
   .nav-links {
     position: fixed;
-    top: 0;
+    top: 13%; /* Comienza justo debajo del navbar */
     right: -100%; /* Oculto por defecto (completamente fuera de la pantalla) */
-    height: 100vh; /* Ocupa toda la altura de la pantalla */
+    height: calc(100vh - 80px); /* Ajusta la altura para que no se superponga con el navbar */
     width: 100%; /* Ocupa todo el ancho de la pantalla */
     background: rgba(68, 68, 68, 0.973);
     backdrop-filter: blur(10px);
@@ -1292,6 +1319,15 @@ html {
     padding: 0; /* Asegura que no haya padding adicional */
     margin: 0; /* Asegura que no haya margen adicional */
   }
+
+
+
+
+
+
+
+
+  
 
   .nav-links.open {
     right: 0; /* Mostrar cuando está abierto (alineado con el borde derecho) */
@@ -1310,7 +1346,7 @@ html {
 
 
   .about-section {
-    padding: 20px 0;
+    padding: 40px 0;
   }
 
   .about-content {
@@ -1318,13 +1354,13 @@ html {
   }
 
   .team-section {
-    padding: 20px 0; /* Reducir el padding superior e inferior */
+    padding: 40px 0; /* Reducir el padding superior e inferior */
   }
 
 
   /* Estilos para la sección de Stack Tecnológico */
   .tech-stack-section {
-    padding: 30px 0;
+    padding: 50px 0;
   }
 
 
