@@ -1,3 +1,4 @@
+/* ================ BASE & RESET ================ */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
 
 html {
@@ -9,217 +10,146 @@ html {
 
 
 
-
-/* Contenedor de fondo con imagen solo cubre la pantalla inicial */
-.background-container {
-  position: relative;
-  width: 100%;
-  height: 100vh; /* Solo ocupa la pantalla inicial */
-  background-size: cover;
-  background-position: center;
-  background-attachment: scroll; /* Cambia de 'fixed' a 'scroll' para evitar el movimiento */
-  background-repeat: no-repeat;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+/* ================ BASE STYLES ================ */
+:root {
+  --primary-color: #0a192f;
+  --secondary-color: #112240;
+  --accent-color: #64ffda;
+  --text-primary: #e6f1ff;
+  --text-secondary: #8892b0;
+  --transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
-
-/* Capa de oscurecimiento SOLO para la imagen de fondo */
-.background-container::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(68, 68, 68, 0.5); /* Oscurece solo el fondo */
-}
-
-/* Ajuste para que el texto y el overlay no se vean afectados */
-.overlay {
-  position: relative; /* Ahora ya no es absoluto */
-  z-index: 2; /* Asegura que el texto quede encima del filtro */
-  text-align: center;
-  color: white;
-}
-
-@keyframes slideUp {
-  from {
-    transform: translateY(400px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-.main-title {
-  font-size: 48px;
-  font-weight: 700;
-  text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.5);
-  margin-bottom: 10px;
-  animation: slideUp 1s ease-out;
-}
-
-.subtitle {
-  font-size: 20px;
-  font-weight: 400;
-  text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
-  animation: slideUp 1.2s ease-out;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-.language-button {
-  display: flex;
-  align-items: center;
-  padding: 0;
-  background: transparent;
-  border: none;
-}
-
-.language-text {
-  margin-left: 5px;
-  font-size: 13px;
-  font-weight: bold;
-  color: #fff; /* Or any other color you prefer */
-}
-
-.flag-icon {
-  width: 30px; /* Ajusta el tamaño de la bandera */
-  height: 20px;
-  border-radius: 3px; /* Bordes redondeados */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Sombra suave */
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* ================ NAVBAR ================ */
 .navbar {
-  background-color: rgba(36, 36, 36, 0.952); /* Fondo negro sólido */
+  background-color: rgba(10, 25, 47, 0.9);
+  backdrop-filter: blur(10px);
   position: fixed;
   width: 100%;
   top: 0;
   z-index: 1000;
   display: flex;
+  justify-content: center;
+  padding: 1.5rem 2rem;
+  transition: var(--transition);
+  box-shadow: 0 10px 30px -10px rgba(2, 12, 27, 0.7);
+  height: auto;
+}
+
+.nav-container {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
-  transition: all 0.3s ease-in-out;
-  height: 80px; /* Altura inicial */
 }
 
-/* Navbar reducida cuando se hace scroll */
 .navbar-scrolled {
-  background-color: black;
-  height: 70px; /* Altura reducida */
+  background-color: rgba(10, 25, 47, 0.95);
+  padding: 1rem 2rem;
+  box-shadow: 0 5px 20px -5px rgba(2, 12, 27, 0.8);
 }
 
-/* Logo normal */
-.logo {
-  height: 100px; /* Tamaño original */
-  transition: all 0.3s ease-in-out;
-}
-
-
-
-/* Contenedor del logo */
 .logo-container {
   display: flex;
   align-items: center;
-  margin-left: 50px;
-  filter: brightness(0) invert(1); /* Convierte la imagen a blanco */
+  justify-content: center;
+  filter: brightness(0) invert(1);
+  transition: var(--transition);
 }
 
-/* Menú de navegación */
+.logo {
+  height: 2.5rem;
+  transition: var(--transition);
+  object-fit: contain;
+}
+
+.navbar-scrolled .logo {
+  height: 2rem;
+}
+
+.nav-links-container {
+  display: flex;
+  align-items: center;
+}
+
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 40px;
-  margin-right: 50px;
-  transition: all 0.3s ease-in-out;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+  align-items: center;
 }
 
-/* Enlaces del menú */
-.nav-links a {
-  color: white;
+.nav-link {
+  color: var(--text-primary);
   text-decoration: none;
-  font-size: 16px;
+  font-size: 0.9rem;
   font-weight: 500;
-  transition: color 0.3s ease;
+  transition: var(--transition);
+  position: relative;
+  padding: 0.5rem 0;
 }
 
-.nav-links a:hover {
-  color: #6a82fb;
+.nav-link:hover {
+  color: var(--accent-color);
 }
 
+.nav-link::before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--accent-color);
+  transition: var(--transition);
+}
 
+.nav-link:hover::before {
+  width: 100%;
+}
 
+.language-switcher {
+  margin-left: 1.5rem;
+}
 
+.language-button {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  background: rgba(100, 255, 218, 0.1);
+  border: 1px solid rgba(100, 255, 218, 0.3);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: var(--transition);
+}
 
+.language-button:hover {
+  background: rgba(100, 255, 218, 0.2);
+}
 
+.language-text {
+  margin-left: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent-color);
+}
 
+.flag-icon {
+  width: 20px;
+  height: 15px;
+  border-radius: 2px;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Estilos para el botón de menú hamburguesa */
+/* ================ HAMBURGER MENU ================ */
 .hamburger {
-  display: none; /* Oculto por defecto */
+  display: none;
   flex-direction: column;
-  justify-content: space-around;
-  width: 30px;
-  height: 25px;
+  justify-content: space-between;
+  width: 24px;
+  height: 18px;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -228,24 +158,23 @@ html {
 }
 
 .hamburger-line {
+  display: block;
   width: 100%;
-  height: 3px;
-  background: white;
-  transition: all 0.3s ease;
-  transform-origin: center; /* Asegura que las rotaciones sean desde el centro */
+  height: 2px;
+  background: var(--accent-color);
+  transition: var(--transition);
 }
 
-/* Animación para transformar en "X" */
 .hamburger.open .hamburger-line:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 6px); /* Ajusta la traslación */
+  transform: rotate(45deg) translate(5px, 5px);
 }
 
 .hamburger.open .hamburger-line:nth-child(2) {
-  opacity: 0; /* Oculta la línea del medio */
+  opacity: 0;
 }
 
 .hamburger.open .hamburger-line:nth-child(3) {
-  transform: rotate(-45deg) translate(5px, -6px); /* Ajusta la traslación */
+  transform: rotate(-45deg) translate(5px, -5px);
 }
 
 
@@ -263,50 +192,154 @@ html {
 
 
 
+/* ================ HERO SECTION ================ */
+.hero-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 50%, #233554 100%);
+  display: flex;
+  flex-direction: row; /* Cambié esto de columna a fila */
+  justify-content: space-between; /* Añadí esto para distribuir el espacio */
+  overflow: hidden;
+}
 
-
-
-
-
-
-
-
-
-/* Sección debajo del inicio */
-.about-section {
+.hero-content {
+  position: relative;
+  width: 50%; /* Cambié esto para que ocupe la mitad de la pantalla */
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
+  padding: 0 2rem;
+  z-index: 2;
+}
+
+.hero-text-image-wrapper {
+  display: flex;
+  justify-content: space-between;
   width: 100%;
-  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-  padding: 80px 0;
+  gap: 2rem;
+  flex-wrap: nowrap; /* Cambié esto para que no se envuelvan */
 }
 
-.about-content h2 {
-  font-size: 32px;
-  color: #333;
-  margin-top: 0;
+/* Overlay para el texto */
+.overlay {
+  flex: 1;
+  text-align: left;
+  color: var(--text-primary);
+  max-width: 600px;
 }
 
-.about-content {
-  max-width: 80%;
+.main-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
 }
 
-.about-content p {
-  font-size: 18px;
-  color: #555;
+.main-title .title-line {
+  display: block;
+  color: var(--text-primary);
+}
+
+.subtitle {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: var(--text-secondary);
+  margin: 0 0 2.5rem;
   line-height: 1.6;
 }
 
+.cta-buttons {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
 
+.cta-button {
+  padding: 0.8rem 1.8rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: var(--transition);
+}
 
-.about-section,
-#stack,
-#trabajos,
-#servicios,
-#contacto {
-  scroll-margin-top: 80px; /* Ajusta este valor según la altura de tu navbar */
+.cta-button.primary {
+  background-color: var(--accent-color);
+  color: var(--primary-color);
+}
+
+.cta-button.primary:hover {
+  background-color: #52e8c6;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px -10px rgba(100, 255, 218, 0.5);
+}
+
+.cta-button.secondary {
+  background-color: transparent;
+  color: var(--accent-color);
+  border: 1px solid var(--accent-color);
+}
+
+.cta-button.secondary:hover {
+  background-color: rgba(100, 255, 218, 0.1);
+  transform: translateY(-3px);
+}
+
+/* ================ IMAGE SECTION ================ */
+.hero-image {
+  flex: 1; /* Esta sección ocupa el resto del espacio */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-image img {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  animation: float 6s ease-in-out infinite;
+}
+
+/* ================ Lottie GIF SECTION ================ */
+.lottie-animation-container {
+  position: relative;
+  flex: 1; /* Para que ocupe la mitad derecha */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+/* ================ RESPONSIVE ================ */
+@media (max-width: 768px) {
+  .hero-container {
+    flex-direction: column; /* Para pantallas más pequeñas, apilar en columna */
+    height: auto;
+  }
+
+  .hero-content {
+    width: 100%; /* En pantallas más pequeñas, ocupar todo el ancho */
+  }
+
+  .hero-text-image-wrapper {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .overlay {
+    text-align: center;
+  }
+
+  .cta-buttons {
+    justify-content: center;
+  }
 }
 
 
@@ -326,15 +359,331 @@ html {
 
 
 
-/* Estilos para la sección del Equipo*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ================ DECORATIVE ELEMENTS ================ */
+.decorative-circle {
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  z-index: 1;
+  animation: float 15s infinite ease-in-out;
+}
+
+.circle-1 {
+  width: 300px;
+  height: 300px;
+  top: -150px;
+  left: -150px;
+  animation-delay: 0s;
+}
+
+.circle-2 {
+  width: 150px;
+  height: 150px;
+  bottom: 50px;
+  right: 100px;
+  animation-delay: 2s;
+}
+
+.circle-3 {
+  width: 200px;
+  height: 200px;
+  top: 30%;
+  right: -100px;
+  animation-delay: 4s;
+}
+
+.decorative-line {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  z-index: 1;
+  animation: float 12s infinite ease-in-out;
+}
+
+.line-1 {
+  width: 2px;
+  height: 100px;
+  top: 30%;
+  left: 20%;
+  animation-delay: 1s;
+}
+
+.line-2 {
+  width: 150px;
+  height: 2px;
+  bottom: 20%;
+  right: 15%;
+  animation-delay: 3s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(10px, 10px) rotate(2deg);
+  }
+  50% {
+    transform: translate(-10px, 5px) rotate(-2deg);
+  }
+  75% {
+    transform: translate(5px, -5px) rotate(1deg);
+  }
+}
+
+/* ================ RESPONSIVE DESIGN ================ */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+  
+  .nav-links-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 70%;
+    height: 100vh;
+    background-color: var(--secondary-color);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    box-shadow: -10px 0 30px -15px rgba(2, 12, 27, 0.7);
+  }
+  
+  .nav-links-container.open {
+    transform: translateX(0);
+  }
+  
+  .nav-links {
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+  
+  .language-switcher {
+    margin-left: 0;
+    margin-top: 2rem;
+  }
+  
+  .cta-buttons {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .circle-1, .circle-2, .circle-3 {
+    display: none;
+  }
+
+  .line-1, .line-2 {
+    display: none;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ================ SECTION COMMON STYLES ================ */
+.about-section,
+#stack,
+#trabajos,
+#equipo,
+#servicios,
+#contacto {
+  scroll-margin-top: 80px;
+}
+
+/* ================ ABOUT SECTION ================ */
+.about-section {
+  position: relative;
+  padding: 0 0 80px 0;
+  background: radial-gradient(circle, #f5f7fa, #c3cfe2);
+  overflow: hidden;
+}
+
+.about-content {
+  max-width: 1300px;
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 60px;
+}
+
+.about-content h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #000;
+  line-height: 1;
+}
+
+.info-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  margin-top: 40px;
+  position: relative;
+  z-index: 2;
+}
+
+.info-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  padding: 40px;
+  text-align: center;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #cfd8dc;
+}
+
+.info-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+}
+
+.info-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.info-icon {
+  font-size: 2.5rem;
+  color: #f17a0b;
+  margin-right: 15px;
+}
+
+.info-card h3 {
+  font-size: 2rem;
+  font-weight: 500;
+  color: #263238;
+  font-family: 'Roboto', sans-serif;
+}
+
+.info-card p {
+  font-size: 1.1rem;
+  color: #546e7a;
+  line-height: 1.6;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.about-section::before,
+.about-section::after {
+  content: '';
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background: linear-gradient(135deg, #42a5f5, #1e88e5);
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.5;
+  z-index: 1;
+}
+
+.about-section::before {
+  top: 5%;
+  left: 10%;
+}
+
+.about-section::after {
+  bottom: 5%;
+  right: 10%;
+}
+
+/* ================ TEAM SECTION ================ */
 .team-section {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centra todo el contenido de la sección */
+  align-items: center;
   background: radial-gradient(circle, #26354b, #4a6fa5);
   color: white;
   text-align: center;
-  padding: 60px 0; /* Reducir el padding superior e inferior */
+  padding: 60px 0;
 }
 
 .team-section h2 {
@@ -346,49 +695,23 @@ html {
 .sub-title {
   font-size: 18px;
   color: #ccc;
-  margin-bottom: 40px; /* Espacio entre el subtítulo y las tarjetas */
+  margin-bottom: 40px;
   font-weight: 350;
 }
-
-
-.tech-stack-section h2 {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #000;
-  margin: 0; /* Elimina el margen */
-  line-height: 1; /* Reduce el espacio entre líneas */
-}
-
-.tech-subtitle {
-  font-size: 1.2rem;
-  color: #555;
-  margin: 20px 0 40px 0;
-  line-height: 1; /* Ajusta la altura de línea */
-}
-
-
-
-
-
-
-
-
-
 
 .cards-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; /* Asegura que las tarjetas se centren horizontalmente */
+  justify-content: center;
   gap: 30px;
   max-width: 1200px;
-  margin: 0 auto; /* Centra el contenedor dentro del contenedor principal */
+  margin: 0 auto;
   padding: 0 20px;
   height: 100%;
   max-height: 1200px;
   margin-bottom: 10px;
 }
 
-/* Tarjeta individual */
 .card {
   background: white;
   border-radius: 15px;
@@ -400,21 +723,19 @@ html {
   cursor: pointer;
   overflow: hidden;
   position: relative;
-  height: 260px; /* Altura base cuando la tarjeta está cerrada */
-  max-height: 600px;  /* Límite máximo de altura */
+  height: 260px;
+  max-height: 600px;
 }
 
 .card.expanded {
-  height: 420px;  /* Se ajusta automáticamente cuando se expande */
+  height: 420px;
 }
 
-/* Efecto hover */
 .card:hover {
   transform: scale(1.03);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
 }
 
-/* Avatar */
 .avatar {
   width: 100px;
   height: 100px;
@@ -424,7 +745,6 @@ html {
   object-fit: cover;
 }
 
-/* Nombre */
 .name {
   font-size: 18px;
   color: #333;
@@ -432,7 +752,6 @@ html {
   margin-bottom: 8px;
 }
 
-/* Rol */
 .role {
   font-size: 14px;
   color: #6c757d;
@@ -440,45 +759,41 @@ html {
 }
 
 .info {
-    font-size: 14px;
-    color: #333; /* Color del texto */
-    margin-top: 20px;
-    margin-bottom: 20px;
-    line-height: 1.6; /* Espaciado entre líneas */
-    padding-left: 10px; /* Espacio para los puntos */
-    list-style: none; /* Elimina los puntos predeterminados */
-    opacity: 0;
-    transform: translateY(-20px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
-    text-align: left; /* Alineación del texto a la izquierda */
+  font-size: 14px;
+  color: #333;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  line-height: 1.6;
+  padding-left: 10px;
+  list-style: none;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  text-align: left;
 }
 
-/* Estilo de los elementos cuando la tarjeta está expandida */
 .card.expanded .info {
-    opacity: 1;
-    transform: translateY(0);
+  opacity: 1;
+  transform: translateY(0);
 }
 
-/* Cambiar color de los puntos */
 .info li {
-    margin-bottom: 12px;
-    position: relative;
-    display: flex;
-    align-items: baseline; /* Alinea el punto con la primera palabra */
-    padding-left: 25px; /* Espacio entre el punto y el texto */
+  margin-bottom: 12px;
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  padding-left: 25px;
 }
 
-/* Cambiar color del punto con ::before */
 .info li::before {
-    content: '•'; /* Bullet personalizado */
-    font-size: 20px; /* Tamaño del bullet */
-    color: #6a82fb; /* Cambia este color a tu elección */
-    position: absolute;
-    left: 0; /* El punto está alineado con el borde izquierdo del li */
-    top: 0; /* Asegura que el punto esté alineado con la primera palabra */
+  content: '•';
+  font-size: 20px;
+  color: #6a82fb;
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 
-/* Botón de más información */
 .more-btn {
   background: #6a82fb;
   color: white;
@@ -491,102 +806,39 @@ html {
   transition: background 0.3s ease;
   margin-top: 10px;
   position: absolute;
-  bottom: 10px; /* Mantiene el botón al fondo */
+  bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
 }
 
 .card.expanded .more-btn {
-  bottom: 10px; /* Se restablece cuando la tarjeta se expande */
+  bottom: 10px;
 }
 
 .more-btn:hover {
   background: #4f67e5;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Estilos para la sección de Stack Tecnológico */
+.social-icons {
+  position: absolute;
+  bottom: 15px;
+  right: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.social-icon {
+  font-size: 20px;
+  color: #6a82fb;
+  transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+  color: #4f67e5;
+  transform: scale(1.2);
+}
+
+/* ================ TECH STACK SECTION ================ */
 .tech-stack-section {
   padding: 60px 0;
   background: radial-gradient(circle, #f5f7fa, #c3cfe2);
@@ -597,19 +849,17 @@ html {
   font-size: 2rem;
   font-weight: bold;
   color: #000;
-  margin: 0; /* Elimina el margen */
-  line-height: 1; /* Reduce el espacio entre líneas */
+  margin: 0;
+  line-height: 1;
 }
 
 .tech-subtitle {
   font-size: 1.2rem;
   color: #555;
   margin: 20px 0 40px 0;
-  line-height: 1; /* Ajusta la altura de línea */
+  line-height: 1;
 }
 
-
-/* Contenedor de tarjetas */
 .tech-stack-grid {
   display: flex;
   justify-content: center;
@@ -620,30 +870,27 @@ html {
   margin-bottom: 8px;
 }
 
-/* Tarjeta individual */
 .tech-card {
-  width: 120px; /* Ancho fijo */
-  height: 120px; /* Alto igual al ancho para hacerla cuadrada */
+  width: 120px;
+  height: 120px;
   display: flex;
-  flex-direction: column; /* Alinear ícono y texto verticalmente */
-  justify-content: center; /* Centra el contenido verticalmente */
-  align-items: center; /* Centra el contenido horizontalmente */
-  background: linear-gradient(135deg, #ffffff, #f1f1f1); /* Degradado suave */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #ffffff, #f1f1f1);
   border-radius: 5px;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
   padding: 15px;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(221, 221, 221, 0.5); /* Borde sutil */
+  border: 1px solid rgba(221, 221, 221, 0.5);
 }
 
-/* Efecto hover: selección sin movimiento */
 .tech-card:hover {
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* Ícono */
 .tech-icon {
   width: 60px;
   height: 60px;
@@ -654,8 +901,8 @@ html {
   border-radius: 10%;
   padding: 10px;
   transition: all 0.4s ease;
-  border: 1px solid rgba(221, 221, 221, 0.5); /* Borde sutil */
-  margin-bottom: 25px; /* Espacio entre el ícono y el texto */
+  border: 1px solid rgba(221, 221, 221, 0.5);
+  margin-bottom: 25px;
 }
 
 .tech-icon img {
@@ -665,49 +912,42 @@ html {
   transition: transform 0.4s ease;
 }
 
-/* Efecto hover: el icono cambia de fondo y de forma */
 .tech-card:hover .tech-icon {
   border-radius: 50%;
-  background: #4a6fa5; /* Cambio de color al hover */
+  background: #4a6fa5;
 }
 
-/* Ajustar posición de los logos de HTML y CSS al hacer hover */
 .tech-card .tech-icon img[src*="html_logo"],
 .tech-card .tech-icon img[src*="css_logo"] {
   margin-top: 3px;
 }
 
-/* Cambiar el ícono a blanco solo si no es el logo de JavaScript */
 .tech-card:hover .tech-icon img:not([src*="js_logo"]) {
-  filter: brightness(0) invert(1); /* Cambia el ícono a blanco */
+  filter: brightness(0) invert(1);
 }
 
-/* Escalar todos los íconos ligeramente al hacer hover */
 .tech-card:hover .tech-icon img {
   transform: scale(0.9);
 }
 
-/* Texto debajo del ícono */
 .tech-name {
-  font-family: 'Arial', sans-serif; /* Cambia la tipografía */
+  font-family: 'Arial', sans-serif;
   font-size: 0.9rem;
   color: #333;
   text-align: center;
-  opacity: 0; /* Ocultar por defecto */
+  opacity: 0;
   transition: opacity 0.3s ease;
   position: absolute;
-  top: 108px; /* Posición fija debajo del ícono */
+  top: 108px;
   left: 50%;
   transform: translateX(-50%);
-  white-space: nowrap; /* Evitar que el texto se divida en varias líneas */
+  white-space: nowrap;
 }
 
-/* Mostrar el texto al hacer hover */
 .tech-card:hover .tech-name {
-  opacity: 1; /* Mostrar el texto */
+  opacity: 1;
 }
 
-/* Efecto de brillo al hacer hover */
 .tech-card::before {
   content: '';
   position: absolute;
@@ -722,169 +962,33 @@ html {
 }
 
 .tech-card:hover::before {
-  opacity: 1; /* Muestra el efecto de brillo */
+  opacity: 1;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*Estilos para la sección de Nuestros Trabajos*/
-.trabajos-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding: 60px 0;
-  background: radial-gradient(circle, #26354b, #4a6fa5);
-  gap: 20px;
-}
-
-.box_work{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 50px;
-}
-
-.trabajos-container {
-  font-family: 'Arial', sans-serif; /* Cambia la tipografía */
-  background-color: #f5f7fa;
-  border-radius: 5px;
-}
-
-.trabajos-card {
-  position: relative;
-  width: 100%;
-  max-width: 410px; /* Ajusta el ancho del contenedor */
-  overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
-}
-
-.trabajos-title{
-  font-size: 2rem;
-  font-weight: bold;
-  color: #fff;
-  margin: 0; /* Elimina el margen */
-  line-height: 1; /* Reduce el espacio entre líneas */
-}
-
-.trabajos-subtitle {
-  font-size: 1.2rem;
-  color: #ccc;
-  margin: 0 0 20px 0;
-  line-height: 1; /* Ajusta la altura de línea */
-}
-
-.trabajo-img {
-  width: 100%;
-  height: auto; /* Mantiene la imagen completa */
-  display: block;
-  object-fit: contain; /* Se asegura de que la imagen no se corte */
-  filter: blur(1.3px);
-}
-
-
-
-.overlay-container {
-  position: absolute;
-  top: 50px; /* Centrado en la parte superior */
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: center;
-  text-align: center;
-  padding: 10px 15px;
-}
-
-.overlay-logo {
-  width: 40px; /* Ajusta el tamaño del logo */
-}
-
-.overlay-text {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-left: 20px;
-}
-
-
-
-.trabajos-card p {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1rem;
-  font-weight: 400;
-  color: #333; /* Un gris oscuro para mejor contraste */
-  text-align: justify;
-  line-height: 1.6; /* Espaciado entre líneas */
-  padding: 15px 20px; /* Más margen lateral para mejor distribución */
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Estilos para la sección de Servicios */
-/* Ajuste del contenedor principal */
+/* ================ SERVICES SECTION ================ */
 .servicios {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; /* Centra el contenido verticalmente */
+  justify-content: center;
   padding: 40px 0;
-  background: radial-gradient(circle, #f5f7fa, #c3cfe2);
+  background: radial-gradient(circle, #26354b, #4a6fa5);
 }
 
 .titulo-serv {
   font-size: 2rem;
   font-weight: bold;
-  margin: 0; /* Elimina el margen */
-  line-height: 1; /* Reduce el espacio entre líneas */
+  margin: 0;
+  line-height: 1;
+  color: #fff;
 }
 
 .subtitulo-servicios {
   font-size: 1.2rem;
-  color: #555;
+  color: #ccc;
   margin: 20px 0 50px 0;
-  line-height: 1; /* Ajusta la altura de línea */
+  line-height: 1;
 }
-
 
 .servicios-container {
   display: flex;
@@ -895,12 +999,11 @@ html {
   width: 95%;
 }
 
-/* Estilos de cada tarjeta */
 .servicios-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: calc(33.33% - 20px); /* Tres tarjetas por fila */
+  width: calc(33.33% - 20px);
   min-width: 320px;
   max-width: 400px;
   padding: 20px;
@@ -915,30 +1018,25 @@ html {
   transform: translateY(-5px);
 }
 
-/* Imagen dentro de la tarjeta */
 .servicios-card img {
   width: 80px;
-  height: 80px; /* Fija la altura para evitar variaciones */
+  height: 80px;
 }
 
-/* Título de la tarjeta */
 .servicios-card .titulo {
   font-size: 1.5rem;
   font-weight: bold;
   margin: 15px 0;
 }
 
-/* Subtítulo de la tarjeta */
 .servicios-card .subtitulo {
   font-size: 1rem;
   color: #666;
-  margin-top: 0; /* Asegura que no haya espacio superior */
-  line-height: 1; /* Reduce la separación entre líneas */
+  margin-top: 0;
+  line-height: 1;
   height: 20px;
 }
 
-
-/* Contenedor de ventajas y desventajas */
 .pros-contras-container {
   display: flex;
   align-items: flex-start;
@@ -946,7 +1044,7 @@ html {
   flex-direction: column;
   width: 97%;
   padding: 10px;
-  flex-grow: 0.2; /* Hace que todas las tarjetas sean del mismo tamaño */
+  flex-grow: 0.2;
   margin: 10px 0;
 }
 
@@ -963,21 +1061,11 @@ html {
   font-size: 0.9rem;
 }
 
-
-
-
-
-
-
-
-
-
-/* Botón de consulta */
 .servicios-boton-container {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: auto; /* Empuja el botón hacia abajo */
+  margin-top: auto;
 }
 
 .servicios-boton {
@@ -996,103 +1084,7 @@ html {
   background-color: #0056b3;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Estilos generales del footer */
+/* ================ FOOTER ================ */
 .footer-section {
   background-color: #222;
   color: #fff;
@@ -1100,7 +1092,6 @@ html {
   font-family: 'Poppins', sans-serif;
 }
 
-/* Contenedor del contenido del footer */
 .footer-content {
   display: flex;
   justify-content: space-between;
@@ -1112,7 +1103,6 @@ html {
   padding-bottom: 40px;
 }
 
-/* Estilos para el logo y el eslogan */
 .footer-logo {
   flex: 1;
   min-width: 250px;
@@ -1132,7 +1122,6 @@ html {
   color: #bbb;
 }
 
-/* Estilos para la sección de contacto */
 .footer-contact {
   flex: 1;
   min-width: 250px;
@@ -1153,7 +1142,6 @@ html {
   margin: 5px 0;
 }
 
-/* Estilos para la sección de redes sociales */
 .footer-social {
   flex: 1;
   min-width: 250px;
@@ -1189,7 +1177,6 @@ html {
   color: #0073b1;
 }
 
-/* Estilos para la parte inferior del footer */
 .footer-bottom {
   text-align: center;
   margin-top: 50px;
@@ -1198,195 +1185,156 @@ html {
 }
 
 
+/* ================ SCROLL TO TOP BUTTON ================ */
+.scroll-to-top-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #0066ff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  outline: none;
+}
 
+.scroll-to-top-button:hover {
+  background-color: #0056b3;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Estilos para el menú en móviles */
+/* ================ MEDIA QUERIES ================ */
 @media (max-width: 1000px) {
   .background-container {
-    background-attachment: scroll; /* Evita el efecto fijo en dispositivos móviles */
-    background-size: cover; /* Mantiene la imagen de fondo proporcional sin redimensionarse */
+    background-attachment: scroll;
+    background-size: cover;
+  }
+
+  .scroll-to-top-button {
+    position: fixed;
+    bottom: 15px;
+    left: 10px;
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  .logo-container {
+    margin-left: 20px;
+  }
+
+  .logo {
+    height: 30px;
   }
 
   .navbar {
-    display: flex;
-    align-items: center; /* Centra verticalmente los elementos */
-    justify-content: space-between; /* Separa el logo y el botón de menú */
-    padding: 3px 0; /* Espaciado horizontal */
+    padding: 3px 0;
     z-index: 10000;
-    height: 80px; /* Altura fija del navbar */
-    position: fixed; /* Fija el navbar en la parte superior */
-    top: 0; /* Lo pega en la parte superior */
-    left: 0; /* Lo alinea a la izquierda */
-    width: 100%; /* Ocupa todo el ancho de la pantalla */
-    background-color: rgba(36, 36, 36, 0.952); /* Color de fondo del navbar */
+    height: 80px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(36, 36, 36, 0.952);
   }
-
   
   .navbar-scrolled {
-    height: 80px; /* Mantiene la altura inicial */
-    background-color: rgba(36, 36, 36, 0.952); /* Evita cambios de color */
-  }
-
-  /* Contenedor del logo */
-  .logo-container {
-    margin-left: 5%; /* Pega el logo a la izquierda con 5% de separación */
-  }
-
-  /* Logos alineados y del mismo tamaño */
-  .logo {
-    height: 90px; 
-    width: auto;
-    transition: filter 0.5s ease;
+    height: 80px;
+    background-color: rgba(36, 36, 36, 0.952);
   }
 
   .hamburger {
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 30px;
-    height: 25px;
-    margin-right: 1%; /* Mueve el botón de menú a la izquierda */
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    position: absolute; /* Lo posicionamos de manera absoluta */
-    right: 5%; /* Lo colocamos exactamente en la posición deseada */
+    margin-right: 1%;
+    position: absolute;
+    right: 5%;
     top: 50%;
-    transform: translateY(-50%); /* Centra verticalmente */
+    transform: translateY(-50%);
     z-index: 1001;
   }
 
   .hamburger-line {
     width: 100%;
     height: 4px;
-    background: #fff; /* Blanco brillante para resaltar sobre fondos oscuros */
-    border-radius: 5px; /* Bordes redondeados para un toque más suave */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Sombra sutil para profundidad */
-    transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease; /* Transición suave */
-  }
-  
-  /* Efecto de cambio al interactuar */
-  .hamburger-line:hover {
-    background-color: rgba(255, 255, 255, 0.7); /* Ligera opacidad cuando se pasa el ratón */
-    transform: scaleX(1.1); /* Escala levemente en el eje X para resaltar */
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
   }
 
   .nav-links {
     position: fixed;
-    top: 86px; /* Comienza justo debajo del navbar (ajusta según la altura del navbar) */
-    right: -100%; /* Oculto por defecto (completamente fuera de la pantalla) */
-    height: calc(100vh - 80px); /* Ajusta la altura para que no se superponga con el navbar */
-    width: 100%; /* Ocupa todo el ancho de la pantalla */
+    top: 86px;
+    right: -100%;
+    height: calc(100vh - 80px);
+    width: 100%;
     background: rgba(68, 68, 68, 0.973);
     backdrop-filter: blur(10px);
     flex-direction: column;
-    justify-content: center; /* Centra verticalmente */
-    align-items: center; /* Centra horizontalmente */
+    justify-content: center;
+    align-items: center;
     gap: 20px;
-    transition: right 0.3s ease; /* Transición suave */
+    transition: right 0.3s ease;
     z-index: 1000;
-    box-sizing: border-box; /* Evita problemas con el ancho */
-    padding: 0; /* Asegura que no haya padding adicional */
-    margin: 0; /* Asegura que no haya margen adicional */
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
   }
-
-  /* Clase para mostrar el menú */
-  .nav-links.active {
-    right: 0; /* Muestra el menú deslizándolo desde la derecha */
-  }
-
-
-
-
-
-
-
-
-  
 
   .nav-links.open {
-    right: 0; /* Mostrar cuando está abierto (alineado con el borde derecho) */
+    right: 0;
   }
 
   .nav-links li {
     margin: 15px 0;
-    text-align: center; /* Centra el texto dentro de cada elemento */
+    text-align: center;
   }
 
   .nav-links a {
     font-size: 20px;
-    width: 100%; /* Ocupa todo el ancho disponible */
-    display: block; /* Hace que el enlace ocupe toda la línea */
+    width: 100%;
+    display: block;
   }
 
-
   .about-section {
-    padding: 40px 0;
+    padding: 0 0 80px 0;
+  }
+
+  .about-content h2 {
+    font-size: 2rem;
   }
 
   .about-content {
     max-width: 95%;
   }
 
-  .team-section {
-    padding: 40px 0; /* Reducir el padding superior e inferior */
+  .info-card:hover {
+    transform: translateY(0px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
   }
 
+  .team-section {
+    padding: 40px 0;
+  }
 
-  /* Estilos para la sección de Stack Tecnológico */
   .tech-stack-section {
     padding: 50px 0;
   }
 
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-  /* Estilos de cada tarjeta */
   .servicios-card {
     min-width: 300px;
   }
 
-
-
-
-
-
-  
+  .servicios-card:hover {
+    transform: translateY(0px);
+  }
 }

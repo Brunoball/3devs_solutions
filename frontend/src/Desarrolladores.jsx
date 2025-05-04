@@ -1,20 +1,190 @@
-import React, { useState, useEffect } from "react";
-import "./Desarrolladores.css"; // Importa los estilos
+import React, { useState, useEffect, useRef } from "react";
+import "./Desarrolladores.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin, faInstagram } from "@fortawesome/free-brands-svg-icons";
-import { faCheckCircle, faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
+import { faAngleUp, faCheckCircle, faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
+import { faBullseye, faCogs, faHandshake, faUsers } from '@fortawesome/free-solid-svg-icons';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
-// Importa las banderas (puedes usar imágenes o íconos)
 const esFlag = "/img/es-flag.png";
 const usFlag = "/img/us-flag.png";
 
 const Desarrolladores = () => {
-  const [language, setLanguage] = useState("es"); // Estado para manejar el idioma
+  const [language, setLanguage] = useState("es");
   const [expandedIndex, setExpandedIndex] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const canvasRef = useRef(null);
 
-  // Textos en español e inglés
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 100);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    const particleCount = window.innerWidth < 768 ? 30 : 70;
+    let animationFrameId;
+  
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+  
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 3 + 1;
+        this.mass = this.size * 2;
+        this.vx = Math.random() * 2 - 1;
+        this.vy = Math.random() * 2 - 1;
+        this.color = `hsl(${Math.random() * 60 + 180}, 70%, 50%)`;
+        this.gravity = 0.05;
+        this.friction = 0.98;
+        this.maxSpeed = 3;
+      }
+  
+      attract(other) {
+        const dx = other.x - this.x;
+        const dy = other.y - this.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        const minDistance = this.size + other.size;
+        
+        if (distance > minDistance) {
+          const force = this.gravity * this.mass * other.mass / (distance * distance);
+          const angle = Math.atan2(dy, dx);
+          const fx = Math.cos(angle) * force;
+          const fy = Math.sin(angle) * force;
+          
+          this.vx += fx / this.mass;
+          this.vy += fy / this.mass;
+        } else if (distance > 0 && distance < minDistance) {
+          // Repulsión cuando están muy cerca
+          const angle = Math.atan2(dy, dx);
+          this.vx -= Math.cos(angle) * 0.1;
+          this.vy -= Math.sin(angle) * 0.1;
+        }
+      }
+  
+      update() {
+        // Limitar velocidad máxima
+        const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
+        if (speed > this.maxSpeed) {
+          this.vx = (this.vx / speed) * this.maxSpeed;
+          this.vy = (this.vy / speed) * this.maxSpeed;
+        }
+        
+        // Aplicar fricción
+        this.vx *= this.friction;
+        this.vy *= this.friction;
+        
+        // Mover partícula
+        this.x += this.vx;
+        this.y += this.vy;
+        
+        // Rebote en bordes
+        if (this.x < 0 || this.x > canvas.width) {
+          this.vx = -this.vx * 0.8;
+          this.x = Math.max(0, Math.min(canvas.width, this.x));
+        }
+        if (this.y < 0 || this.y > canvas.height) {
+          this.vy = -this.vy * 0.8;
+          this.y = Math.max(0, Math.min(canvas.height, this.y));
+        }
+      }
+  
+      draw() {
+        // Crear efecto de brillo
+        const gradient = ctx.createRadialGradient(
+          this.x, this.y, 0,
+          this.x, this.y, this.size
+        );
+        gradient.addColorStop(0, this.color);
+        gradient.addColorStop(0.8, this.color.replace('50%)', '30%)'));
+        gradient.addColorStop(1, this.color.replace('50%)', '10%)'));
+        
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+  
+    const drawConnections = () => {
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          const maxDistance = 150;
+          
+          if (distance < maxDistance) {
+            const opacity = 1 - distance / maxDistance;
+            ctx.strokeStyle = particles[i].color.replace('50%)', `${opacity * 20}%)`);
+            ctx.lineWidth = opacity * 1.5;
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+    };
+  
+    const init = () => {
+      particles = [];
+      for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+      }
+    };
+  
+    const animate = () => {
+      ctx.fillStyle = 'rgba(10, 15, 25, 0.2)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      // Actualizar partículas con atracción gravitatoria
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = 0; j < particles.length; j++) {
+          if (i !== j) {
+            particles[i].attract(particles[j]);
+          }
+        }
+        particles[i].update();
+      }
+      
+      // Dibujar conexiones primero (detrás de las partículas)
+      drawConnections();
+      
+      // Luego dibujar partículas
+      for (let i = 0; i < particles.length; i++) {
+        particles[i].draw();
+      }
+      
+      animationFrameId = requestAnimationFrame(animate);
+    };
+  
+    resizeCanvas();
+    init();
+    animate();
+  
+    window.addEventListener('resize', () => {
+      resizeCanvas();
+      init();
+    });
+  
+    return () => {
+      window.removeEventListener('resize', resizeCanvas);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
+
   const translations = {
     es: {
       welcome: "Bienvenido a 3 Devs Solutions",
@@ -24,23 +194,14 @@ const Desarrolladores = () => {
       trabajos_subtitle: "Trabajos que reflejan nuestra pasión por la tecnología",
       mas: "Más",
       servicios: "Servicios",
-      aboutText1:
-        "En <strong>3 Devs Solutions</strong>, nos especializamos en el desarrollo de software a medida, combinando innovación y tecnología para ofrecer soluciones eficientes y personalizadas que se adaptan a las necesidades específicas de cada cliente.",
-      aboutText2:
-        "Nos caracterizamos por nuestro compromiso con la excelencia y la satisfacción del cliente, desarrollando soluciones de alta calidad que se adaptan a las necesidades de cada proyecto. Implementamos metodologías ágiles que nos permiten optimizar tiempos, mejorar la eficiencia y garantizar entregas puntuales, manteniendo siempre un alto estándar en cada etapa del proceso.",
-      aboutText3:
-        "Contamos con un equipo altamente comprometido, enfocado en la excelencia y en brindar la mejor satisfacción a nuestros clientes. Aplicamos metodologías ágiles para asegurar que cada proyecto se entregue puntualmente y con la más alta calidad, cumpliendo siempre con los más altos estándares.",
-      aboutText4:
-        "En <strong>3 Devs Solutions</strong>, creemos que cada negocio es único. Por eso, adoptamos un enfoque personalizado para cada proyecto, comenzando con un análisis detallado de tus necesidades y objetivos. Utilizamos tecnologías de vanguardia y las mejores prácticas de la industria para garantizar que nuestras soluciones no solo cumplan, sino que superen tus expectativas.",
-      aboutText5:
-        "Ya sea que necesites una plataforma de comercio electrónico, un sistema de gestión empresarial o una aplicación móvil innovadora, estamos aquí para ayudarte a alcanzar el éxito en la era digital.",
-      aboutText6:
-        "<strong>¡Contáctanos hoy mismo y descubre cómo podemos transformar tu negocio!</strong>",
+      aboutText1: "En <strong>3 Devs Solutions</strong>, transformamos ideas en <strong>software a medida</strong>, combinando <strong>innovación</strong> y <strong>tecnología</strong> para desarrollar <strong>soluciones eficientes</strong> y adaptadas a cada cliente.",
+      aboutText2: "Nos distingue nuestro <strong>compromiso</strong> con la <strong>excelencia</strong> y la <strong>satisfacción del cliente</strong>. Diseñamos <strong>productos de alta calidad</strong> mediante <strong>metodologías ágiles</strong>, optimizando tiempos y garantizando <strong>entregas puntuales</strong>.",
+      aboutText3: "Nuestro equipo está formado por <strong>profesionales apasionados</strong>, enfocados en ofrecer <strong>resultados que marquen la diferencia</strong>. Priorizamos la <strong>comunicación</strong> y la <strong>adaptación</strong> a cada desafío para garantizar el <strong>éxito</strong> de cada proyecto.",
+      aboutText4: "Entendemos que cada <strong>negocio es único</strong>. Por eso, iniciamos cada desarrollo con un <strong>análisis detallado</strong> de tus necesidades y objetivos, aplicando <strong>tecnología de vanguardia</strong> para <strong>superar expectativas</strong>.",
       teamTitle: "Nuestro Equipo",
       teamSubtitle: "Conoce a los desarrolladores detrás de nuestras soluciones",
       stackTitle: "Stack Tecnológico",
-      stackSubtitle:
-        "Tecnologías y herramientas que utilizamos para desarrollar soluciones eficientes.",
+      stackSubtitle: "Tecnologías y herramientas que utilizamos para desarrollar soluciones eficientes.",
       contactTitle: "Contacto",
       followTitle: "Síguenos",
       footerText: "Innovación, tecnología y soluciones a medida",
@@ -94,23 +255,14 @@ const Desarrolladores = () => {
       trabajos_subtitle: "Projects that reflect our passion for technology",
       mas: "More",
       servicios: "Services",
-      aboutText1:
-        "At <strong>3 Devs Solutions</strong>, we specialize in custom software development, combining innovation and technology to deliver efficient and personalized solutions tailored to each client's specific needs.",
-      aboutText2: 
-        "We are characterized by our commitment to excellence and customer satisfaction, developing high-quality solutions that adapt to the needs of each project. We implement agile methodologies that allow us to optimize time, improve efficiency, and ensure timely deliveries, maintaining a high standard at every stage of the process.",
-      aboutText3: 
-        "We have a highly committed team focused on excellence and providing the best customer satisfaction. We apply agile methodologies to ensure that each project is delivered on time and with the highest quality, always meeting the highest standards.",
-      aboutText4:
-        "At <strong>3 Devs Solutions</strong>, we believe that every business is unique. That's why we adopt a personalized approach for each project, starting with a detailed analysis of your needs and objectives. We use cutting-edge technologies and industry best practices to ensure that our solutions not only meet but exceed your expectations.",
-      aboutText5:
-        "Whether you need an e-commerce platform, a business management system, or an innovative mobile application, we are here to help you achieve success in the digital age.",
-      aboutText6:
-        "<strong>Contact us today and discover how we can transform your business!</strong>",
+      aboutText1: "At <strong>3 Devs Solutions</strong>, we turn ideas into <strong>custom software</strong>, combining <strong>innovation</strong> and <strong>technology</strong> to develop <strong>efficient solutions</strong> tailored to each client.",
+      aboutText2: "We are distinguished by our <strong>commitment</strong> to <strong>excellence</strong> and <strong>customer satisfaction</strong>. We design <strong>high-quality products</strong> using <strong>agile methodologies</strong>, optimizing time and ensuring <strong>on-time deliveries</strong>.",
+      aboutText3: "Our team is made up of <strong>passionate professionals</strong> focused on delivering <strong>results that make a difference</strong>. We prioritize <strong>communication</strong> and <strong>adaptability</strong> to each challenge to ensure project <strong>success</strong>.",
+      aboutText4: "We understand that every <strong>business is unique</strong>. That's why we start each development with a <strong>detailed analysis</strong> of your needs and objectives, applying <strong>cutting-edge technology</strong> to <strong>exceed expectations</strong>.",
       teamTitle: "Our Team",
       teamSubtitle: "Meet the developers behind our solutions",
       stackTitle: "Technological Stack",
-      stackSubtitle:
-        "Technologies and tools we use to develop efficient solutions.",
+      stackSubtitle: "Technologies and tools we use to develop efficient solutions.",
       contactTitle: "Contact",
       followTitle: "Follow Us",
       footerText: "Innovation, technology, and tailored solutions",
@@ -158,79 +310,62 @@ const Desarrolladores = () => {
     },
   };
 
-  const trabajos = [
-    {
-      description: {
-        es: "Nuestro equipo desarrolló una plataforma web exclusiva para la asociación LALCEC (San Francisco), diseñada para optimizar la gestión interna de socios y el control de pagos. Esta herramienta es accesible únicamente para los administradores de la institución, asegurando la confidencialidad y seguridad de la información de los miembros.",
-        en: "Our team developed an exclusive web platform for the LALCEC association (San Francisco), designed to optimize the internal management of members and payment control. This tool is accessible only to the institution's administrators, ensuring the confidentiality and security of member information."
-      }
-    }
-  ];
-
-  // Cambiar idioma
   const toggleLanguage = () => {
     setLanguage((prevLang) => (prevLang === "es" ? "en" : "es"));
   };
 
   useEffect(() => {
-    document.title = "3 Devs Solutions"; // Cambia el título de la página
+    document.title = "3 Devs Solutions";
   }, []);
-
-  const toggleExpand = (index) => {
-    setExpandedIndex((prevIndex) => (prevIndex === index ? null : index));
-  };
 
   const developers = [
     {
       name: language === "es" ? "Joaquín Mullasano" : "Joaquín Mullasano",
       role: language === "es" ? "Desarrollador de Software" : "Software Developer",
-      img: "/img/dev1.avif",
-      info:
-        language === "es"
-          ? [
-              "Técnico en Electrónica",
-              "Estudiante de tecnicatura universitaria en programación",
-              "Experiencia en desarrollo de visión artificial y software",
-            ]
-          : [
-              "Electronics Technician",
-              "Student of University Programming",
-              "Experience in artificial vision and software development",
-            ],
+      img: "/img/joa.jpeg",
+      info: language === "es" ? [
+        "Técnico en Electrónica",
+        "Estudiante de tecnicatura universitaria en programación",
+        "Experiencia en desarrollo de visión artificial y software",
+      ] : [
+        "Electronics Technician",
+        "Student of University Programming",
+        "Experience in artificial vision and software development",
+      ],
+      linkedin: "https://www.linkedin.com/in/joaquin-mullasano",
+      instagram: "https://www.instagram.com/joa.mullasano/",
     },
     {
       name: language === "es" ? "Franco Valverde" : "Franco Valverde",
       role: language === "es" ? "Líder del Equipo de Software" : "Software Team Lead",
-      img: "/img/dev1.avif",
-      info:
-        language === "es"
-          ? [
-              "Ingeniero en Telecomunicaciones",
-              "Técnico en Electrónica",
-              "Amplia experiencia en desarrollo de software, sistemas y soluciones tecnológicas",
-            ]
-          : [
-              "Telecommunications Engineer",
-              "Electronics Technician",
-              "Extensive experience in software development, systems, and technological solutions",
-            ],
+      img: "/img/franco.jpeg",
+      info: language === "es" ? [
+        "Ingeniero en Telecomunicaciones",
+        "Técnico en Electrónica",
+        "Amplia experiencia en desarrollo de software, sistemas y soluciones tecnológicas",
+      ] : [
+        "Telecommunications Engineer",
+        "Electronics Technician",
+        "Extensive experience in software development, systems, and technological solutions",
+      ],
+      linkedin: "https://www.linkedin.com/in/franco-valverde-b3821b309/",
+      instagram: "https://www.instagram.com/francovalver/",
     },
     {
       name: language === "es" ? "Bruno Ballarino" : "Bruno Ballarino",
       role: language === "es" ? "Desarrollador de Software" : "Software Developer",
-      img: "/img/dev1.avif",
-      info:
-        language === "es"
-          ? [
-              "Técnico en Electrónica",
-              "Estudiante de tecnicatura superior en desarrollo de software",
-              "Experiencia en desarrollo web y soluciones de software",
-            ]
-          : [
-              "Electronics Technician",
-              "Student of Higher Software Development",
-              "Experience in web development and software solutions",
-            ],
+      img: "/img/Bruno.jpeg",
+      info: language === "es" ? [
+        "Técnico en Electrónica",
+        "Estudiante de tecnicatura superior en desarrollo de software",
+        "Experiencia en desarrollo web y soluciones de software",
+      ] : [
+        "Electronics Technician",
+        "Student of Higher Software Development",
+        "Experience in web development and software solutions",
+      ],
+      linkedin: "https://www.linkedin.com/in/bruno-ballarino-8275622b7/",
+      instagram: "https://www.instagram.com/ballarinobruno/",
     },
   ];
 
@@ -247,73 +382,247 @@ const Desarrolladores = () => {
     { name: "GitHub", icon: "/img/git_logo.png", className: "git-style" },
   ];
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
+  const trabajos = [
+    {
+      description: {
+        es: "Nuestro equipo desarrolló una plataforma web exclusiva para la asociación LALCEC (San Francisco), diseñada para optimizar la gestión interna de socios y el control de pagos. Esta herramienta es accesible únicamente para los administradores de la institución, asegurando la confidencialidad y seguridad de la información de los miembros.",
+        en: "Our team developed an exclusive web platform for the LALCEC association (San Francisco), designed to optimize the internal management of members and payment control. This tool is accessible only to the institution's administrators, ensuring the confidentiality and security of member information."
+      }
+    }
+  ];
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const toggleExpand = (index) => {
+    setExpandedIndex((prevIndex) => (prevIndex === index ? null : index));
+  };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   return (
     <div className="page-container" id="inicio">
-      <div className="background-container" style={{ backgroundImage: "url('/img/img_menu.png')" }}>
+      {isScrolled && (
+        <button
+          className="scroll-to-top-button"
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        >
+          <FontAwesomeIcon icon={faAngleUp} />
+        </button>
+      )}
+
+      <div className="hero-container">
+        <canvas 
+          ref={canvasRef} 
+          className="particles-canvas"
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            zIndex: 1
+          }}
+        />
+        
+        <div className="lottie-animation-container">
+          <DotLottieReact
+            src="https://lottie.host/a83ca3bc-67d3-4b7d-9004-454bb2fb0f32/pGgibeV6UD.lottie"
+            loop
+            autoplay
+            style={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              width: '100%',
+              height: '100%',
+              maxWidth: '800px',
+              zIndex: 2,
+              opacity: 0.8
+            }}
+          />
+        </div>
+        
+        
         <nav className={`navbar ${isScrolled ? "navbar-scrolled" : ""}`}>
-          <div className="logo-container">
-            <img
-              src="/img/logo_negro.png"
-              alt="Logo"
-              className={`logo ${isScrolled ? "logo-scrolled" : ""}`}
-            />
+          <div className="nav-container">
+            <div className="logo-container">
+              <img
+                src="/img/3devs_lg.png"
+                alt="Logo"
+                className={`logo ${isScrolled ? "logo-scrolled" : ""}`}
+              />
+            </div>
+            
+            <button
+              className={`hamburger ${isMenuOpen ? "open" : ""}`}
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label="Menu"
+            >
+              <span className="hamburger-line"></span>
+              <span className="hamburger-line"></span>
+              <span className="hamburger-line"></span>
+            </button>
+            
+            <div className={`nav-links-container ${isMenuOpen ? "open" : ""}`}>
+              <ul className="nav-links">
+                <li><a href="#inicio" onClick={() => setIsMenuOpen(false)} className="nav-link">{language === "es" ? "Inicio" : "Home"}</a></li>
+                <li><a href="#nosotros" onClick={() => setIsMenuOpen(false)} className="nav-link">{language === "es" ? "Nosotros" : "About Us"}</a></li>
+                <li><a href="#equipo" onClick={() => setIsMenuOpen(false)} className="nav-link">{language === "es" ? "Equipo" : "Team"}</a></li>
+                <li><a href="#stack" onClick={() => setIsMenuOpen(false)} className="nav-link">{language === "es" ? "Stack Tecnológico" : "Tech Stack"}</a></li>
+                <li><a href="#servicios" onClick={() => setIsMenuOpen(false)} className="nav-link">{language === "es" ? "Servicios" : "Services"}</a></li>
+                <li><a href="#contacto" onClick={() => setIsMenuOpen(false)} className="nav-link">{language === "es" ? "Contacto" : "Contact"}</a></li>
+                <li className="language-switcher">
+                  <button onClick={toggleLanguage} className="language-button" aria-label="Change language">
+                    <img
+                      src={language === "es" ? usFlag : esFlag}
+                      alt={language === "es" ? "English" : "Español"}
+                      className="flag-icon"
+                    />
+                    <span className="language-text">{language === "es" ? "EN" : "ES"}</span>
+                  </button>
+                </li>
+              </ul>
+            </div>
           </div>
-          <button
-            className={`hamburger ${isMenuOpen ? "open" : ""}`}
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            <div className="hamburger-line"></div>
-            <div className="hamburger-line"></div>
-            <div className="hamburger-line"></div>
-          </button>
-          <ul className={`nav-links ${isMenuOpen ? "open" : ""}`}>
-            <li><a href="#inicio" onClick={() => setIsMenuOpen(false)}>{language === "es" ? "Inicio" : "Home"}</a></li>
-            <li><a href="#nosotros" onClick={() => setIsMenuOpen(false)}>{language === "es" ? "Nosotros" : "About Us"}</a></li>
-            <li><a href="#stack" onClick={() => setIsMenuOpen(false)}>{language === "es" ? "Stack Tecnológico" : "Tech Stack"}</a></li>
-            <li><a href="#trabajos" onClick={() => setIsMenuOpen(false)}>{language === "es" ? "Trabajos" : "Jobs"}</a></li>
-            <li><a href="#servicios" onClick={() => setIsMenuOpen(false)}>{language === "es" ? "Servicios" : "Services"}</a></li>
-            <li><a href="#contacto" onClick={() => setIsMenuOpen(false)}>{language === "es" ? "Contacto" : "Contact"}</a></li>
-            <li>
-              <button onClick={toggleLanguage} className="language-button">
-                <img
-                  src={language === "es" ? usFlag : esFlag}
-                  alt={language === "es" ? "Español" : "English"}
-                  className="flag-icon"
-                />
-                <span className="language-text">{language === "es" ? "EN" : "ES"}</span>
-              </button>
-            </li>
-          </ul>
         </nav>
-        <div className="overlay" id="inicio">
-          <h1 className="main-title">{translations[language].welcome}</h1>
-          <p className="subtitle">{translations[language].subtitle}</p>
+
+        <div className="hero-content">
+          <div className="overlay">
+            <h1 className="main-title">
+              <span className="title-line">{translations[language].welcome}</span>
+            </h1>
+            <p className="subtitle">{translations[language].subtitle}</p>
+            <div className="cta-buttons">
+              <a href="#contacto" className="cta-button primary">{language === "es" ? "Contáctanos" : "Contact Us"}</a>
+              <a href="#servicios" className="cta-button secondary">{language === "es" ? "Nuestros Servicios" : "Our Services"}</a>
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Sección de Nosotros */}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       <section className="about-section" id="nosotros">
         <div className="about-content">
           <h2>{translations[language].aboutTitle}</h2>
-          <p dangerouslySetInnerHTML={{ __html: translations[language].aboutText1 }} />
-          <p>{translations[language].aboutText2}</p>
-          <p>{translations[language].aboutText3}</p>
-          <p dangerouslySetInnerHTML={{ __html: translations[language].aboutText4 }} />
-          <p>{translations[language].aboutText5}</p>
-          <p dangerouslySetInnerHTML={{ __html: translations[language].aboutText6 }} />
+          <div className="info-cards">
+            <div className="info-card">
+              <div className="info-icon-container">
+                <FontAwesomeIcon icon={faBullseye} className="info-icon" />
+              </div>
+              <p dangerouslySetInnerHTML={{ __html: translations[language].aboutText1 }} />
+            </div>
+
+            <div className="info-card">
+              <div className="info-icon-container">
+                <FontAwesomeIcon icon={faCogs} className="info-icon" />
+              </div>
+              <p dangerouslySetInnerHTML={{ __html: translations[language].aboutText2 }} />
+            </div>
+
+            <div className="info-card">
+              <div className="info-icon-container">
+                <FontAwesomeIcon icon={faHandshake} className="info-icon" />
+              </div>
+              <p dangerouslySetInnerHTML={{ __html: translations[language].aboutText3 }} />
+            </div>
+
+            <div className="info-card">
+              <div className="info-icon-container">
+                <FontAwesomeIcon icon={faUsers} className="info-icon" />
+              </div>
+              <p dangerouslySetInnerHTML={{ __html: translations[language].aboutText4 }} />
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Sección de Equipo */}
       <section className="team-section" id="equipo">
         <h2>{translations[language].teamTitle}</h2>
         <p className="sub-title">{translations[language].teamSubtitle}</p>
@@ -337,12 +646,21 @@ const Desarrolladores = () => {
               <button className="more-btn">
                 {expandedIndex === index ? (language === "es" ? "Menos" : "Less") : (language === "es" ? "Más" : "More")}
               </button>
+              {expandedIndex === index && (
+                <div className="social-icons">
+                  <a href={dev.linkedin} target="_blank" rel="noopener noreferrer">
+                    <FontAwesomeIcon icon={faLinkedin} className="social-icon" />
+                  </a>
+                  <a href={dev.instagram} target="_blank" rel="noopener noreferrer">
+                    <FontAwesomeIcon icon={faInstagram} className="social-icon" />
+                  </a>
+                </div>
+              )}
             </div>
           ))}
         </div>
       </section>
 
-      {/* Sección de Stack Tecnológico */}
       <section className="tech-stack-section" id="stack">
         <h2>{translations[language].stackTitle}</h2>
         <p className="tech-subtitle">{translations[language].stackSubtitle}</p>
@@ -358,31 +676,6 @@ const Desarrolladores = () => {
         </div>
       </section>
 
-      {/* Sección de trabajos */}
-      <section className="trabajos-section" id="trabajos">
-        <h2 className="trabajos-title">
-          {translations[language].trabajos}
-        </h2>
-        <p className="trabajos-subtitle">
-          {translations[language].trabajos_subtitle}
-        </p>
-        <div className="box_work"> 
-          <div className="trabajos-container">
-            {trabajos.map((trabajo, index) => (
-              <div key={index} className="trabajos-card">
-                <img src="/img/lalcec_app.png" alt="Imagen" className="trabajo-img" />
-                <div className="overlay-container">
-                  <img src="/img/logo_lalcec.png" alt="Logo LALCEC" className="overlay-logo" />
-                  <span className="overlay-text">LALCEC</span>
-                </div>
-                <p>{trabajo.description[language]}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Sección de Servicios */}
       <section className="servicios" id="servicios">
         <div className="titles-container">
           <h2 className="titulo-serv">{translations[language].servicios}</h2>
@@ -390,7 +683,6 @@ const Desarrolladores = () => {
         </div>
 
         <div className="servicios-container">
-          {/* Tarjeta de Desarrollo Web */}
           <div className="servicios-card">
             <img src="/img/icono_web.png" className="servicios-img" alt="Desarrollo Web" />
             <h3 className="titulo">{translations[language].desarrollo_web}</h3>
@@ -419,7 +711,6 @@ const Desarrolladores = () => {
             </div>
           </div>
 
-          {/* Tarjeta de Desarrollo de Escritorio */}
           <div className="servicios-card">
             <img src="/img/icono_escritorio.png" className="servicios-img" alt="Desarrollo de Escritorio" />
             <h3 className="titulo">{translations[language].desarrollo_escritorio}</h3>
@@ -448,7 +739,6 @@ const Desarrolladores = () => {
             </div>
           </div>
 
-          {/* Tarjeta de Desarrollo Móvil */}
           <div className="servicios-card">
             <img src="/img/icono_mov.png" className="servicios-img" alt="Desarrollo Móvil" />
             <h3 className="titulo">{translations[language].desarrollo_movil}</h3>
@@ -479,7 +769,6 @@ const Desarrolladores = () => {
         </div>
       </section>
 
-      {/* Sección del Footer */}
       <footer className="footer-section" id="contacto">
         <div className="footer-content">
           <div className="footer-logo">
@@ -496,12 +785,12 @@ const Desarrolladores = () => {
             <h3>{translations[language].followTitle}</h3>
             <ul>
               <li>
-                <a href="https://linkedin.com/company/3devsolutions" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.linkedin.com/search/results/all/?heroEntityKey=urn%3Ali%3Aorganization%3A106893326&keywords=3devs%20solutions&origin=ENTITY_SEARCH_HOME_HISTORY&sid=ZMS" target="_blank" rel="noopener noreferrer">
                   <FontAwesomeIcon icon={faLinkedin} />
                 </a>
               </li>
               <li>
-                <a href="https://instagram.com/3devsolutions" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.instagram.com/3devs_solutions/" target="_blank" rel="noopener noreferrer">
                   <FontAwesomeIcon icon={faInstagram} />
                 </a>
               </li>
