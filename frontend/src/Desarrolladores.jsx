@@ -2,9 +2,10 @@ import React, { useState, useEffect, useRef } from "react";
 import "./Desarrolladores.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin, faInstagram } from "@fortawesome/free-brands-svg-icons";
-import { faAngleUp, faCheckCircle, faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
-import { faBullseye, faCogs, faHandshake, faUsers } from '@fortawesome/free-solid-svg-icons';
+import { faAngleUp, faCheckCircle, faExclamationTriangle, faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { faBullseye, faCogs, faHandshake, faUsers, faCode, faMobileAlt, faDesktop } from '@fortawesome/free-solid-svg-icons';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import { translations, developersData, technologies, serviciosData } from './translations';
 
 const esFlag = "/img/es-flag.png";
 const usFlag = "/img/us-flag.png";
@@ -14,7 +15,56 @@ const Desarrolladores = () => {
   const [expandedIndex, setExpandedIndex] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [typedText, setTypedText] = useState("");
+  const [showCursor, setShowCursor] = useState(true);
+  const [activeService, setActiveService] = useState(0);
   const canvasRef = useRef(null);
+  const typingTimeoutRef = useRef(null);
+  const cursorIntervalRef = useRef(null);
+  const sectionRefs = useRef([]);
+
+  useEffect(() => {
+    const welcomeText = translations[language].welcome;
+    setTypedText("");
+    let currentIndex = 0;
+  
+    clearTimeout(typingTimeoutRef.current);
+    clearInterval(cursorIntervalRef.current);
+  
+    setShowCursor(true);
+  
+    cursorIntervalRef.current = setInterval(() => {
+      setShowCursor(prev => !prev);
+    }, 500);
+  
+    const typeText = () => {
+      if (currentIndex <= welcomeText.length) {
+        setTypedText(welcomeText.substring(0, currentIndex));
+        currentIndex++;
+        typingTimeoutRef.current = setTimeout(typeText, 100);
+      } else {
+        clearInterval(cursorIntervalRef.current);
+        setShowCursor(false);
+      }
+    };
+  
+    typeText();
+  
+    return () => {
+      clearTimeout(typingTimeoutRef.current);
+      clearInterval(cursorIntervalRef.current);
+    };
+  }, [language]);
+  
+
+
+
+
+
+
+
+
+  
 
   useEffect(() => {
     const handleScroll = () => {
@@ -66,7 +116,6 @@ const Desarrolladores = () => {
           this.vx += fx / this.mass;
           this.vy += fy / this.mass;
         } else if (distance > 0 && distance < minDistance) {
-          // Repulsión cuando están muy cerca
           const angle = Math.atan2(dy, dx);
           this.vx -= Math.cos(angle) * 0.1;
           this.vy -= Math.sin(angle) * 0.1;
@@ -74,22 +123,18 @@ const Desarrolladores = () => {
       }
   
       update() {
-        // Limitar velocidad máxima
         const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
         if (speed > this.maxSpeed) {
           this.vx = (this.vx / speed) * this.maxSpeed;
           this.vy = (this.vy / speed) * this.maxSpeed;
         }
         
-        // Aplicar fricción
         this.vx *= this.friction;
         this.vy *= this.friction;
         
-        // Mover partícula
         this.x += this.vx;
         this.y += this.vy;
         
-        // Rebote en bordes
         if (this.x < 0 || this.x > canvas.width) {
           this.vx = -this.vx * 0.8;
           this.x = Math.max(0, Math.min(canvas.width, this.x));
@@ -101,7 +146,6 @@ const Desarrolladores = () => {
       }
   
       draw() {
-        // Crear efecto de brillo
         const gradient = ctx.createRadialGradient(
           this.x, this.y, 0,
           this.x, this.y, this.size
@@ -149,7 +193,6 @@ const Desarrolladores = () => {
       ctx.fillStyle = 'rgba(10, 15, 25, 0.2)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       
-      // Actualizar partículas con atracción gravitatoria
       for (let i = 0; i < particles.length; i++) {
         for (let j = 0; j < particles.length; j++) {
           if (i !== j) {
@@ -159,10 +202,8 @@ const Desarrolladores = () => {
         particles[i].update();
       }
       
-      // Dibujar conexiones primero (detrás de las partículas)
       drawConnections();
       
-      // Luego dibujar partículas
       for (let i = 0; i < particles.length; i++) {
         particles[i].draw();
       }
@@ -185,131 +226,6 @@ const Desarrolladores = () => {
     };
   }, []);
 
-  const translations = {
-    es: {
-      welcome: "Bienvenido a 3 Devs Solutions",
-      subtitle: "Innovación, tecnología y soluciones a medida",
-      aboutTitle: "Sobre Nosotros",
-      trabajos: "Nuestros Trabajos",
-      trabajos_subtitle: "Trabajos que reflejan nuestra pasión por la tecnología",
-      mas: "Más",
-      servicios: "Servicios",
-      aboutText1: "En <strong>3 Devs Solutions</strong>, transformamos ideas en <strong>software a medida</strong>, combinando <strong>innovación</strong> y <strong>tecnología</strong> para desarrollar <strong>soluciones eficientes</strong> y adaptadas a cada cliente.",
-      aboutText2: "Nos distingue nuestro <strong>compromiso</strong> con la <strong>excelencia</strong> y la <strong>satisfacción del cliente</strong>. Diseñamos <strong>productos de alta calidad</strong> mediante <strong>metodologías ágiles</strong>, optimizando tiempos y garantizando <strong>entregas puntuales</strong>.",
-      aboutText3: "Nuestro equipo está formado por <strong>profesionales apasionados</strong>, enfocados en ofrecer <strong>resultados que marquen la diferencia</strong>. Priorizamos la <strong>comunicación</strong> y la <strong>adaptación</strong> a cada desafío para garantizar el <strong>éxito</strong> de cada proyecto.",
-      aboutText4: "Entendemos que cada <strong>negocio es único</strong>. Por eso, iniciamos cada desarrollo con un <strong>análisis detallado</strong> de tus necesidades y objetivos, aplicando <strong>tecnología de vanguardia</strong> para <strong>superar expectativas</strong>.",
-      teamTitle: "Nuestro Equipo",
-      teamSubtitle: "Conoce a los desarrolladores detrás de nuestras soluciones",
-      stackTitle: "Stack Tecnológico",
-      stackSubtitle: "Tecnologías y herramientas que utilizamos para desarrollar soluciones eficientes.",
-      contactTitle: "Contacto",
-      followTitle: "Síguenos",
-      footerText: "Innovación, tecnología y soluciones a medida",
-      copyright: "Todos los derechos reservados.",
-      servicios_subtitle: "Ofrecemos soluciones personalizadas para satisfacer tus necesidades tecnológicas",
-      desarrollo_web: "Desarrollo Web",
-      desarrollo_web_subtitle: "Desarrollo de sitios web modernos, funcionales y optimizados.",
-      desarrollo_web_pros: [
-        "Accesible desde cualquier dispositivo con internet.",
-        "Fácil mantenimiento y escalabilidad.",
-        "No requiere instalación en los dispositivos del usuario.",
-        "Mayor visibilidad y captación de clientes.",
-      ],
-      desarrollo_web_contras: [
-        "El tiempo de desarrollo varía según el proyecto.",
-        "Requiere servidores para su correcto funcionamiento.",
-      ],
-      desarrollo_escritorio: "Desarrollo de Escritorio",
-      desarrollo_escritorio_subtitle: "Software eficiente y personalizado para entornos de escritorio.",
-      desarrollo_escritorio_pros: [
-        "Funciona sin necesidad de conexión a internet.",
-        "Mayor rendimiento en tareas exigentes y especializadas.",
-        "No depende de servidores externos para su operatividad.",
-        "Mayor control y seguridad en el manejo de datos locales.",
-      ],
-      desarrollo_escritorio_contras: [
-        "Uso limitado al dispositivo en el que se instala.",
-        "Puede requerir más recursos del sistema.",
-        "Necesita instalación y actualizaciones manuales.",
-      ],
-      desarrollo_movil: "Desarrollo Móvil",
-      desarrollo_movil_subtitle: "Aplicaciones para dispositivos móviles adaptadas a tus necesidades.",
-      desarrollo_movil_pros: [
-        "Fluidez y optimización para pantallas táctiles.",
-        "Mejor uso de los recursos del dispositivo.",
-        "Funciona sin conexión en varias tareas.",
-        "Mayor seguridad y control de datos.",
-      ],
-      desarrollo_movil_contras: [
-        "Depende del sistema operativo.",
-        "Puede consumir más almacenamiento y batería.",
-        "Requiere descargas y actualizaciones.",
-      ],
-      consultar_servicio: "Consultar servicio",
-    },
-    en: {
-      welcome: "Welcome to 3 Devs Solutions",
-      subtitle: "Innovation, technology, and tailored solutions",
-      aboutTitle: "About Us",
-      trabajos: "Our Work",
-      trabajos_subtitle: "Projects that reflect our passion for technology",
-      mas: "More",
-      servicios: "Services",
-      aboutText1: "At <strong>3 Devs Solutions</strong>, we turn ideas into <strong>custom software</strong>, combining <strong>innovation</strong> and <strong>technology</strong> to develop <strong>efficient solutions</strong> tailored to each client.",
-      aboutText2: "We are distinguished by our <strong>commitment</strong> to <strong>excellence</strong> and <strong>customer satisfaction</strong>. We design <strong>high-quality products</strong> using <strong>agile methodologies</strong>, optimizing time and ensuring <strong>on-time deliveries</strong>.",
-      aboutText3: "Our team is made up of <strong>passionate professionals</strong> focused on delivering <strong>results that make a difference</strong>. We prioritize <strong>communication</strong> and <strong>adaptability</strong> to each challenge to ensure project <strong>success</strong>.",
-      aboutText4: "We understand that every <strong>business is unique</strong>. That's why we start each development with a <strong>detailed analysis</strong> of your needs and objectives, applying <strong>cutting-edge technology</strong> to <strong>exceed expectations</strong>.",
-      teamTitle: "Our Team",
-      teamSubtitle: "Meet the developers behind our solutions",
-      stackTitle: "Technological Stack",
-      stackSubtitle: "Technologies and tools we use to develop efficient solutions.",
-      contactTitle: "Contact",
-      followTitle: "Follow Us",
-      footerText: "Innovation, technology, and tailored solutions",
-      copyright: "All rights reserved.",
-      servicios_subtitle: "We offer tailored solutions to meet your technological needs",
-      desarrollo_web: "Web Development",
-      desarrollo_web_subtitle: "Development of modern, functional, and optimized websites.",
-      desarrollo_web_pros: [
-        "Accessible from any device with internet.",
-        "Easy maintenance and scalability.",
-        "No installation required on user devices.",
-        "Greater visibility and customer acquisition.",
-      ],
-      desarrollo_web_contras: [
-        "Development time varies depending on the project.",
-        "Requires servers for proper functioning.",
-      ],
-      desarrollo_escritorio: "Desktop Development",
-      desarrollo_escritorio_subtitle: "Efficient and customized software for desktop environments.",
-      desarrollo_escritorio_pros: [
-        "Works without an internet connection.",
-        "Better performance for demanding and specialized tasks.",
-        "Does not depend on external servers for operation.",
-        "Greater control and security in handling local data.",
-      ],
-      desarrollo_escritorio_contras: [
-        "Limited to the device where it is installed.",
-        "May require more system resources.",
-        "Requires manual installation and updates.",
-      ],
-      desarrollo_movil: "Mobile Development",
-      desarrollo_movil_subtitle: "Mobile applications tailored to your needs.",
-      desarrollo_movil_pros: [
-        "Smooth and optimized for touch screens.",
-        "Better use of device resources.",
-        "Works offline for various tasks.",
-        "Greater security and data control.",
-      ],
-      desarrollo_movil_contras: [
-        "Dependent on the operating system.",
-        "May consume more storage and battery.",
-        "Requires downloads and updates.",
-      ],
-      consultar_servicio: "Inquire about the service",
-    },
-  };
-
   const toggleLanguage = () => {
     setLanguage((prevLang) => (prevLang === "es" ? "en" : "es"));
   };
@@ -318,124 +234,9 @@ const Desarrolladores = () => {
     document.title = "3 Devs Solutions";
   }, []);
 
-  const developers = [
-    {
-      name: language === "es" ? "Joaquín Mullasano" : "Joaquín Mullasano",
-      role: language === "es" ? "Desarrollador de Software" : "Software Developer",
-      img: "/img/joa.jpeg",
-      info: language === "es" ? [
-        "Técnico en Electrónica",
-        "Estudiante de tecnicatura universitaria en programación",
-        "Experiencia en desarrollo de visión artificial y software",
-      ] : [
-        "Electronics Technician",
-        "Student of University Programming",
-        "Experience in artificial vision and software development",
-      ],
-      linkedin: "https://www.linkedin.com/in/joaquin-mullasano",
-      instagram: "https://www.instagram.com/joa.mullasano/",
-    },
-    {
-      name: language === "es" ? "Franco Valverde" : "Franco Valverde",
-      role: language === "es" ? "Líder del Equipo de Software" : "Software Team Lead",
-      img: "/img/franco.jpeg",
-      info: language === "es" ? [
-        "Ingeniero en Telecomunicaciones",
-        "Técnico en Electrónica",
-        "Amplia experiencia en desarrollo de software, sistemas y soluciones tecnológicas",
-      ] : [
-        "Telecommunications Engineer",
-        "Electronics Technician",
-        "Extensive experience in software development, systems, and technological solutions",
-      ],
-      linkedin: "https://www.linkedin.com/in/franco-valverde-b3821b309/",
-      instagram: "https://www.instagram.com/francovalver/",
-    },
-    {
-      name: language === "es" ? "Bruno Ballarino" : "Bruno Ballarino",
-      role: language === "es" ? "Desarrollador de Software" : "Software Developer",
-      img: "/img/Bruno.jpeg",
-      info: language === "es" ? [
-        "Técnico en Electrónica",
-        "Estudiante de tecnicatura superior en desarrollo de software",
-        "Experiencia en desarrollo web y soluciones de software",
-      ] : [
-        "Electronics Technician",
-        "Student of Higher Software Development",
-        "Experience in web development and software solutions",
-      ],
-      linkedin: "https://www.linkedin.com/in/bruno-ballarino-8275622b7/",
-      instagram: "https://www.instagram.com/ballarinobruno/",
-    },
-  ];
-
-  const technologies = [
-    { name: "HTML5", icon: "/img/html_logo.png", className: "html-style" },
-    { name: "CSS3", icon: "/img/css_logo.png", className: "css-style" },
-    { name: "Java Script", icon: "/img/js_logo.png", className: "js-style" },
-    { name: "React", icon: "/img/react_logo.png", className: "react-style" },
-    { name: "PHP", icon: "/img/php_logo.png", className: "php-style" },
-    { name: "Python", icon: "/img/py_logo.png", className: "python-style" },
-    { name: "Node JS", icon: "/img/node_logo.png", className: "node-style" },
-    { name: "SQL", icon: "/img/sql_logo.png", className: "sql-style" },
-    { name: "Visual Studio", icon: "/img/visual_logo.png", className: "visual-style" },
-    { name: "GitHub", icon: "/img/git_logo.png", className: "git-style" },
-  ];
-
-  const trabajos = [
-    {
-      description: {
-        es: "Nuestro equipo desarrolló una plataforma web exclusiva para la asociación LALCEC (San Francisco), diseñada para optimizar la gestión interna de socios y el control de pagos. Esta herramienta es accesible únicamente para los administradores de la institución, asegurando la confidencialidad y seguridad de la información de los miembros.",
-        en: "Our team developed an exclusive web platform for the LALCEC association (San Francisco), designed to optimize the internal management of members and payment control. This tool is accessible only to the institution's administrators, ensuring the confidentiality and security of member information."
-      }
-    }
-  ];
-
   const toggleExpand = (index) => {
     setExpandedIndex((prevIndex) => (prevIndex === index ? null : index));
   };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   return (
     <div className="page-container" id="inicio">
@@ -464,7 +265,7 @@ const Desarrolladores = () => {
         
         <div className="lottie-animation-container">
           <DotLottieReact
-            src="https://lottie.host/a83ca3bc-67d3-4b7d-9004-454bb2fb0f32/pGgibeV6UD.lottie"
+            src="https://lottie.host/27615f6b-e468-45da-a344-0c0be8dc3a38/Z9R0OeBeXF.lottie"
             loop
             autoplay
             style={{
@@ -480,7 +281,6 @@ const Desarrolladores = () => {
             }}
           />
         </div>
-        
         
         <nav className={`navbar ${isScrolled ? "navbar-scrolled" : ""}`}>
           <div className="nav-container">
@@ -528,33 +328,27 @@ const Desarrolladores = () => {
         <div className="hero-content">
           <div className="overlay">
             <h1 className="main-title">
-              <span className="title-line">{translations[language].welcome}</span>
+              {typedText.split('').map((char, index) => (
+                <span key={index} className="char">
+                  {char === '\n' ? <br /> : char}
+                  {index === typedText.length - 1 && showCursor && <span className="typing-cursor">|</span>}
+                </span>
+              ))}
             </h1>
             <p className="subtitle">{translations[language].subtitle}</p>
             <div className="cta-buttons">
-              <a href="#contacto" className="cta-button primary">{language === "es" ? "Contáctanos" : "Contact Us"}</a>
-              <a href="#servicios" className="cta-button secondary">{language === "es" ? "Nuestros Servicios" : "Our Services"}</a>
+              <a href="#contacto" className="cta-button primary">
+                {language === "es" ? "Contáctanos" : "Contact Us"}
+              </a>
+              <a href="#servicios" className="cta-button secondary">
+                {language === "es" ? "Nuestros Servicios" : "Our Services"}
+              </a>
             </div>
           </div>
         </div>
+
+
       </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -627,7 +421,7 @@ const Desarrolladores = () => {
         <h2>{translations[language].teamTitle}</h2>
         <p className="sub-title">{translations[language].teamSubtitle}</p>
         <div className="cards-container">
-          {developers.map((dev, index) => (
+          {developersData(language).map((dev, index) => (
             <div
               key={index}
               className={`card ${expandedIndex === index ? "expanded" : ""}`}
@@ -661,6 +455,33 @@ const Desarrolladores = () => {
         </div>
       </section>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       <section className="tech-stack-section" id="stack">
         <h2>{translations[language].stackTitle}</h2>
         <p className="tech-subtitle">{translations[language].stackSubtitle}</p>
@@ -676,98 +497,130 @@ const Desarrolladores = () => {
         </div>
       </section>
 
-      <section className="servicios" id="servicios">
-        <div className="titles-container">
-          <h2 className="titulo-serv">{translations[language].servicios}</h2>
-          <p className="subtitulo-servicios">{translations[language].servicios_subtitle}</p>
-        </div>
 
-        <div className="servicios-container">
-          <div className="servicios-card">
-            <img src="/img/icono_web.png" className="servicios-img" alt="Desarrollo Web" />
-            <h3 className="titulo">{translations[language].desarrollo_web}</h3>
-            <p className="subtitulo">{translations[language].desarrollo_web_subtitle}</p>
-            <div className="pros-contras-container">
-              {translations[language].desarrollo_web_pros.map((pro, index) => (
-                <p key={index}>
-                  <FontAwesomeIcon icon={faCheckCircle} style={{ color: "green" }} /> {pro}
-                </p>
-              ))}
-              {translations[language].desarrollo_web_contras.map((contra, index) => (
-                <p key={index}>
-                  <FontAwesomeIcon icon={faExclamationTriangle} style={{ color: "orange" }} /> {contra}
-                </p>
-              ))}
-            </div>
-            <div className="servicios-boton-container">
-              <a
-                href="https://api.whatsapp.com/send?phone=3564672341&text=¡Hola!,%20vengo%20de%20la%20web%20y%20estoy%20interesado%20en%20el%20servicio%20de%20Desarrollo%20Web.%20¿Podrían%20darme%20más%20información?"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="servicios-boton"
-              >
-                {translations[language].consultar_servicio}
-              </a>
-            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+{/* Services Section */}
+<section className="services-section" id="servicios" ref={el => sectionRefs.current[4] = el}>
+        <div className="section-container">
+          <div className="section-header">
+            <h2 className="section-title">{translations[language].servicios}</h2>
+            <p className="section-subtitle">{translations[language].servicios_subtitle}</p>
           </div>
-
-          <div className="servicios-card">
-            <img src="/img/icono_escritorio.png" className="servicios-img" alt="Desarrollo de Escritorio" />
-            <h3 className="titulo">{translations[language].desarrollo_escritorio}</h3>
-            <p className="subtitulo">{translations[language].desarrollo_escritorio_subtitle}</p>
-            <div className="pros-contras-container">
-              {translations[language].desarrollo_escritorio_pros.map((pro, index) => (
-                <p key={index}>
-                  <FontAwesomeIcon icon={faCheckCircle} style={{ color: "green" }} /> {pro}
-                </p>
-              ))}
-              {translations[language].desarrollo_escritorio_contras.map((contra, index) => (
-                <p key={index}>
-                  <FontAwesomeIcon icon={faExclamationTriangle} style={{ color: "orange" }} /> {contra}
-                </p>
-              ))}
-            </div>
-            <div className="servicios-boton-container">
-              <a
-                href="https://api.whatsapp.com/send?phone=3564672341&text=¡Hola!,%20vengo%20de%20la%20web%20y%20estoy%20interesado%20en%20el%20servicio%20de%20Desarrollo%20de%20Escritorio.%20¿Podrían%20darme%20más%20información?"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="servicios-boton"
-              >
-                {translations[language].consultar_servicio}
-              </a>
-            </div>
-          </div>
-
-          <div className="servicios-card">
-            <img src="/img/icono_mov.png" className="servicios-img" alt="Desarrollo Móvil" />
-            <h3 className="titulo">{translations[language].desarrollo_movil}</h3>
-            <p className="subtitulo">{translations[language].desarrollo_movil_subtitle}</p>
-            <div className="pros-contras-container">
-              {translations[language].desarrollo_movil_pros.map((pro, index) => (
-                <p key={index}>
-                  <FontAwesomeIcon icon={faCheckCircle} style={{ color: "green" }} /> {pro}
-                </p>
-              ))}
-              {translations[language].desarrollo_movil_contras.map((contra, index) => (
-                <p key={index}>
-                  <FontAwesomeIcon icon={faExclamationTriangle} style={{ color: "orange" }} /> {contra}
-                </p>
+          
+          <div className="services-tabs">
+            <div className="tab-buttons">
+              {serviciosData[language].map((service, index) => (
+                <button
+                  key={index}
+                  className={`tab-button ${activeService === index ? 'active' : ''}`}
+                  onClick={() => setActiveService(index)}
+                >
+                  <FontAwesomeIcon icon={
+                    index === 0 ? faCode : 
+                    index === 1 ? faDesktop : 
+                    faMobileAlt
+                  } />
+                  <span>{service.title}</span>
+                </button>
               ))}
             </div>
-            <div className="servicios-boton-container">
-              <a
-                href="https://api.whatsapp.com/send?phone=3564672341&text=¡Hola!,%20vengo%20de%20la%20web%20y%20estoy%20interesado%20en%20el%20servicio%20de%20Desarrollo%20Móvil.%20¿Podrían%20darme%20más%20información?"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="servicios-boton" 
-              >
-                {translations[language].consultar_servicio}
-              </a>
+            
+            <div className="tab-content">
+              <div className="service-details">
+                <div className="service-image">
+                  <img src={serviciosData[language][activeService].image} alt={serviciosData[language][activeService].title} />
+                </div>
+                <div className="service-info">
+                  <h3>{serviciosData[language][activeService].title}</h3>
+                  <p className="service-description">{serviciosData[language][activeService].subtitle}</p>
+                  
+                  <div className="pros-cons">
+                    <div className="pros">
+                      <h4>{language === "es" ? "Ventajas" : "Pros"}</h4>
+                      <ul>
+                        {serviciosData[language][activeService].pros.map((pro, idx) => (
+                          <li key={`pro-${idx}`}>
+                            <FontAwesomeIcon icon={faCheckCircle} className="pro-icon" />
+                            {pro}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    
+                    <div className="cons">
+                      <h4>{language === "es" ? "Consideraciones" : "Cons"}</h4>
+                      <ul>
+                        {serviciosData[language][activeService].contras.map((contra, idx) => (
+                          <li key={`contra-${idx}`}>
+                            <FontAwesomeIcon icon={faExclamationTriangle} className="con-icon" />
+                            {contra}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                  
+                  <a
+                    href={`https://api.whatsapp.com/send?phone=3564672341&text=¡Hola!%20Estoy%20interesado%20en%20el%20servicio%20de%20${serviciosData[language][activeService].title}.%20¿Podrían%20darme%20más%20información?`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="service-cta"
+                  >
+                    {translations[language].consultar_servicio}
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       <footer className="footer-section" id="contacto">
         <div className="footer-content">
