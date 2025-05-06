@@ -528,8 +528,8 @@ const Desarrolladores = () => {
 
 
       
-{/* Services Section */}
-<section className="services-section" id="servicios" ref={el => sectionRefs.current[4] = el}>
+      {/* Services Section */}
+      <section className="services-section" id="servicios" ref={el => sectionRefs.current[4] = el}>
         <div className="section-container">
           <div className="section-header">
             <h2 className="section-title">{translations[language].servicios}</h2>
@@ -654,6 +654,10 @@ const Desarrolladores = () => {
           <p>&copy; {new Date().getFullYear()} 3 Devs Solutions. {translations[language].copyright}</p>
         </div>
       </footer>
+
+
+
+      
     </div>
   );
 };
