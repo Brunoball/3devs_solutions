@@ -448,43 +448,76 @@ html {
 }
 
 /* ================ RESPONSIVE ================ */
+/* ================ HERO SECTION - MOBILE ================ */
 @media (max-width: 768px) {
+  /* En la sección de media queries para móviles */
+
+
   .hero-container {
-    flex-direction: column;
-    height: auto;
-    padding: 100px 0;
+    height: 100vh; /* Asegura que ocupe toda la altura visible */
+    width: 100vw; /* Asegura que ocupe todo el ancho visible */
+    padding: 0; /* Elimina el padding que podría afectar las dimensiones */
+    margin: 0; /* Elimina márgenes no deseados */
+    overflow: hidden; /* Evita scroll no deseado */
   }
 
-  .hero-content,
-  .lottie-animation-container {
-    width: 100%;
-    height: auto;
+  .hero-content {
+    height: 100%; /* Ocupa toda la altura del contenedor padre */
+    width: 100%; /* Ocupa todo el ancho del contenedor padre */
+    padding: 20px; /* Añade un padding interno para el contenido */
+    box-sizing: border-box; /* Incluye el padding en las dimensiones totales */
   }
 
   .overlay {
-    transform: none;
-    padding: 0 1rem;
+    height: 100%; /* Ocupa toda la altura disponible */
+    justify-content: center; /* Centra verticalmente el contenido */
+    transform: none; /* Elimina transformaciones previas */
   }
 
-  .lottie-animation-container > div {
-    position: relative;
-    top: auto;
-    left: auto;
-    transform: none;
-    margin: 2rem auto;
-    width: 100%;
+  .main-title {
+    font-size: 2rem; /* Tamaño de fuente adecuado para móviles */
+    margin-bottom: 1rem; /* Espaciado ajustado */
+  }
+
+  .subtitle {
+    font-size: 1rem; /* Tamaño de fuente legible */
+    max-width: 90%; /* Ancho máximo para buena legibilidad */
+    margin-bottom: 2rem; /* Espaciado adecuado */
   }
 
   .cta-buttons {
-    flex-direction: column;
-    gap: 1rem;
+    flex-direction: column; /* Apila los botones verticalmente */
+    width: 100%; /* Ocupa todo el ancho disponible */
+    gap: 1rem; /* Espacio entre botones */
+        margin-top: 23rem;
+  }
+
+  .cta-button {
+    width: 100%; /* Botones de ancho completo */
+    max-width: 250px; /* Ancho máximo para buena apariencia */
+    margin: 0 auto; /* Centrado horizontal */
+  }
+
+  /* Ajustes para la animación Lottie en móviles */
+  .lottie-animation-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Coloca detrás del contenido */
+  }
+
+  .lottie-animation-container > div {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 }
-
-
-
-
-
+@media (max-width: 668px){
+.overlay .cta-buttons{
+  margin-top: 15rem;
+  
+}
+}
 
 
 
