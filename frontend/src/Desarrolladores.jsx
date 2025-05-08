@@ -439,6 +439,7 @@ const Desarrolladores = () => {
       </section>
 
       <section className="team-section" id="equipo">
+<<<<<<< HEAD
         <h2>{translations[language].teamTitle}</h2>
         <p className="sub-title">{translations[language].teamSubtitle}</p>
         <div className="cards-container">
@@ -482,6 +483,99 @@ const Desarrolladores = () => {
                     : (language === "es" ? "Más" : "More")}
                 </button>
               </div>
+=======
+  <h2>{translations[language].teamTitle}</h2>
+  <p className="sub-title">{translations[language].teamSubtitle}</p>
+  <div className="cards-container">
+    {developersData(language).map((dev, index) => (
+      <div
+        key={index}
+        className={`card ${expandedIndex === index ? "expanded" : ""}`}
+        onClick={() => {
+          if (expandedIndex !== index) {
+            setExpandedIndex(index); // Expande solo la tarjeta seleccionada
+          }
+        }}
+      >
+        <div className="card-content">
+          <div className="avatar-container">
+            <img src={dev.img} alt={dev.name} className="avatar" />
+          </div>
+          <h3 className="name">{dev.name}</h3>
+          <p className="role">{dev.role}</p>
+          
+          <div className={`expandable-content ${expandedIndex === index ? "visible" : ""}`}>
+            <ul className="info">
+              {dev.info.map((point, idx) => (
+                <li key={idx}>{point}</li>
+              ))}
+            </ul>
+            
+            <div className="social-icons">
+              <a href={dev.linkedin} target="_blank" rel="noopener noreferrer">
+                <FontAwesomeIcon icon={faLinkedin} className="social-icon" />
+              </a>
+              <a href={dev.instagram} target="_blank" rel="noopener noreferrer">
+                <FontAwesomeIcon icon={faInstagram} className="social-icon" />
+              </a>
+            </div>
+          </div>
+          
+          <button 
+            className="more-btn"
+            onClick={(e) => {
+              e.stopPropagation(); // Evita que el evento se propague al contenedor
+              setExpandedIndex(expandedIndex === index ? null : index);
+            }}
+          >
+            {expandedIndex === index 
+              ? (language === "es" ? "Menos" : "Less") 
+              : (language === "es" ? "Más" : "More")}
+          </button>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <section className="tech-stack-section" id="stack">
+        <h2>{translations[language].stackTitle}</h2>
+        <p className="tech-subtitle">{translations[language].stackSubtitle}</p>
+        <div className="tech-stack-grid">
+          {technologies.map((tech, index) => (
+            <div key={index} className={`tech-card ${tech.className}`}>
+              <div className="tech-icon">
+                <img src={tech.icon} alt={tech.name} />
+              </div>
+              <p className="tech-name">{tech.name}</p>
+>>>>>>> c2ec3c1ed6f68313f94be29f3b6305e71b9f56ae
             </div>
           ))}
         </div>
