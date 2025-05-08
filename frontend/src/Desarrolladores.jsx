@@ -75,6 +75,8 @@ const Desarrolladores = () => {
   const cursorIntervalRef = useRef(null);
   const sectionRefs = useRef([]);
   
+
+
   const technologies = [
     { name: "HTML5", icon: "/img/html_logo.png", className: "html-style", category: "frontend", level: 90 },
     { name: "CSS3", icon: "/img/css_logo.png", className: "css-style", category: "frontend", level: 85 },
@@ -290,7 +292,13 @@ const Desarrolladores = () => {
   }, []);
 
   const toggleExpand = (index) => {
-    setExpandedIndex(expandedIndex === index ? null : index);
+    if (expandedIndex === index) {
+      // Si la carta ya está expandida, la colapsamos
+      setExpandedIndex(null);
+    } else {
+      // Expandimos solo la carta clickeada
+      setExpandedIndex(index);
+    }
   };
 
   return (
@@ -438,56 +446,55 @@ const Desarrolladores = () => {
         </div>
       </section>
 
-      <section className="team-section" id="equipo">
 
+
+      <section className="team-section" id="equipo">
         <h2>{translations[language].teamTitle}</h2>
         <p className="sub-title">{translations[language].teamSubtitle}</p>
         <div className="cards-container">
           {developersData(language).map((dev, index) => (
             <div
-              key={index}
-              className={`card ${expandedIndex === index ? "expanded" : ""}`}
-            >
-              <div className="card-content">
-                <div className="avatar-container">
-                  <img src={dev.img} alt={dev.name} className="avatar" />
-                </div>
-                <h3 className="name">{dev.name}</h3>
-                <p className="role">{dev.role}</p>
-                
-                {expandedIndex === index && (
-                  <div className="expandable-content visible">
-                    <ul className="info">
-                      {dev.info.map((point, idx) => (
-                        <li key={idx}>{point}</li>
-                      ))}
-                    </ul>
-                    
-                    <div className="social-icons">
-                      <a href={dev.linkedin} target="_blank" rel="noopener noreferrer">
-                        <FontAwesomeIcon icon={faLinkedin} className="social-icon" />
-                      </a>
-                      <a href={dev.instagram} target="_blank" rel="noopener noreferrer">
-                        <FontAwesomeIcon icon={faInstagram} className="social-icon" />
-                      </a>
-                    </div>
-                  </div>
-                )}
-                
-                <button 
-                  className="more-btn"
-                  onClick={() => toggleExpand(index)}
-                >
-                  {expandedIndex === index 
-                    ? (language === "es" ? "Menos" : "Less") 
-                    : (language === "es" ? "Más" : "More")}
-                </button>
+            key={index}
+            className={`card ${expandedIndex === index ? "expanded" : ""}`}
+          >
+            <div className="card-content">
+              <div className="avatar-container">
+                <img src={dev.img} alt={dev.name} className="avatar" />
               </div>
-
+              <h3 className="name">{dev.name}</h3>
+              <p className="role">{dev.role}</p>
+            
+              {expandedIndex === index && (
+                <div className="expandable-content visible">
+                  <ul className="info">
+                    {dev.info.map((point, idx) => (
+                      <li key={idx}>{point}</li>
+                    ))}
+                  </ul>
+                  <div className="social-icons">
+                    <a href={dev.linkedin} target="_blank" rel="noopener noreferrer">
+                      <FontAwesomeIcon icon={faLinkedin} className="social-icon" />
+                    </a>
+                    <a href={dev.instagram} target="_blank" rel="noopener noreferrer">
+                      <FontAwesomeIcon icon={faInstagram} className="social-icon" />
+                    </a>
+                  </div>
+                </div>
+              )}
+            
+              <button 
+                className="more-btn"
+                onClick={() => toggleExpand(index)}
+              >
+                {expandedIndex === index 
+                    ? (language === "es" ? "Menos" : "Less") 
+                  : (language === "es" ? "Más" : "More")}
+              </button>
             </div>
-          ))}
-        </div>
-      </section>
+          </div>
+        ))}
+      </div>
+    </section>
 
 
 

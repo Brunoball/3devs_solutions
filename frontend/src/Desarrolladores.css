@@ -731,7 +731,7 @@ html {
 /* ================ SECTION COMMON STYLES ================ */
 .about-section {
   padding: 100px 0;
-  background: linear-gradient(135deg, #f3f9ff 0%, #e6f2ff 100%); /* Azul claro muy suave */
+  background: radial-gradient(ellipse at bottom, #0d1d31 0%, #0c0d13 100%);
   color: #2d3748; /* Texto principal gris azulado oscuro */
   position: relative;
   overflow: hidden;
@@ -748,7 +748,7 @@ html {
   text-align: center;
   margin-bottom: 60px;
   position: relative;
-  background: linear-gradient(90deg, #4f46e5, #7c3aed); /* Gradiente violeta */
+  background: linear-gradient(90deg, #00d1ff, #bd00ff);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -776,7 +776,7 @@ html {
 }
 
 .info-card {
-  background: rgba(255, 255, 255, 0.95); /* Fondo blanco casi sólido */
+  background: #172a45; /* Fondo blanco casi sólido */
   border-radius: 10px;
   padding: 40px 30px;
   text-align: center;
@@ -787,7 +787,7 @@ html {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: #2d3748; /* Texto gris azulado oscuro */
+  color: #ffffff; /* Texto gris azulado oscuro */
 }
 
 .info-card:hover {
@@ -825,7 +825,7 @@ html {
 }
 
 .info-card p {
-  color: #2d3748; /* Texto gris azulado oscuro */
+  color: #ccd6f6; /* Texto gris azulado oscuro */
   line-height: 1.8;
   font-size: 1.05rem;
   margin: 0;
@@ -881,12 +881,27 @@ html {
 }
 
 .team-section h2 {
-  font-size: 2.5rem;
-  margin: 0 0 15px;
-  background: linear-gradient(90deg, #64ffda, #4fc3f7);
+  font-size: 2.8rem;
+  text-align: center;
+  margin-bottom: 60px;
+  position: relative;
+  background: linear-gradient(90deg, #00d1ff, #bd00ff);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.team-section h2::after {
+  content: '';
+  position: absolute;
+  width: 80px;
+  height: 4px;
+  background: #4f46e5; /* Violeta */
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .sub-title {
@@ -1497,7 +1512,7 @@ html {
 /* ================ SERVICES SECTION ================ */
 .services-section {
   padding: 60px 20px;
-  background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+  background: radial-gradient(ellipse at bottom, #0d1d31 0%, #0c0d13 100%);
   color: white;
 }
 
