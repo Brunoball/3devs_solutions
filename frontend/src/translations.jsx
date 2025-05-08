@@ -176,18 +176,6 @@ export const translations = {
     },
   ];
   
-  export const technologies = [
-    { name: "HTML5", icon: "/img/html_logo.png", className: "html-style" },
-    { name: "CSS3", icon: "/img/css_logo.png", className: "css-style" },
-    { name: "Java Script", icon: "/img/js_logo.png", className: "js-style" },
-    { name: "React", icon: "/img/react_logo.png", className: "react-style" },
-    { name: "PHP", icon: "/img/php_logo.png", className: "php-style" },
-    { name: "Python", icon: "/img/py_logo.png", className: "python-style" },
-    { name: "Node JS", icon: "/img/node_logo.png", className: "node-style" },
-    { name: "SQL", icon: "/img/sql_logo.png", className: "sql-style" },
-    { name: "Visual Studio", icon: "/img/visual_logo.png", className: "visual-style" },
-    { name: "GitHub", icon: "/img/git_logo.png", className: "git-style" },
-  ];
   
   export const trabajos = [
     {
