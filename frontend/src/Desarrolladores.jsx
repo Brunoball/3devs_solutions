@@ -63,6 +63,7 @@ const TechCategoryCard = ({ category, title, description, icon, technologies, ac
 };
 
 const Desarrolladores = () => {
+  const [expandedCard, setExpandedCard] = useState(null);
   const [language, setLanguage] = useState("es");
   const [expandedIndex, setExpandedIndex] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -292,12 +293,10 @@ const Desarrolladores = () => {
   }, []);
 
   const toggleExpand = (index) => {
-    if (expandedIndex === index) {
-      // Si la carta ya está expandida, la colapsamos
-      setExpandedIndex(null);
+ if (expandedCard === index) {
+      setExpandedCard(null); // Cierra la tarjeta si ya está abierta
     } else {
-      // Expandimos solo la carta clickeada
-      setExpandedIndex(index);
+      setExpandedCard(index); // Abre la tarjeta clickeada
     }
   };
 
@@ -448,14 +447,14 @@ const Desarrolladores = () => {
 
 
 
-      <section className="team-section" id="equipo">
-        <h2>{translations[language].teamTitle}</h2>
-        <p className="sub-title">{translations[language].teamSubtitle}</p>
-        <div className="cards-container">
-          {developersData(language).map((dev, index) => (
-            <div
+    <section className="team-section" id="equipo">
+      <h2>{translations[language].teamTitle}</h2>
+      <p className="sub-title">{translations[language].teamSubtitle}</p>
+      <div className="cards-container">
+        {developersData(language).map((dev, index) => (
+          <div
             key={index}
-            className={`card ${expandedIndex === index ? "expanded" : ""}`}
+            className={`card ${expandedCard === index ? "expanded" : ""}`}
           >
             <div className="card-content">
               <div className="avatar-container">
@@ -463,9 +462,9 @@ const Desarrolladores = () => {
               </div>
               <h3 className="name">{dev.name}</h3>
               <p className="role">{dev.role}</p>
-            
-              {expandedIndex === index && (
-                <div className="expandable-content visible">
+              
+              {expandedCard === index && (
+                <div className="expandable-content">
                   <ul className="info">
                     {dev.info.map((point, idx) => (
                       <li key={idx}>{point}</li>
@@ -481,13 +480,13 @@ const Desarrolladores = () => {
                   </div>
                 </div>
               )}
-            
+              
               <button 
                 className="more-btn"
                 onClick={() => toggleExpand(index)}
               >
-                {expandedIndex === index 
-                    ? (language === "es" ? "Menos" : "Less") 
+                {expandedCard === index 
+                  ? (language === "es" ? "Menos" : "Less") 
                   : (language === "es" ? "Más" : "More")}
               </button>
             </div>
