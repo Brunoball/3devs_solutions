@@ -1556,7 +1556,9 @@ html {
   }
 }
 
+
 @media (max-width: 768px) {
+
   .tech-sphere-container {
     flex-direction: column;
   }
@@ -1587,7 +1589,7 @@ html {
 
 @media (max-width: 576px) {
   .section-container {
-    padding: 0 20px;
+    padding: 0 ;
   }
   
   .section-title {
@@ -1982,6 +1984,9 @@ html {
 
 /* Responsive adjustments */
 @media (max-width: 992px) {
+  .services-section{
+    padding: 60px 0;
+  }
   .service-details {
     grid-template-columns: 1fr;
   }
@@ -2008,6 +2013,7 @@ html {
 @media (max-width: 768px) {
   .services-tabs {
     max-width: 100%;
+    border-radius: 0%;
   }
   
   .tab-buttons {
@@ -2017,7 +2023,7 @@ html {
   
   .tab-button {
     flex: 1 0 33%;
-    padding: 1.4rem 5px;
+    padding: 1.3rem 5px;
     font-size: 0.8rem;
   }
   .tab-button span{
