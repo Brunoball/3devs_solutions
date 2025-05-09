@@ -70,25 +70,38 @@ const Desarrolladores = () => {
   const [typedText, setTypedText] = useState("");
   const [showCursor, setShowCursor] = useState(true);
   const [activeService, setActiveService] = useState(0);
+  const [selectedTech, setSelectedTech] = useState(null);
+  const [activeCategory, setActiveCategory] = useState("all");
   const canvasRef = useRef(null);
   const typingTimeoutRef = useRef(null);
   const cursorIntervalRef = useRef(null);
   const sectionRefs = useRef([]);
   
-
-
   const technologies = [
-    { name: "HTML5", icon: "/img/html_logo.png", className: "html-style", category: "frontend", level: 90 },
-    { name: "CSS3", icon: "/img/css_logo.png", className: "css-style", category: "frontend", level: 85 },
-    { name: "JavaScript", icon: "/img/js_logo.png", className: "js-style", category: "frontend", level: 80 },
-    { name: "React", icon: "/img/react_logo.png", className: "react-style", category: "frontend", level: 75 },
-    { name: "PHP", icon: "/img/php_logo.png", className: "php-style", category: "backend", level: 70 },
-    { name: "Python", icon: "/img/py_logo.png", className: "python-style", category: "backend", level: 65 },
-    { name: "Node JS", icon: "/img/node_logo.png", className: "node-style", category: "backend", level: 60 },
-    { name: "SQL", icon: "/img/sql_logo.png", className: "sql-style", category: "database", level: 75 },
-    { name: "Visual Studio", icon: "/img/visual_logo.png", className: "visual-style", category: "tools", level: 80 },
-    { name: "GitHub", icon: "/img/git_logo.png", className: "git-style", category: "tools", level: 70 },
+    { name: "HTML5", icon: "/img/html_logo.png", className: "html-style", category: "frontend", level: 90, description: "Lenguaje de marcado estándar para crear páginas web." },
+    { name: "CSS3", icon: "/img/css_logo.png", className: "css-style", category: "frontend", level: 85, description: "Lenguaje de diseño para estilizar páginas web." },
+    { name: "JavaScript", icon: "/img/js_logo.png", className: "js-style", category: "frontend", level: 80, description: "Lenguaje de programación para interactividad web." },
+    { name: "React", icon: "/img/react_logo.png", className: "react-style", category: "frontend", level: 75, description: "Biblioteca JavaScript para construir interfaces de usuario." },
+    { name: "PHP", icon: "/img/php_logo.png", className: "php-style", category: "backend", level: 70, description: "Lenguaje de scripting del lado del servidor." },
+    { name: "Python", icon: "/img/py_logo.png", className: "python-style", category: "backend", level: 65, description: "Lenguaje de programación versátil y potente." },
+    { name: "Node JS", icon: "/img/node_logo.png", className: "node-style", category: "backend", level: 60, description: "Entorno de ejecución de JavaScript del lado del servidor." },
+    { name: "SQL", icon: "/img/sql_logo.png", className: "sql-style", category: "database", level: 75, description: "Lenguaje para gestionar bases de datos relacionales." },
+    { name: "Visual Studio", icon: "/img/visual_logo.png", className: "visual-style", category: "tools", level: 80, description: "Entorno de desarrollo integrado de Microsoft." },
+    { name: "GitHub", icon: "/img/git_logo.png", className: "git-style", category: "tools", level: 70, description: "Plataforma de desarrollo colaborativo y control de versiones." },
   ];
+
+  const filterTech = (category) => {
+    setActiveCategory(category);
+    setSelectedTech(null);
+  };
+
+  const showTechDetails = (tech) => {
+    setSelectedTech(tech);
+  };
+
+  const filteredTechs = activeCategory === 'all' 
+    ? technologies 
+    : technologies.filter(tech => tech.category === activeCategory);
 
   useEffect(() => {
     const welcomeText = translations[language].welcome;
@@ -292,13 +305,7 @@ const Desarrolladores = () => {
   }, []);
 
   const toggleExpand = (index) => {
-    if (expandedIndex === index) {
-      // Si la carta ya está expandida, la colapsamos
-      setExpandedIndex(null);
-    } else {
-      // Expandimos solo la carta clickeada
-      setExpandedIndex(index);
-    }
+    setExpandedIndex(expandedIndex === index ? null : index);
   };
 
   return (
@@ -446,87 +453,54 @@ const Desarrolladores = () => {
         </div>
       </section>
 
-
-
       <section className="team-section" id="equipo">
         <h2>{translations[language].teamTitle}</h2>
         <p className="sub-title">{translations[language].teamSubtitle}</p>
         <div className="cards-container">
           {developersData(language).map((dev, index) => (
             <div
-            key={index}
-            className={`card ${expandedIndex === index ? "expanded" : ""}`}
-          >
-            <div className="card-content">
-              <div className="avatar-container">
-                <img src={dev.img} alt={dev.name} className="avatar" />
-              </div>
-              <h3 className="name">{dev.name}</h3>
-              <p className="role">{dev.role}</p>
-            
-              {expandedIndex === index && (
-                <div className="expandable-content visible">
-                  <ul className="info">
-                    {dev.info.map((point, idx) => (
-                      <li key={idx}>{point}</li>
-                    ))}
-                  </ul>
-                  <div className="social-icons">
-                    <a href={dev.linkedin} target="_blank" rel="noopener noreferrer">
-                      <FontAwesomeIcon icon={faLinkedin} className="social-icon" />
-                    </a>
-                    <a href={dev.instagram} target="_blank" rel="noopener noreferrer">
-                      <FontAwesomeIcon icon={faInstagram} className="social-icon" />
-                    </a>
-                  </div>
+              key={index}
+              className={`card ${expandedIndex === index ? "expanded" : ""}`}
+            >
+              <div className="card-content">
+                <div className="avatar-container">
+                  <img src={dev.img} alt={dev.name} className="avatar" />
                 </div>
-              )}
-            
-              <button 
-                className="more-btn"
-                onClick={() => toggleExpand(index)}
-              >
-                {expandedIndex === index 
+                <h3 className="name">{dev.name}</h3>
+                <p className="role">{dev.role}</p>
+                
+                {expandedIndex === index && (
+                  <div className="expandable-content visible">
+                    <ul className="info">
+                      {dev.info.map((point, idx) => (
+                        <li key={idx}>{point}</li>
+                      ))}
+                    </ul>
+                    
+                    <div className="social-icons">
+                      <a href={dev.linkedin} target="_blank" rel="noopener noreferrer">
+                        <FontAwesomeIcon icon={faLinkedin} className="social-icon" />
+                      </a>
+                      <a href={dev.instagram} target="_blank" rel="noopener noreferrer">
+                        <FontAwesomeIcon icon={faInstagram} className="social-icon" />
+                      </a>
+                    </div>
+                  </div>
+                )}
+                
+                <button 
+                  className="more-btn"
+                  onClick={() => toggleExpand(index)}
+                >
+                  {expandedIndex === index 
                     ? (language === "es" ? "Menos" : "Less") 
-                  : (language === "es" ? "Más" : "More")}
-              </button>
+                    : (language === "es" ? "Más" : "More")}
+                </button>
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
-    </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+          ))}
+        </div>
+      </section>
 
       <section className="tech-sphere-section" id="stack">
         <div className="section-container">
@@ -538,53 +512,117 @@ const Desarrolladores = () => {
           </div>
           
           <div className="tech-sphere-container">
-            {/* Esfera interactiva de tecnologías */}
-            <div className="tech-sphere">
-              {technologies.map((tech, index) => (
-                <div 
-                  key={tech.name}
-                  className={`tech-node ${tech.category}`}
-                  style={{
-                    '--rotate-x': `${Math.random() * 360}deg`,
-                    '--rotate-y': `${Math.random() * 360}deg`,
-                    '--distance': '150px'
-                  }}
-                  data-category={tech.category}
-                  data-skill={tech.skillLevel}
-                >
-                  <div className="tech-icon">
-                    <img src={tech.icon} alt={tech.name} />
-                  </div>
-                </div>
-              ))}
-            </div>
-            
-            {/* Panel de información */}
-            <div className="tech-info-panel">
-              <div className="category-selector">
-                <button className="category-btn active" data-category="all">All</button>
-                <button className="category-btn" data-category="frontend">Frontend</button>
-                <button className="category-btn" data-category="backend">Backend</button>
-                <button className="category-btn" data-category="database">Database</button>
-                <button className="category-btn" data-category="tools">Tools</button>
-              </div>
-              
-              <div className="tech-details">
-                <h3 className="tech-name">Select a Technology</h3>
-                <p className="tech-description">Click on any technology in the sphere to see details</p>
-                <div className="skill-meter">
-                  <div className="skill-level">
-                    <span className="skill-label">Skill Level:</span>
-                    <div className="skill-bar">
-                      <div className="skill-progress" style={{width: '0%'}}></div>
+            <div className="tech-sphere-wrapper">
+              <div className="tech-sphere">
+                {technologies.map((tech, index) => {
+                  const angle = (360 / technologies.length) * index;
+                  return (
+                    <div
+                      key={tech.name}
+                      className={`tech-node ${tech.category}`}
+                      style={{
+                        transform: `rotateY(${angle}deg) translateZ(200px)`
+                      }}
+                      onClick={() => showTechDetails(tech)}
+                    >
+                      <div className="tech-icon">
+                        <img src={tech.icon} alt={tech.name} />
+                      </div>
                     </div>
-                  </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="tech-info-panel-container">
+              <div className="tech-info-panel">
+                <div className="category-selector">
+                  <button 
+                    className={`category-btn ${activeCategory === 'all' ? 'active' : ''}`} 
+                    onClick={() => filterTech('all')}
+                  >
+                    {language === "es" ? "Todos" : "All"}
+                  </button>
+                  <button 
+                    className={`category-btn ${activeCategory === 'frontend' ? 'active' : ''}`} 
+                    onClick={() => filterTech('frontend')}
+                  >
+                    Frontend
+                  </button>
+                  <button 
+                    className={`category-btn ${activeCategory === 'backend' ? 'active' : ''}`} 
+                    onClick={() => filterTech('backend')}
+                  >
+                    Backend
+                  </button>
+                  <button 
+                    className={`category-btn ${activeCategory === 'database' ? 'active' : ''}`} 
+                    onClick={() => filterTech('database')}
+                  >
+                    {language === "es" ? "Base de Datos" : "Database"}
+                  </button>
+                  <button 
+                    className={`category-btn ${activeCategory === 'tools' ? 'active' : ''}`} 
+                    onClick={() => filterTech('tools')}
+                  >
+                    {language === "es" ? "Herramientas" : "Tools"}
+                  </button>
+                </div>
+                
+                <div className="tech-details">
+                  {!selectedTech ? (
+                    <>
+                      <div className="tech-grid">
+                        {filteredTechs.map((tech, i) => (
+                          <div 
+                            key={`tech-${i}`} 
+                            className={`tech-grid-item ${tech.category}`}
+                            onClick={() => showTechDetails(tech)}
+                          >
+                            <div className="tech-grid-icon">
+                              <img src={tech.icon} alt={tech.name} />
+                            </div>
+                            <div className="tech-grid-name">{tech.name}</div>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="select-tech-prompt">
+                        {language === "es" ? "Selecciona una tecnología para ver detalles" : "Select a technology to see details"}
+                      </div>
+                    </>
+                  ) : (
+                    <div className="selected-tech-details">
+                      <h3 className="tech-name">{selectedTech.name}</h3>
+                      <p className="tech-description">
+                        {selectedTech.description || 
+                          (language === "es" ? "No hay descripción disponible" : "No description available")}
+                      </p>
+                      <div className="skill-meter">
+                        <div className="skill-level">
+                          <span className="skill-label">
+                            {language === "es" ? "Nivel de habilidad:" : "Skill Level:"}
+                          </span>
+                          <div className="skill-bar">
+                            <div 
+                              className="skill-progress" 
+                              style={{width: `${selectedTech.level}%`}}
+                            ></div>
+                          </div>
+                        </div>
+                      </div>
+                      <button 
+                        className="back-button"
+                        onClick={() => setSelectedTech(null)}
+                      >
+                        {language === "es" ? "Volver" : "Back"}
+                      </button>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
           </div>
           
-          {/* Categorías en la parte inferior - Versión simplificada */}
           <div className="tech-categories">
             <div className="tech-category-pill frontend">
               <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
@@ -628,7 +666,6 @@ const Desarrolladores = () => {
           </div>
         </div>
         
-        {/* Partículas decorativas */}
         <div className="tech-particles">
           {[...Array(20)].map((_, i) => (
             <div 
@@ -645,21 +682,6 @@ const Desarrolladores = () => {
           ))}
         </div>
       </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
       <section className="services-section" id="servicios" ref={el => sectionRefs.current[4] = el}>
         <div className="section-container">
