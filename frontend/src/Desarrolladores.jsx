@@ -5,6 +5,7 @@ import { faLinkedin, faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { faAngleUp, faCheckCircle, faExclamationTriangle, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { faBullseye, faCogs, faHandshake, faUsers, faCode, faMobileAlt, faDesktop } from '@fortawesome/free-solid-svg-icons';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+
 import { translations, developersData, serviciosData } from './translations';
 
 const esFlag = "/img/es-flag.png";
@@ -80,20 +81,18 @@ const Desarrolladores = () => {
   const sectionRefs = useRef([]);
   
   const technologies = [
-      { name: "HTML5", icon: "/img/html_logo.png", className: "html-style", category: "frontend", level: 90, description: "Lenguaje de marcado estándar para crear páginas web." },
-      { name: "CSS3", icon: "/img/css_logo.png", className: "css-style", category: "frontend", level: 85, description: "Lenguaje de diseño para estilizar páginas web." },
-      { name: "JavaScript", icon: "/img/java_logo.png", className: "js-style", category: "frontend", level: 80, description: "Lenguaje de programación para interactividad web." },
-      { name: "React", icon: "/img/react_logo.png", className: "react-style", category: "frontend", level: 75, description: "Biblioteca JavaScript para construir interfaces de usuario." },
-      { name: "PHP", icon: "/img/php_logo.png", className: "php-style", category: "backend", level: 70, description: "Lenguaje de scripting del lado del servidor." },
-      { name: "Python", icon: "/img/py_logo.png", className: "python-style", category: "backend", level: 65, description: "Lenguaje de programación versátil y potente." },
-      { name: "Node JS", icon: "/img/node_logo.png", className: "node-style", category: "backend", level: 60, description: "Entorno de ejecución de JavaScript del lado del servidor." },
-      { name: "SQL", icon: "/img/sql_logo.png", className: "sql-style", category: "database", level: 75, description: "Lenguaje para gestionar bases de datos relacionales." },
-      { name: "Visual Studio Code", icon: "/img/vs_studio.png", className: "visual-style", category: "tools", level: 80, description: "Editor de código fuente ligero y potente con soporte para múltiples lenguajes." },
-      { name: "GitHub", icon: "/img/git_logo.png", className: "git-style", category: "tools", level: 70, description: "Plataforma de desarrollo colaborativo y control de versiones." },
-      { name: "Git", icon: "/img/gt_logo.png", className: "git-style", category: "tools", level: 70, description: "Sistema de control de versiones distribuido para gestionar proyectos de software." },
+    { name: "HTML5", icon: "/img/html_logo.png", className: "html-style", category: "frontend", level: 90, description: "Lenguaje de marcado estándar para crear páginas web." },
+    { name: "CSS3", icon: "/img/css_logo.png", className: "css-style", category: "frontend", level: 85, description: "Lenguaje de diseño para estilizar páginas web." },
+    { name: "JavaScript", icon: "/img/js_logo.png", className: "js-style", category: "frontend", level: 80, description: "Lenguaje de programación para interactividad web." },
+    { name: "React", icon: "/img/react_logo.png", className: "react-style", category: "frontend", level: 75, description: "Biblioteca JavaScript para construir interfaces de usuario." },
+    { name: "PHP", icon: "/img/php_logo.png", className: "php-style", category: "backend", level: 70, description: "Lenguaje de scripting del lado del servidor." },
+    { name: "Python", icon: "/img/py_logo.png", className: "python-style", category: "backend", level: 65, description: "Lenguaje de programación versátil y potente." },
+    { name: "Node JS", icon: "/img/node_logo.png", className: "node-style", category: "backend", level: 60, description: "Entorno de ejecución de JavaScript del lado del servidor." },
+    { name: "SQL", icon: "/img/sql_logo.png", className: "sql-style", category: "database", level: 75, description: "Lenguaje para gestionar bases de datos relacionales." },
+    { name: "Visual Studio", icon: "/img/visual_logo.png", className: "visual-style", category: "tools", level: 80, description: "Entorno de desarrollo integrado de Microsoft." },
+    { name: "GitHub", icon: "/img/git_logo.png", className: "git-style", category: "tools", level: 70, description: "Plataforma de desarrollo colaborativo y control de versiones." },
   ];
 
-  
   const filterTech = (category) => {
     setActiveCategory(category);
     setSelectedTech(null);
@@ -310,11 +309,7 @@ const Desarrolladores = () => {
 
   const toggleExpand = (index) => {
 
-    if (expandedCard === index) {
-      setExpandedCard(null); // Cierra la tarjeta si ya está abierta
-    } else {
-      setExpandedCard(index); // Abre la tarjeta clickeada
-    }
+ setExpandedCard(expandedCard === index ? null : index);
   };
 
   return (
@@ -462,55 +457,71 @@ const Desarrolladores = () => {
         </div>
       </section>
 
-
-      <section className="team-section" id="equipo">
-      <h2>{translations[language].teamTitle}</h2>
-      <p className="sub-title">{translations[language].teamSubtitle}</p>
-      <div className="cards-container">
-        {developersData(language).map((dev, index) => (
-          <div
-            key={index}
-            className={`card ${expandedCard === index ? "expanded" : ""}`}
-          >
-            <div className="card-content">
-              <div className="avatar-container">
-                <img src={dev.img} alt={dev.name} className="avatar" />
-              </div>
-              <h3 className="name">{dev.name}</h3>
-              <p className="role">{dev.role}</p>
-              
-              {expandedCard === index && (
-                <div className="expandable-content">
-                  <ul className="info">
-                    {dev.info.map((point, idx) => (
-                      <li key={idx}>{point}</li>
-                    ))}
-                  </ul>
-                  <div className="social-icons">
-                    <a href={dev.linkedin} target="_blank" rel="noopener noreferrer">
-                      <FontAwesomeIcon icon={faLinkedin} className="social-icon" />
-                    </a>
-                    <a href={dev.instagram} target="_blank" rel="noopener noreferrer">
-                      <FontAwesomeIcon icon={faInstagram} className="social-icon" />
-                    </a>
-                  </div>
-                </div>
-              )}
-              
-              <button 
-                className="more-btn"
-                onClick={() => toggleExpand(index)}
+<section className="team-section" id="equipo">
+  <h2>{translations[language].teamTitle}</h2>
+  <p className="sub-title">{translations[language].teamSubtitle}</p>
+  <div className="cards-container">
+    {developersData(language).map((dev, index) => (
+      <div
+        key={index}
+        className={`card ${expandedCard === index ? "expanded" : ""}`}
+      >
+        <div className="card-content">
+          <div className="avatar-container">
+            <img 
+              src={dev.img} 
+              alt={dev.name} 
+              className="avatar"
+              loading="lazy"
+              width={100}
+              height={100}
+            />
+          </div>
+          <h3 className="name">{dev.name}</h3>
+          <p className="role">{dev.role}</p>
+          
+          <div className="expandable-content">
+            <ul className="info">
+              {dev.info.map((point, idx) => (
+                <li key={idx}>{point}</li>
+              ))}
+            </ul>
+            <div className="social-icons">
+              <a 
+                href={dev.linkedin} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                aria-label={`${dev.name} LinkedIn`}
               >
-                {expandedCard === index 
-                  ? (language === "es" ? "Menos" : "Less") 
-                  : (language === "es" ? "Más" : "More")}
-              </button>
+                <FontAwesomeIcon icon={faLinkedin} className="social-icon" />
+              </a>
+              <a 
+                href={dev.instagram} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                aria-label={`${dev.name} Instagram`}
+              >
+                <FontAwesomeIcon icon={faInstagram} className="social-icon" />
+              </a>
             </div>
           </div>
-        ))}
+          
+          <button 
+            className="more-btn"
+            onClick={() => toggleExpand(index)}
+            aria-expanded={expandedCard === index}
+            aria-label={expandedCard === index ? "Contraer información" : "Expandir información"}
+          >
+            <FontAwesomeIcon 
+              icon={faChevronDown} 
+              className={`chevron-icon ${expandedCard === index ? "expanded" : ""}`} 
+            />
+          </button>
+        </div>
       </div>
-    </section>
-
+    ))}
+  </div>
+</section>
       <section className="tech-sphere-section" id="stack">
         <div className="section-container">
           <div className="section-header">
