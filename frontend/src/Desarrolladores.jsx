@@ -6,6 +6,7 @@ import { faAngleUp, faCheckCircle, faExclamationTriangle, faChevronDown } from "
 import { faBullseye, faCogs, faHandshake, faUsers, faCode, faMobileAlt, faDesktop } from '@fortawesome/free-solid-svg-icons';
 import { HiChevronLeft } from 'react-icons/hi';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+
 import { translations, developersData, serviciosData } from './translations';
 
 const esFlag = "/img/es-flag.png";
@@ -204,7 +205,6 @@ const Desarrolladores = () => {
     }
   ];
 
-  
   const filterTech = (category) => {
     setActiveCategory(category);
     setSelectedTech(null);
@@ -420,13 +420,10 @@ const Desarrolladores = () => {
   }, []);
 
   const toggleExpand = (index) => {
-    if (expandedCard === index) {
-      setExpandedCard(null); // Cierra la tarjeta si ya está abierta
-    } else {
-      setExpandedCard(index); // Abre la tarjeta clickeada
-    }
+    setExpandedCard(expandedCard === index ? null : index);
   };
-
+  
+  
   return (
     <div className="page-container" id="inicio">
       {isScrolled && (
@@ -583,42 +580,63 @@ const Desarrolladores = () => {
             >
               <div className="card-content">
                 <div className="avatar-container">
-                  <img src={dev.img} alt={dev.name} className="avatar" />
+                  <img 
+                    src={dev.img} 
+                    alt={dev.name} 
+                    className="avatar"
+                    loading="lazy"
+                    width={100}
+                    height={100}
+                  />
                 </div>
                 <h3 className="name">{dev.name}</h3>
                 <p className="role">{dev.role}</p>
                 
-                {expandedCard === index && (
-                  <div className="expandable-content">
-                    <ul className="info">
-                      {dev.info.map((point, idx) => (
-                        <li key={idx}>{point}</li>
-                      ))}
-                    </ul>
-                    <div className="social-icons">
-                      <a href={dev.linkedin} target="_blank" rel="noopener noreferrer">
-                        <FontAwesomeIcon icon={faLinkedin} className="social-icon" />
-                      </a>
-                      <a href={dev.instagram} target="_blank" rel="noopener noreferrer">
-                        <FontAwesomeIcon icon={faInstagram} className="social-icon" />
-                      </a>
-                    </div>
+                <div className="expandable-content">
+                  <ul className="info">
+                    {dev.info.map((point, idx) => (
+                      <li key={idx}>{point}</li>
+                    ))}
+                  </ul>
+                  <div className="social-icons">
+                    <a 
+                      href={dev.linkedin} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      aria-label={`${dev.name} LinkedIn`}
+                    >
+                      <FontAwesomeIcon icon={faLinkedin} className="social-icon" />
+                    </a>
+                    <a 
+                      href={dev.instagram} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      aria-label={`${dev.name} Instagram`}
+                    >
+                      <FontAwesomeIcon icon={faInstagram} className="social-icon" />
+                    </a>
                   </div>
-                )}
+                </div>
                 
                 <button 
                   className="more-btn"
                   onClick={() => toggleExpand(index)}
+                  aria-expanded={expandedCard === index}
+                  aria-label={expandedCard === index ? "Contraer información" : "Expandir información"}
                 >
-                  {expandedCard === index 
-                    ? (language === "es" ? "Menos" : "Less") 
-                    : (language === "es" ? "Más" : "More")}
+                  <FontAwesomeIcon 
+                    icon={faChevronDown} 
+                    className={`chevron-icon ${expandedCard === index ? "expanded" : ""}`} 
+                  />
                 </button>
               </div>
             </div>
           ))}
         </div>
       </section>
+
+
+
 
       <section className="tech-sphere-section" id="stack">
         <div className="section-container">

@@ -761,7 +761,7 @@ html {
   transition: all 0.3s ease;
   border: 1px solid rgba(99, 102, 241, 0.2); /* Borde violeta claro */
   box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.08);
-  min-height: 300px;
+  height: 300px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -903,11 +903,13 @@ html {
   padding: 30px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
   position: relative;
-  max-height: 280px;
+  height: 280px;
   border: 1px solid rgba(100, 255, 218, 0.1);
   display: flex;
   flex-direction: column;
-  transition: all 0.4s ease;
+   overflow: hidden; /* Asegura que el contenido no se desborde durante la transición */
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); /* Transición más suave con curva bezier */
+  
 }
 
 .card-content {
@@ -978,21 +980,31 @@ html {
   overflow: hidden;
   opacity: 0;
   margin-top: 0;
-  padding-top: 0;
+  padding: 0;
   border-top: none;
-    transition: all 0.4s ease;
+  transition: 
+    max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.3s ease,
+    margin-top 0.3s ease,
+    padding 0.3s ease;
 }
 
 .card.expanded .expandable-content {
   max-height: 500px;
   opacity: 1;
   margin-top: 15px;
-  padding-top: 15px;
+  padding: 15px 0;
   border-top: 1px solid rgba(100, 255, 218, 0.2);
+  transition: 
+    max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.4s ease 0.1s,
+    margin-top 0.3s ease,
+    padding 0.3s ease;
 }
-.expanded{
+.card.expanded {
+  height: auto;
   min-height: 450px;
-  transition: all 0.4s ease;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 
@@ -1000,18 +1012,27 @@ html {
 
 /* Botón modificado */
 .more-btn {
-  background: linear-gradient(135deg, #64ffda, #4fc3f7);
-  color: #0a192f;
+    background: none;
   border: none;
-  padding: 10px 20px;
   border-radius: 30px;
+  color: #64ffda;
   cursor: pointer;
+  padding: 10px 20px;
+  margin-top: 10px;
   align-self: center;
   font-weight: 600;
   transition: all 0.3s ease;
 }
+.chevron-icon {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
 
-.card.expanded .more-btn {
+.chevron-icon.expanded {
+  transform: rotate(180deg);
+}
+
+.more-btn .card.expanded  {
   background: linear-gradient(135deg, #4fc3f7, #64ffda);
 }
 
@@ -1992,11 +2013,16 @@ html {
   .tab-buttons {
     flex-wrap: wrap;
   }
+
   
   .tab-button {
     flex: 1 0 33%;
-    padding: 10px 5px;
+    padding: 1.4rem 5px;
     font-size: 0.8rem;
+  }
+  .tab-button span{
+    display: none;
+
   }
   
   .service-info h3 {
