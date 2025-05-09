@@ -79,18 +79,20 @@ const Desarrolladores = () => {
   const sectionRefs = useRef([]);
   
   const technologies = [
-    { name: "HTML5", icon: "/img/html_logo.png", className: "html-style", category: "frontend", level: 90, description: "Lenguaje de marcado estándar para crear páginas web." },
-    { name: "CSS3", icon: "/img/css_logo.png", className: "css-style", category: "frontend", level: 85, description: "Lenguaje de diseño para estilizar páginas web." },
-    { name: "JavaScript", icon: "/img/js_logo.png", className: "js-style", category: "frontend", level: 80, description: "Lenguaje de programación para interactividad web." },
-    { name: "React", icon: "/img/react_logo.png", className: "react-style", category: "frontend", level: 75, description: "Biblioteca JavaScript para construir interfaces de usuario." },
-    { name: "PHP", icon: "/img/php_logo.png", className: "php-style", category: "backend", level: 70, description: "Lenguaje de scripting del lado del servidor." },
-    { name: "Python", icon: "/img/py_logo.png", className: "python-style", category: "backend", level: 65, description: "Lenguaje de programación versátil y potente." },
-    { name: "Node JS", icon: "/img/node_logo.png", className: "node-style", category: "backend", level: 60, description: "Entorno de ejecución de JavaScript del lado del servidor." },
-    { name: "SQL", icon: "/img/sql_logo.png", className: "sql-style", category: "database", level: 75, description: "Lenguaje para gestionar bases de datos relacionales." },
-    { name: "Visual Studio", icon: "/img/visual_logo.png", className: "visual-style", category: "tools", level: 80, description: "Entorno de desarrollo integrado de Microsoft." },
-    { name: "GitHub", icon: "/img/git_logo.png", className: "git-style", category: "tools", level: 70, description: "Plataforma de desarrollo colaborativo y control de versiones." },
+      { name: "HTML5", icon: "/img/html_logo.png", className: "html-style", category: "frontend", level: 90, description: "Lenguaje de marcado estándar para crear páginas web." },
+      { name: "CSS3", icon: "/img/css_logo.png", className: "css-style", category: "frontend", level: 85, description: "Lenguaje de diseño para estilizar páginas web." },
+      { name: "JavaScript", icon: "/img/java_logo.png", className: "js-style", category: "frontend", level: 80, description: "Lenguaje de programación para interactividad web." },
+      { name: "React", icon: "/img/react_logo.png", className: "react-style", category: "frontend", level: 75, description: "Biblioteca JavaScript para construir interfaces de usuario." },
+      { name: "PHP", icon: "/img/php_logo.png", className: "php-style", category: "backend", level: 70, description: "Lenguaje de scripting del lado del servidor." },
+      { name: "Python", icon: "/img/py_logo.png", className: "python-style", category: "backend", level: 65, description: "Lenguaje de programación versátil y potente." },
+      { name: "Node JS", icon: "/img/node_logo.png", className: "node-style", category: "backend", level: 60, description: "Entorno de ejecución de JavaScript del lado del servidor." },
+      { name: "SQL", icon: "/img/sql_logo.png", className: "sql-style", category: "database", level: 75, description: "Lenguaje para gestionar bases de datos relacionales." },
+      { name: "Visual Studio Code", icon: "/img/vs_studio.png", className: "visual-style", category: "tools", level: 80, description: "Editor de código fuente ligero y potente con soporte para múltiples lenguajes." },
+      { name: "GitHub", icon: "/img/git_logo.png", className: "git-style", category: "tools", level: 70, description: "Plataforma de desarrollo colaborativo y control de versiones." },
+      { name: "Git", icon: "/img/gt_logo.png", className: "git-style", category: "tools", level: 70, description: "Sistema de control de versiones distribuido para gestionar proyectos de software." },
   ];
 
+  
   const filterTech = (category) => {
     setActiveCategory(category);
     setSelectedTech(null);

@@ -54,7 +54,7 @@ html {
   z-index: 1000;
   display: flex;
   justify-content: center;
-  padding: 1.5rem 0rem;
+  padding: 1.5rem 2rem;
   transition: var(--transition);
   box-shadow: 0 10px 30px -10px rgba(2, 12, 27, 0.7);
   height: auto;
@@ -71,7 +71,7 @@ html {
 
 .navbar-scrolled {
   background-color: rgba(10, 25, 47, 0.95);
-  padding: 1rem 0rem;
+  padding: 1rem 2rem;
   box-shadow: 0 5px 20px -5px rgba(2, 12, 27, 0.8);
 }
 
@@ -79,7 +79,6 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 1rem;
   filter: brightness(0) invert(1);
   transition: var(--transition);
 }
@@ -926,11 +925,11 @@ html {
   padding: 30px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
   position: relative;
-  max-height: 280px;
+  min-height: 320px;
   border: 1px solid rgba(100, 255, 218, 0.1);
   display: flex;
   flex-direction: column;
-  transition: all 0.4s ease;
+  transition: all 0.3s ease;
 }
 
 .card-content {
@@ -1000,10 +999,7 @@ html {
   max-height: 0;
   overflow: hidden;
   opacity: 0;
-  margin-top: 0;
-  padding-top: 0;
-  border-top: none;
-    transition: all 0.4s ease;
+  transition: all 0.4s ease;
 }
 
 .card.expanded .expandable-content {
@@ -1013,13 +1009,6 @@ html {
   padding-top: 15px;
   border-top: 1px solid rgba(100, 255, 218, 0.2);
 }
-.expanded{
-  min-height: 450px;
-  transition: all 0.4s ease;
-}
-
-
-
 
 /* Botón modificado */
 .more-btn {
@@ -1029,6 +1018,7 @@ html {
   padding: 10px 20px;
   border-radius: 30px;
   cursor: pointer;
+  margin-top: auto;
   align-self: center;
   font-weight: 600;
   transition: all 0.3s ease;
@@ -1063,8 +1053,11 @@ html {
   transform: translateY(-3px);
 }
 
-
-
+@media (max-width: 768px) {
+  .card {
+    min-height: 300px;
+  }
+}
 
 
 
@@ -1285,6 +1278,18 @@ html {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 /* Panel de información */
 .tech-info-panel-container {
   width: 100%;
@@ -1301,7 +1306,6 @@ html {
   padding: 30px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  border: 1px solid white;
 }
 
 .category-selector {
@@ -1428,7 +1432,7 @@ html {
   margin-bottom: 10px;
   color: white;
   font-weight: 600;
-  background: linear-gradient(90deg, #00d1ff, #00ffaa);
+  background: linear-gradient(90deg, #00d1ff, #bd00ff);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -2296,13 +2300,16 @@ html {
 
   .nav-links {
     position: fixed;
+    top: 86px;
+    right: -100%;
     height: calc(100vh - 80px);
     width: 100%;
+    background: rgba(68, 68, 68, 0.973);
     backdrop-filter: blur(10px);
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
     transition: right 0.3s ease;
     z-index: 1000;
     box-sizing: border-box;
