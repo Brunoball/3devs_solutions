@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin, faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { faAngleUp, faCheckCircle, faExclamationTriangle, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { faBullseye, faCogs, faHandshake, faUsers, faCode, faMobileAlt, faDesktop } from '@fortawesome/free-solid-svg-icons';
+import { HiChevronLeft } from 'react-icons/hi';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { translations, developersData, serviciosData } from './translations';
 
@@ -80,17 +81,127 @@ const Desarrolladores = () => {
   const sectionRefs = useRef([]);
   
   const technologies = [
-      { name: "HTML5", icon: "/img/html_logo.png", className: "html-style", category: "frontend", level: 90, description: "Lenguaje de marcado estándar para crear páginas web." },
-      { name: "CSS3", icon: "/img/css_logo.png", className: "css-style", category: "frontend", level: 85, description: "Lenguaje de diseño para estilizar páginas web." },
-      { name: "JavaScript", icon: "/img/java_logo.png", className: "js-style", category: "frontend", level: 80, description: "Lenguaje de programación para interactividad web." },
-      { name: "React", icon: "/img/react_logo.png", className: "react-style", category: "frontend", level: 75, description: "Biblioteca JavaScript para construir interfaces de usuario." },
-      { name: "PHP", icon: "/img/php_logo.png", className: "php-style", category: "backend", level: 70, description: "Lenguaje de scripting del lado del servidor." },
-      { name: "Python", icon: "/img/py_logo.png", className: "python-style", category: "backend", level: 65, description: "Lenguaje de programación versátil y potente." },
-      { name: "Node JS", icon: "/img/node_logo.png", className: "node-style", category: "backend", level: 60, description: "Entorno de ejecución de JavaScript del lado del servidor." },
-      { name: "SQL", icon: "/img/sql_logo.png", className: "sql-style", category: "database", level: 75, description: "Lenguaje para gestionar bases de datos relacionales." },
-      { name: "Visual Studio Code", icon: "/img/vs_studio.png", className: "visual-style", category: "tools", level: 80, description: "Editor de código fuente ligero y potente con soporte para múltiples lenguajes." },
-      { name: "GitHub", icon: "/img/git_logo.png", className: "git-style", category: "tools", level: 70, description: "Plataforma de desarrollo colaborativo y control de versiones." },
-      { name: "Git", icon: "/img/gt_logo.png", className: "git-style", category: "tools", level: 70, description: "Sistema de control de versiones distribuido para gestionar proyectos de software." },
+    {
+      name: "HTML5",
+      icon: "/img/html_logo.png",
+      className: "html-style",
+      category: "frontend",
+      level: 90,
+      description: {
+        es: "HTML5 es el lenguaje de marcado estándar para crear y estructurar páginas web. Introduce nuevos elementos semánticos, soporte multimedia nativo y APIs para aplicaciones web complejas. Es la quinta y última versión principal de HTML, compatible con todos los navegadores modernos.",
+        en: "HTML5 is the standard markup language for creating and structuring web pages. It introduces new semantic elements, native multimedia support, and APIs for complex web applications. It's the fifth and final major version of HTML, compatible with all modern browsers."
+      }
+    },
+    {
+      name: "CSS3",
+      icon: "/img/css_logo.png",
+      className: "css-style",
+      category: "frontend",
+      level: 85,
+      description: {
+        es: "CSS3 es la última evolución del lenguaje de hojas de estilo, que permite controlar el diseño y presentación de páginas web. Introduce características como animaciones, transiciones, gradientes, sombras y diseño responsive con media queries, permitiendo crear interfaces modernas y atractivas.",
+        en: "CSS3 is the latest evolution of the style sheet language, allowing control over web page layout and presentation. It introduces features like animations, transitions, gradients, shadows, and responsive design with media queries, enabling modern and attractive interfaces."
+      }
+    },
+    {
+      name: "JavaScript",
+      icon: "/img/java_logo.png",
+      className: "js-style",
+      category: "frontend",
+      level: 80,
+      description: {
+        es: "JavaScript es un lenguaje de programación interpretado que permite agregar interactividad a sitios web. Como lenguaje del lado del cliente, se ejecuta en el navegador y permite manipular el DOM, gestionar eventos y comunicarse con servidores. Es fundamental para el desarrollo web moderno.",
+        en: "JavaScript is an interpreted programming language that adds interactivity to websites. As a client-side language, it runs in the browser and allows DOM manipulation, event handling, and server communication. It's fundamental for modern web development."
+      }
+    },
+    {
+      name: "React",
+      icon: "/img/react_logo.png",
+      className: "react-style",
+      category: "frontend",
+      level: 75,
+      description: {
+        es: "React es una biblioteca JavaScript desarrollada por Facebook para construir interfaces de usuario interactivas. Utiliza un enfoque basado en componentes y un DOM virtual para un rendimiento óptimo. Es ideal para aplicaciones de una sola página (SPA) y se puede combinar con otras bibliotecas o frameworks.",
+        en: "React is a JavaScript library developed by Facebook for building interactive user interfaces. It uses a component-based approach and virtual DOM for optimal performance. It's ideal for single-page applications (SPA) and can be combined with other libraries or frameworks."
+      }
+    },
+    {
+      name: "PHP",
+      icon: "/img/php_logo.png",
+      className: "php-style",
+      category: "backend",
+      level: 70,
+      description: {
+        es: "PHP es un lenguaje de scripting del lado del servidor ampliamente utilizado para el desarrollo web. Se integra fácilmente con HTML y es compatible con la mayoría de servidores y bases de datos. Es especialmente conocido por su uso en sistemas de gestión de contenidos como WordPress.",
+        en: "PHP is a widely used server-side scripting language for web development. It integrates easily with HTML and is compatible with most servers and databases. It's especially known for its use in content management systems like WordPress."
+      }
+    },
+    {
+      name: "Python",
+      icon: "/img/py_logo.png",
+      className: "python-style",
+      category: "backend",
+      level: 65,
+      description: {
+        es: "Python es un lenguaje de programación versátil y de alto nivel, conocido por su sintaxis clara y legible. Es ideal para desarrollo web (Django, Flask), análisis de datos, inteligencia artificial y automatización. Su amplia comunidad y ecosistema de librerías lo hacen muy popular.",
+        en: "Python is a versatile, high-level programming language known for its clear and readable syntax. It's ideal for web development (Django, Flask), data analysis, artificial intelligence, and automation. Its large community and library ecosystem make it very popular."
+      }
+    },
+    {
+      name: "Node JS",
+      icon: "/img/node_logo.png",
+      className: "node-style",
+      category: "backend",
+      level: 60,
+      description: {
+        es: "Node.js es un entorno de ejecución de JavaScript del lado del servidor basado en el motor V8 de Chrome. Permite desarrollar aplicaciones escalables y de alta performance usando JavaScript tanto en frontend como backend, facilitando el desarrollo full-stack con un solo lenguaje.",
+        en: "Node.js is a server-side JavaScript runtime built on Chrome's V8 engine. It enables scalable, high-performance applications using JavaScript for both frontend and backend, facilitating full-stack development with a single language."
+      }
+    },
+    {
+      name: "SQL",
+      icon: "/img/sql_logo.png",
+      className: "sql-style",
+      category: "database",
+      level: 75,
+      description: {
+        es: "SQL (Structured Query Language) es el lenguaje estándar para gestionar y manipular bases de datos relacionales. Permite crear, leer, actualizar y eliminar datos (CRUD), así como definir estructuras de bases de datos y establecer relaciones entre tablas.",
+        en: "SQL (Structured Query Language) is the standard language for managing and manipulating relational databases. It allows creating, reading, updating, and deleting data (CRUD), as well as defining database structures and establishing table relationships."
+      }
+    },
+    {
+      name: "Visual Studio Code",
+      icon: "/img/vs_studio.png",
+      className: "visual-style",
+      category: "tools",
+      level: 80,
+      description: {
+        es: "Visual Studio Code es un editor de código fuente ligero pero potente desarrollado por Microsoft. Ofrece soporte para múltiples lenguajes, depuración integrada, control de versiones Git, extensiones personalizables y un terminal integrado, siendo uno de los editores más populares para desarrolladores.",
+        en: "Visual Studio Code is a lightweight yet powerful source code editor developed by Microsoft. It offers multi-language support, built-in debugging, Git version control, customizable extensions, and an integrated terminal, being one of the most popular editors for developers."
+      }
+    },
+    {
+      name: "GitHub",
+      icon: "/img/git_logo.png",
+      className: "git-style",
+      category: "tools",
+      level: 70,
+      description: {
+        es: "GitHub es una plataforma de desarrollo colaborativo basada en Git que permite alojar y revisar código, gestionar proyectos y construir software en equipo. Ofrece características como pull requests, issues, GitHub Actions para CI/CD, y es el mayor host de código fuente del mundo.",
+        en: "GitHub is a Git-based collaborative development platform for hosting and reviewing code, managing projects, and team software building. It offers features like pull requests, issues, GitHub Actions for CI/CD, and is the world's largest source code host."
+      }
+    },
+    {
+      name: "Git",
+      icon: "/img/gt_logo.png",
+      className: "git-style",
+      category: "tools",
+      level: 70,
+      description: {
+        es: "Git es un sistema de control de versiones distribuido que permite gestionar el historial de cambios en proyectos de software. Facilita la colaboración entre desarrolladores, el manejo de ramas (branching) y la fusión de código (merging), siendo esencial en el desarrollo moderno.",
+        en: "Git is a distributed version control system for managing change history in software projects. It facilitates developer collaboration, branching, and code merging, being essential in modern development."
+      }
+    }
   ];
 
   
@@ -309,7 +420,6 @@ const Desarrolladores = () => {
   }, []);
 
   const toggleExpand = (index) => {
-
     if (expandedCard === index) {
       setExpandedCard(null); // Cierra la tarjeta si ya está abierta
     } else {
@@ -462,54 +572,53 @@ const Desarrolladores = () => {
         </div>
       </section>
 
-
       <section className="team-section" id="equipo">
-      <h2>{translations[language].teamTitle}</h2>
-      <p className="sub-title">{translations[language].teamSubtitle}</p>
-      <div className="cards-container">
-        {developersData(language).map((dev, index) => (
-          <div
-            key={index}
-            className={`card ${expandedCard === index ? "expanded" : ""}`}
-          >
-            <div className="card-content">
-              <div className="avatar-container">
-                <img src={dev.img} alt={dev.name} className="avatar" />
-              </div>
-              <h3 className="name">{dev.name}</h3>
-              <p className="role">{dev.role}</p>
-              
-              {expandedCard === index && (
-                <div className="expandable-content">
-                  <ul className="info">
-                    {dev.info.map((point, idx) => (
-                      <li key={idx}>{point}</li>
-                    ))}
-                  </ul>
-                  <div className="social-icons">
-                    <a href={dev.linkedin} target="_blank" rel="noopener noreferrer">
-                      <FontAwesomeIcon icon={faLinkedin} className="social-icon" />
-                    </a>
-                    <a href={dev.instagram} target="_blank" rel="noopener noreferrer">
-                      <FontAwesomeIcon icon={faInstagram} className="social-icon" />
-                    </a>
-                  </div>
+        <h2>{translations[language].teamTitle}</h2>
+        <p className="sub-title">{translations[language].teamSubtitle}</p>
+        <div className="cards-container">
+          {developersData(language).map((dev, index) => (
+            <div
+              key={index}
+              className={`card ${expandedCard === index ? "expanded" : ""}`}
+            >
+              <div className="card-content">
+                <div className="avatar-container">
+                  <img src={dev.img} alt={dev.name} className="avatar" />
                 </div>
-              )}
-              
-              <button 
-                className="more-btn"
-                onClick={() => toggleExpand(index)}
-              >
-                {expandedCard === index 
-                  ? (language === "es" ? "Menos" : "Less") 
-                  : (language === "es" ? "Más" : "More")}
-              </button>
+                <h3 className="name">{dev.name}</h3>
+                <p className="role">{dev.role}</p>
+                
+                {expandedCard === index && (
+                  <div className="expandable-content">
+                    <ul className="info">
+                      {dev.info.map((point, idx) => (
+                        <li key={idx}>{point}</li>
+                      ))}
+                    </ul>
+                    <div className="social-icons">
+                      <a href={dev.linkedin} target="_blank" rel="noopener noreferrer">
+                        <FontAwesomeIcon icon={faLinkedin} className="social-icon" />
+                      </a>
+                      <a href={dev.instagram} target="_blank" rel="noopener noreferrer">
+                        <FontAwesomeIcon icon={faInstagram} className="social-icon" />
+                      </a>
+                    </div>
+                  </div>
+                )}
+                
+                <button 
+                  className="more-btn"
+                  onClick={() => toggleExpand(index)}
+                >
+                  {expandedCard === index 
+                    ? (language === "es" ? "Menos" : "Less") 
+                    : (language === "es" ? "Más" : "More")}
+                </button>
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
-    </section>
+          ))}
+        </div>
+      </section>
 
       <section className="tech-sphere-section" id="stack">
         <div className="section-container">
@@ -603,27 +712,15 @@ const Desarrolladores = () => {
                     <div className="selected-tech-details">
                       <h3 className="tech-name">{selectedTech.name}</h3>
                       <p className="tech-description">
-                        {selectedTech.description || 
+                        {selectedTech.description[language] || 
                           (language === "es" ? "No hay descripción disponible" : "No description available")}
                       </p>
-                      <div className="skill-meter">
-                        <div className="skill-level">
-                          <span className="skill-label">
-                            {language === "es" ? "Nivel de habilidad:" : "Skill Level:"}
-                          </span>
-                          <div className="skill-bar">
-                            <div 
-                              className="skill-progress" 
-                              style={{width: `${selectedTech.level}%`}}
-                            ></div>
-                          </div>
-                        </div>
-                      </div>
+
                       <button 
                         className="back-button"
                         onClick={() => setSelectedTech(null)}
                       >
-                        {language === "es" ? "Volver" : "Back"}
+                        <HiChevronLeft className="back-icon" />
                       </button>
                     </div>
                   )}
