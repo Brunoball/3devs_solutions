@@ -1103,15 +1103,9 @@ html {
 
 
 
-
-
-
-
-
-
 /* =============== TECH SPHERE SECTION =============== */
 .tech-sphere-section {
-  padding: 120px 0;
+  padding: 60px 0;
   background: radial-gradient(ellipse at bottom, #0d1d31 0%, #0c0d13 100%);
   position: relative;
   overflow: hidden;
@@ -1127,13 +1121,13 @@ html {
 
 .section-header {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
 }
 
 .section-title {
-  font-size: 4rem;
+  font-size: 3.5rem;
   font-weight: 800;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   position: relative;
   display: inline-block;
 }
@@ -1146,7 +1140,7 @@ html {
 }
 
 .section-subtitle {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   color: rgba(255, 255, 255, 0.7);
   max-width: 700px;
   margin: 0 auto;
@@ -1157,15 +1151,15 @@ html {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 40px;
+  gap: 30px;
 }
 
 .tech-sphere-wrapper {
   perspective: 1000px;
-  width: 300px;
-  height: 300px;
+  width: 250px;
+  height: 250px;
   position: relative;
-  margin: 0 auto;
+  margin: 0 auto 20px;
 }
 
 .tech-sphere {
@@ -1242,6 +1236,7 @@ html {
   height: 80%;
   object-fit: contain;
   transition: transform 0.3s ease;
+  filter: brightness(0) invert(1);
 }
 
 .tech-node:hover .tech-icon img {
@@ -1285,6 +1280,8 @@ html {
   transition: all 0.3s ease;
   font-size: 0.9rem;
   font-weight: 500;
+  display: flex;
+  align-items: center;
 }
 
 .category-btn:hover {
@@ -1302,6 +1299,53 @@ html {
   text-align: center;
   transition: all 0.4s ease;
   overflow: hidden;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.initial-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  padding: 20px 0;
+  height: 100%;
+}
+
+.initial-title {
+  font-size: 1.4rem;
+  color: white;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.initial-description {
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 500px;
+  margin: 0 auto 15px;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+.show-tech-button {
+  padding: 10px 20px;
+  border-radius: 30px;
+  background: linear-gradient(90deg, #0066ff, #00cc66);
+  border: none;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+}
+
+.show-tech-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 102, 255, 0.3);
 }
 
 .tech-grid {
@@ -1309,7 +1353,9 @@ html {
   flex-wrap: wrap;
   justify-content: center;
   gap: 25px;
-  margin-bottom: 30px;
+  margin: 0 auto;
+  align-items: center;
+  flex-grow: 1;
 }
 
 .tech-grid-item {
@@ -1374,6 +1420,7 @@ html {
   height: 100%;
   object-fit: contain;
   transition: transform 0.3s ease;
+  filter: brightness(0) invert(1);
 }
 
 .tech-grid-item:hover .tech-grid-icon img {
@@ -1390,9 +1437,11 @@ html {
 
 .select-tech-prompt {
   color: white;
-  font-size: 1.1rem;
-  margin: 20px 0;
+  font-size: 1rem;
+  margin-top: auto;
+  padding-bottom: 20px;
   opacity: 0.8;
+  width: 100%;
 }
 
 .selected-tech-details {
@@ -1402,6 +1451,7 @@ html {
   border-radius: 15px;
   border: 1px solid rgba(255, 255, 255, 0.05);
   animation: fadeIn 0.5s ease;
+  width: 100%;
 }
 
 @keyframes fadeIn {
@@ -1434,22 +1484,18 @@ html {
   font-size: 0.95rem;
 }
 
-
-
-
-
 .back-button {
   background: transparent;
   border: none;
   cursor: pointer;
   padding: 8px;
-  margin: 20px 0 0 -10px; /* Ajuste para tirar a la izquierda */
-  align-self: flex-start; /* Alinea a la izquierda del contenedor */
+  margin: 20px 0 0 -10px;
+  align-self: flex-start;
 }
 
 .back-icon {
-  color: #00d1b2; /* verde agua */
-  font-size: 2rem; /* Más grande (1.5rem → 2rem) */
+  color: #00d1b2;
+  font-size: 2rem;
   transition: transform 0.3s ease, color 0.3s ease;
   animation: pulse-move 2s infinite;
 }
@@ -1463,9 +1509,6 @@ html {
     color: #00f5c4;
   }
 }
-
-
-
 
 /* Categorías inferiores */
 .tech-categories {
@@ -1556,34 +1599,24 @@ html {
 
 /* Responsive */
 @media (max-width: 992px) {
-
-  .info {
-    position: relative;
-    right: 10%;
-  }
-  .team-section h2{
-    font-size: 2rem;
+  .section-title {
+    font-size: 3rem;
   }
   
   .tech-sphere {
-    width: 250px;
-    height: 250px;
+    width: 220px;
+    height: 220px;
   }
 }
 
-
 @media (max-width: 768px) {
-  .info li::before{
-    transform: scale(1.5);
-  }
-
   .tech-sphere-container {
     flex-direction: column;
   }
   
   .tech-info-panel {
     max-width: 100%;
-    border-radius:0 ;
+    border-radius: 15px;
   }
   
   .tech-grid {
@@ -1602,35 +1635,47 @@ html {
   }
   
   .select-tech-prompt {
-    font-size: 1rem;
+    font-size: 0.95rem;
+  }
+  
+  .initial-title {
+    font-size: 1.3rem;
+  }
+  
+  .initial-description {
+    font-size: 0.9rem;
   }
 }
 
 @media (max-width: 576px) {
   .section-container {
-    padding: 0 ;
+    padding: 0 20px;
   }
   
-
+  .section-title {
+    font-size: 2.5rem;
+  }
   
   .section-subtitle {
     font-size: 1.1rem;
   }
   
   .tech-sphere {
-    width: 200px;
-    height: 200px;
+    width: 180px;
+    height: 180px;
   }
   
   .tech-node {
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
     margin: -20px 0 0 -20px;
   }
-  .tech-sphere-wrapper{
-    height: 200px;
-    width: 200px;
+  
+  .tech-sphere-wrapper {
+    height: 180px;
+    width: 180px;
   }
+  
   .tech-grid {
     gap: 10px;
   }
@@ -1653,15 +1698,29 @@ html {
     padding: 6px 12px;
     font-size: 0.8rem;
   }
+  
+  .initial-title {
+    font-size: 1.2rem;
+  }
+  
+  .initial-description {
+    font-size: 0.85rem;
+  }
+  
+  .show-tech-button {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+  
+  .tech-categories {
+    gap: 10px;
+  }
+  
+  .tech-category-pill {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+  }
 }
-
-
-
-
-
-
-
-
 
 
 

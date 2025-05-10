@@ -98,7 +98,6 @@ const Desarrolladores = () => {
       icon: "/img/css_logo.png",
       className: "css-style",
       category: "frontend",
-      level: 85,
       description: {
         es: "CSS3 es la última evolución del lenguaje de hojas de estilo, que permite controlar el diseño y presentación de páginas web. Introduce características como animaciones, transiciones, gradientes, sombras y diseño responsive con media queries, permitiendo crear interfaces modernas y atractivas.",
         en: "CSS3 is the latest evolution of the style sheet language, allowing control over web page layout and presentation. It introduces features like animations, transitions, gradients, shadows, and responsive design with media queries, enabling modern and attractive interfaces."
@@ -109,7 +108,6 @@ const Desarrolladores = () => {
       icon: "/img/java_logo.png",
       className: "js-style",
       category: "frontend",
-      level: 80,
       description: {
         es: "JavaScript es un lenguaje de programación interpretado que permite agregar interactividad a sitios web. Como lenguaje del lado del cliente, se ejecuta en el navegador y permite manipular el DOM, gestionar eventos y comunicarse con servidores. Es fundamental para el desarrollo web moderno.",
         en: "JavaScript is an interpreted programming language that adds interactivity to websites. As a client-side language, it runs in the browser and allows DOM manipulation, event handling, and server communication. It's fundamental for modern web development."
@@ -161,7 +159,7 @@ const Desarrolladores = () => {
     },
     {
       name: "SQL",
-      icon: "/img/sql_logo.png",
+      icon: "/img/database_lg.png",
       className: "sql-style",
       category: "database",
       level: 75,
@@ -183,7 +181,7 @@ const Desarrolladores = () => {
     },
     {
       name: "GitHub",
-      icon: "/img/git_logo.png",
+      icon: "/img/github.png",
       className: "git-style",
       category: "tools",
       level: 70,
@@ -638,6 +636,47 @@ const Desarrolladores = () => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       <section className="tech-sphere-section" id="stack">
         <div className="section-container">
           <div className="section-header">
@@ -662,7 +701,7 @@ const Desarrolladores = () => {
                       onClick={() => showTechDetails(tech)}
                     >
                       <div className="tech-icon">
-                        <img src={tech.icon} alt={tech.name} />
+                        <img src={tech.icon} alt={tech.name} style={{ filter: 'brightness(0) invert(1)' }} />
                       </div>
                     </div>
                   );
@@ -701,6 +740,9 @@ const Desarrolladores = () => {
                     className={`category-btn ${activeCategory === 'tools' ? 'active' : ''}`} 
                     onClick={() => filterTech('tools')}
                   >
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style={{ marginRight: '6px' }}>
+                      <path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75 1.84-1.83zM3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/>
+                    </svg>
                     {language === "es" ? "Herramientas" : "Tools"}
                   </button>
                 </div>
@@ -708,23 +750,50 @@ const Desarrolladores = () => {
                 <div className="tech-details">
                   {!selectedTech ? (
                     <>
-                      <div className="tech-grid">
-                        {filteredTechs.map((tech, i) => (
-                          <div 
-                            key={`tech-${i}`} 
-                            className={`tech-grid-item ${tech.category}`}
-                            onClick={() => showTechDetails(tech)}
-                          >
-                            <div className="tech-grid-icon">
-                              <img src={tech.icon} alt={tech.name} />
-                            </div>
-                            <div className="tech-grid-name">{tech.name}</div>
+                      {filteredTechs.length === technologies.length ? (
+                        <div className="initial-state">
+                          <div className="initial-icon">
+                            <svg viewBox="0 0 24 24" width="60" height="60" fill="none" stroke="currentColor" strokeWidth="2">
+                              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                              <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
+                            </svg>
                           </div>
-                        ))}
-                      </div>
-                      <div className="select-tech-prompt">
-                        {language === "es" ? "Selecciona una tecnología para ver detalles" : "Select a technology to see details"}
-                      </div>
+                          <h3 className="initial-title">
+                            {language === "es" ? "Explora mi stack tecnológico" : "Explore my tech stack"}
+                          </h3>
+                          <p className="initial-description">
+                            {language === "es" ? 
+                              "Selecciona una categoría o haz clic en cualquier tecnología para ver detalles" : 
+                              "Select a category or click on any technology to see details"}
+                          </p>
+                          <button 
+                            className="show-tech-button"
+                            onClick={() => filterTech('all')}
+                          >
+                            {language === "es" ? "Mostrar todas las tecnologías" : "Show all technologies"}
+                          </button>
+                        </div>
+                      ) : (
+                        <>
+                          <div className="tech-grid">
+                            {filteredTechs.map((tech, i) => (
+                              <div 
+                                key={`tech-${i}`} 
+                                className={`tech-grid-item ${tech.category}`}
+                                onClick={() => showTechDetails(tech)}
+                              >
+                                <div className="tech-grid-icon">
+                                  <img src={tech.icon} alt={tech.name} style={{ filter: 'brightness(0) invert(1)' }} />
+                                </div>
+                                <div className="tech-grid-name">{tech.name}</div>
+                              </div>
+                            ))}
+                          </div>
+                          <div className="select-tech-prompt">
+                            {language === "es" ? "Selecciona una tecnología para ver detalles" : "Select a technology to see details"}
+                          </div>
+                        </>
+                      )}
                     </>
                   ) : (
                     <div className="selected-tech-details">
@@ -780,7 +849,7 @@ const Desarrolladores = () => {
             
             <div className="tech-category-pill tools">
               <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-                <path d="M12 6v12M6 12h12"/>
+                <path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75 1.84-1.83zM3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/>
               </svg>
               {translations[language].toolsTitle || "DevOps & Tools"}
               <span className="tech-category-count">
@@ -806,6 +875,59 @@ const Desarrolladores = () => {
           ))}
         </div>
       </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       <section className="services-section" id="servicios" ref={el => sectionRefs.current[4] = el}>
         <div className="section-container">
@@ -881,6 +1003,7 @@ const Desarrolladores = () => {
           </div>
         </div>
       </section>
+
 
       <footer className="footer-section" id="contacto">
         <div className="footer-content">
