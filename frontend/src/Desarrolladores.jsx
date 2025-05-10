@@ -675,8 +675,6 @@ const Desarrolladores = () => {
 
 
 
-
-
       <section className="tech-sphere-section" id="stack">
         <div className="section-container Satack">
           <div className="section-header">
@@ -713,12 +711,6 @@ const Desarrolladores = () => {
               <div className="tech-info-panel">
                 <div className="category-selector">
                   <button 
-                    className={`category-btn ${activeCategory === 'all' ? 'active' : ''}`} 
-                    onClick={() => filterTech('all')}
-                  >
-                    {language === "es" ? "Todos" : "All"}
-                  </button>
-                  <button 
                     className={`category-btn ${activeCategory === 'frontend' ? 'active' : ''}`} 
                     onClick={() => filterTech('frontend')}
                   >
@@ -740,9 +732,6 @@ const Desarrolladores = () => {
                     className={`category-btn ${activeCategory === 'tools' ? 'active' : ''}`} 
                     onClick={() => filterTech('tools')}
                   >
-                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style={{ marginRight: '6px' }}>
-                      <path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75 1.84-1.83zM3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/>
-                    </svg>
                     {language === "es" ? "Herramientas" : "Tools"}
                   </button>
                 </div>
@@ -752,12 +741,6 @@ const Desarrolladores = () => {
                     <>
                       {filteredTechs.length === technologies.length ? (
                         <div className="initial-state">
-                          <div className="initial-icon">
-                            <svg viewBox="0 0 24 24" width="60" height="60" fill="none" stroke="currentColor" strokeWidth="2">
-                              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                              <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
-                            </svg>
-                          </div>
                           <h3 className="initial-title">
                             {language === "es" ? "Explora mi stack tecnológico" : "Explore my tech stack"}
                           </h3>
@@ -766,12 +749,6 @@ const Desarrolladores = () => {
                               "Selecciona una categoría o haz clic en cualquier tecnología para ver detalles" : 
                               "Select a category or click on any technology to see details"}
                           </p>
-                          <button 
-                            className="show-tech-button"
-                            onClick={() => filterTech('all')}
-                          >
-                            {language === "es" ? "Mostrar todas las tecnologías" : "Show all technologies"}
-                          </button>
                         </div>
                       ) : (
                         <>
@@ -849,7 +826,7 @@ const Desarrolladores = () => {
             
             <div className="tech-category-pill tools">
               <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-                <path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75 1.84-1.83zM3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/>
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
               </svg>
               {translations[language].toolsTitle || "DevOps & Tools"}
               <span className="tech-category-count">

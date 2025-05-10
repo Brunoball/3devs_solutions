@@ -1118,7 +1118,6 @@ html {
 
 
 
-
 /* =============== TECH SPHERE SECTION =============== */
 .tech-sphere-section {
   padding: 60px 0;
@@ -1347,23 +1346,6 @@ html {
   font-size: 0.95rem;
 }
 
-.show-tech-button {
-  padding: 10px 20px;
-  border-radius: 30px;
-  background: linear-gradient(90deg, #0066ff, #00cc66);
-  border: none;
-  color: white;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-size: 0.95rem;
-}
-
-.show-tech-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0, 102, 255, 0.3);
-}
-
 .tech-grid {
   display: flex;
   flex-wrap: wrap;
@@ -1454,7 +1436,7 @@ html {
 .select-tech-prompt {
   color: white;
   font-size: 1rem;
-  margin-top: auto;
+  margin-top: 30px;
   padding-bottom: 20px;
   opacity: 0.8;
   width: 100%;
@@ -1615,7 +1597,7 @@ html {
 
 /* Responsive */
 @media (max-width: 992px) {
-    .nav-links-container {
+  .nav-links-container {
     position: fixed;
     top:86px;
     right: 0;
@@ -1631,9 +1613,11 @@ html {
   .nav-links-container.open {
     transform: translateX(0);
   }
-    .section-container {
+  
+  .section-container {
     padding: 0;
   }
+  
   .section-title {
     font-size: 3rem;
   }
@@ -1740,11 +1724,6 @@ html {
   
   .initial-description {
     font-size: 0.85rem;
-  }
-  
-  .show-tech-button {
-    padding: 8px 16px;
-    font-size: 0.9rem;
   }
   
   .tech-categories {
