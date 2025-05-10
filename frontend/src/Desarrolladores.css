@@ -428,6 +428,7 @@ html {
 /* ================ RESPONSIVE ================ */
 /* ================ HERO SECTION - MOBILE ================ */
 @media (max-width: 768px) {
+
   /* En la sección de media queries para móviles */
 
 
@@ -857,6 +858,8 @@ html {
 
 
 /* ================ TEAM SECTION ================ */
+
+
 /* ESTILOS ORIGINALES (con modificaciones mínimas) */
 .team-section {
   display: flex;
@@ -1071,7 +1074,20 @@ html {
   transform: translateY(-3px);
 }
 
+.chevron-icon:not(.expanded) {
+  animation: simpleFloat 2s infinite ease-in-out;
+}
 
+@keyframes simpleFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+
+.chevron-icon.expanded {
+  transform: rotate(180deg);
+  animation: none;
+  transition: transform 0.3s ease-out;
+}
 
 
 
@@ -1599,6 +1615,22 @@ html {
 
 /* Responsive */
 @media (max-width: 992px) {
+    .nav-links-container {
+    position: fixed;
+    top:86px;
+    right: 0;
+    width: 100%;
+    background-color: var(--secondary-color);
+    flex-direction: column;
+    align-items: start;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    box-shadow: -10px 0 30px -15px rgba(2, 12, 27, 0.7);
+  }
+  
+  .nav-links-container.open {
+    transform: translateX(0);
+  }
     .section-container {
     padding: 0;
   }
@@ -2457,7 +2489,7 @@ html {
 
   .about-content {
     max-width: 95%;
-    padding: 0 1rem;
+    padding: 0 1.3rem;
   }
 
   .info-card:hover {
