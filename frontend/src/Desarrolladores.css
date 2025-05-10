@@ -1599,6 +1599,9 @@ html {
 
 /* Responsive */
 @media (max-width: 992px) {
+    .section-container {
+    padding: 0;
+  }
   .section-title {
     font-size: 3rem;
   }
@@ -1648,8 +1651,8 @@ html {
 }
 
 @media (max-width: 576px) {
-  .section-container {
-    padding: 0 20px;
+  .Satack {
+    padding: 0 2rem;
   }
   
   .section-title {
@@ -2063,6 +2066,9 @@ html {
 
 /* Responsive adjustments */
 @media (max-width: 992px) {
+  .tab-content{
+    padding: 1rem 1rem;
+  }
       .section-title {
     font-size: 2rem;
   }
@@ -2315,6 +2321,22 @@ html {
 
 /* ================ MEDIA QUERIES ================ */
 @media (max-width: 1000px) {
+.nav-link::before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  bottom: 0;
+  left: 0;
+  background-color: var(--accent-color);
+  transition: var(--transition);
+}
+
+.nav-link:hover::before {
+  width: 100%;
+}
+
+
   .navbar-scrolled .logo{
     height:30px;
   }
@@ -2435,6 +2457,7 @@ html {
 
   .about-content {
     max-width: 95%;
+    padding: 0 1rem;
   }
 
   .info-card:hover {
@@ -2443,7 +2466,7 @@ html {
   }
 
   .team-section {
-    padding: 40px 2rem;
+    padding: 40px 1rem;
   }
 
   .tech-stack-section {

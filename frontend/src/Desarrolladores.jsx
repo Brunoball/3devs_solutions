@@ -678,7 +678,7 @@ const Desarrolladores = () => {
 
 
       <section className="tech-sphere-section" id="stack">
-        <div className="section-container">
+        <div className="section-container Satack">
           <div className="section-header">
             <h2 className="section-title">
               <span className="title-gradient">{translations[language].stackTitle}</span>
