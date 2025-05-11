@@ -861,6 +861,8 @@ html {
 
 
 /* ESTILOS ORIGINALES (con modificaciones mínimas) */
+/* ESTILOS ORIGINALES (con modificaciones mínimas) */
+/* Estilos para la sección del Equipo*/
 .team-section {
   display: flex;
   flex-direction: column;
@@ -884,12 +886,13 @@ html {
   margin-left: auto;
   margin-right: auto;
 }
+
 .team-section h2::after {
   content: '';
   position: absolute;
   width: 80px;
   height: 4px;
-  background: #4f46e5; /* Violeta */
+  background: #4f46e5;
   bottom: -20px;
   left: 50%;
   transform: translateX(-50%);
@@ -903,14 +906,21 @@ html {
 }
 
 .cards-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 30px;
-  width: 100%;
   max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  height: 100%;
+  max-height: 1200px;
+  margin-bottom: 10px;
 }
 
+/* Tarjeta individual */
 .card {
+  width: 250px;
   background: #172a45;
   border-radius: 10px;
   padding: 30px;
@@ -920,9 +930,8 @@ html {
   border: 1px solid rgba(100, 255, 218, 0.1);
   display: flex;
   flex-direction: column;
-   overflow: hidden; /* Asegura que el contenido no se desborde durante la transición */
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); /* Transición más suave con curva bezier */
-  
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .card-content {
@@ -931,20 +940,28 @@ html {
   flex-direction: column;
 }
 
-.avatar-container {
+.card.expanded {
+  height: 480px;
+}
+
+/* Efecto hover */
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  border-color: rgba(100, 255, 218, 0.3);
+}
+
+/* Avatar */
+.avatar {
   width: 100px;
   height: 100px;
-  margin: 0 auto 20px;
-}
-
-.avatar {
-  width: 100%;
-  height: 100%;
   border-radius: 50%;
-  object-fit: cover;
   border: 3px solid #64ffda;
+  margin: 0 auto 20px;
+  object-fit: cover;
 }
 
+/* Nombre */
 .name {
   font-size: 1.3rem;
   color: #ccd6f6;
@@ -952,6 +969,7 @@ html {
   font-weight: 700;
 }
 
+/* Rol */
 .role {
   color: #64ffda;
   font-size: 0.95rem;
@@ -968,6 +986,9 @@ html {
   text-align: left;
   margin: 15px 0;
   flex: 1;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .info ul {
@@ -987,68 +1008,66 @@ html {
   left: -15px;
 }
 
-/* MODIFICACIÓN PRINCIPAL: Contenido expandible */
+/* Estilo de los elementos cuando la tarjeta está expandida */
+.card.expanded .info {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Botón de más información */
+/* Botón modificado */
+/* Reemplaza estos estilos */
+.more-btn {
+  background: none;
+  border: none;
+  border-radius: 30px;
+  color: #64ffda;
+  cursor: pointer;
+  padding: 10px 2rem;
+  margin-top: 0; /* Esto empujará el botón hacia abajo */
+  align-self: center;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  position: relative; /* Cambiado de absolute a relative */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Elimina estos estilos si existen */
+
+.card.expanded .more-btn {
+  bottom: 0;
+  transform: rotate(180deg);
+}
+.card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 20px; /* Añade espacio en la parte inferior */
+}
+
 .expandable-content {
   max-height: 0;
   overflow: hidden;
   opacity: 0;
   margin-top: 0;
   padding: 0;
-  border-top: none;
   transition: 
     max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-    opacity 0.3s ease,
-    margin-top 0.3s ease,
-    padding 0.3s ease;
+    opacity 0.3s ease;
+  flex-grow: 1; /* Ocupa el espacio disponible */
 }
 
 .card.expanded .expandable-content {
   max-height: 500px;
   opacity: 1;
-  margin-top: 15px;
-  padding: 15px 0;
-  border-top: 1px solid rgba(100, 255, 218, 0.2);
-  transition: 
-    max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-    opacity 0.4s ease 0.1s,
-    margin-top 0.3s ease,
-    padding 0.3s ease;
-}
-.card.expanded {
-  height: auto;
-  min-height: 450px;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-
-
-
-/* Botón modificado */
-.more-btn {
-    background: none;
-  border: none;
-  border-radius: 30px;
-  color: #64ffda;
-  cursor: pointer;
-  padding: 10px 20px;
+  padding: 0;
   margin-top: 10px;
-  align-self: center;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-.chevron-icon {
-  font-size: 1.2rem;
-  transition: transform 0.3s ease;
 }
 
-.chevron-icon.expanded {
-  transform: rotate(180deg);
-}
-
-.more-btn .card.expanded  {
-  background: linear-gradient(135deg, #4fc3f7, #64ffda);
-}
-
+/* Estilos para los iconos de redes sociales */
 .social-icons {
   position: absolute;
   bottom: 25px;
@@ -1063,12 +1082,7 @@ html {
   transition: all 0.3s ease;
 }
 
-/* Efectos hover (originales) */
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-}
-
+/* Efecto hover para los iconos */
 .social-icon:hover {
   color: #4fc3f7;
   transform: translateY(-3px);
@@ -1083,22 +1097,27 @@ html {
   50% { transform: translateY(10px); }
 }
 
-.chevron-icon.expanded {
-  transform: rotate(180deg);
-  animation: none;
-  transition: transform 0.3s ease-out;
+/* Responsive */
+@media (max-width: 768px) {
+  .team-section {
+    padding: 40px 1rem;
+  }
+  
+  .cards-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .card {
+    width: 100%;
+    max-width: 300px;
+    padding: 10px;
+  }
+  
+  .card:hover {
+    transform: none;
+  }
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1346,6 +1365,23 @@ html {
   font-size: 0.95rem;
 }
 
+.show-tech-button {
+  padding: 10px 20px;
+  border-radius: 30px;
+  background: linear-gradient(90deg, #0066ff, #00cc66);
+  border: none;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+}
+
+.show-tech-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 102, 255, 0.3);
+}
+
 .tech-grid {
   display: flex;
   flex-wrap: wrap;
@@ -1436,7 +1472,7 @@ html {
 .select-tech-prompt {
   color: white;
   font-size: 1rem;
-  margin-top: 30px;
+  margin-top: auto;
   padding-bottom: 20px;
   opacity: 0.8;
   width: 100%;
@@ -1597,7 +1633,7 @@ html {
 
 /* Responsive */
 @media (max-width: 992px) {
-  .nav-links-container {
+    .nav-links-container {
     position: fixed;
     top:86px;
     right: 0;
@@ -1613,11 +1649,9 @@ html {
   .nav-links-container.open {
     transform: translateX(0);
   }
-  
-  .section-container {
+    .section-container {
     padding: 0;
   }
-  
   .section-title {
     font-size: 3rem;
   }
@@ -1724,6 +1758,11 @@ html {
   
   .initial-description {
     font-size: 0.85rem;
+  }
+  
+  .show-tech-button {
+    padding: 8px 16px;
+    font-size: 0.9rem;
   }
   
   .tech-categories {
@@ -2078,7 +2117,7 @@ html {
 /* Responsive adjustments */
 @media (max-width: 992px) {
   .tab-content{
-    padding: 1rem 1rem;
+    padding: 0;
   }
       .section-title {
     font-size: 2rem;
@@ -2109,6 +2148,8 @@ html {
   .service-info {
     margin-left: 0;
     padding: 20px;
+    background: transparent;
+    border: none;
   }
   
   .pros-cons {
@@ -2118,8 +2159,8 @@ html {
 
 @media (max-width: 768px) {
   .services-tabs {
-    max-width: 100%;
-    border-radius: 0%;
+    max-width: 85%;
+    border-radius: 10px;
   }
   
   .tab-buttons {
@@ -2410,6 +2451,8 @@ html {
   }
 
   .nav-links {
+font-family: 'Inter', sans-serif;
+    font-weight: 600;
     width: 100%;
     backdrop-filter: blur(10px);
     flex-direction: column;
@@ -2429,7 +2472,7 @@ html {
 
   .nav-links li {
     width: 100%;
-    margin: 10px 0;
+    margin: 5px 0;
     text-align: start;
   }
   .language-switcher{
