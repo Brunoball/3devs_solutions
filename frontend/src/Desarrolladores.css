@@ -205,8 +205,7 @@ html {
 
 
 
-
-
+/* iconos */
 
 
 
@@ -428,6 +427,12 @@ html {
 /* ================ RESPONSIVE ================ */
 /* ================ HERO SECTION - MOBILE ================ */
 @media (max-width: 768px) {
+    .cta-buttons {
+    flex-direction: column;
+    gap: 1rem;
+    position: absolute;
+    bottom: 10rem;
+  }
 
   /* En la sección de media queries para móviles */
 
@@ -451,8 +456,7 @@ html {
     height: 100%; /* Ocupa toda la altura disponible */
     justify-content: center; /* Centra verticalmente el contenido */
     transform: none; /* Elimina transformaciones previas */
-    position: absolute;
-    bottom: 0;
+
   }
 
   .main-title {
@@ -463,15 +467,10 @@ html {
   .subtitle {
     font-size: 1rem; /* Tamaño de fuente legible */
     max-width: 90%; /* Ancho máximo para buena legibilidad */
-    margin-bottom: 2rem; /* Espaciado adecuado */
+    margin-bottom: 30rem; /* Espaciado adecuado */
   }
 
-  .cta-buttons {
-    flex-direction: column; /* Apila los botones verticalmente */
-    width: 100%; /* Ocupa todo el ancho disponible */
-    gap: 1rem; /* Espacio entre botones */
-        margin-top: 23rem;
-  }
+
 
   .cta-button {
     width: 100%; /* Botones de ancho completo */
@@ -493,12 +492,8 @@ html {
     transform: translate(-50%, -50%);
   }
 }
-@media (max-width: 668px){
-.overlay .cta-buttons{
-  margin-top: 15rem;
-  
-}
-}
+
+
 
 
 
@@ -605,6 +600,19 @@ html {
 }
 
 /* ================ RESPONSIVE DESIGN ================ */
+@media (max-width: 408px) {  .subtitle {
+    font-size: 1rem; /* Tamaño de fuente legible */
+    max-width: 90%; /* Ancho máximo para buena legibilidad */
+    margin-bottom: 20rem; /* Espaciado adecuado */
+  }
+  .cta-buttons {
+    flex-direction: column;
+    gap: 1rem;
+    position: absolute;
+    bottom: 3rem;
+  }
+}
+
 @media (max-width: 768px) {
   .hamburger {
     display: flex;
@@ -628,6 +636,7 @@ html {
   }
   
   .nav-links {
+    font-weight: 600;
     flex-direction: column;
     gap: 2.5rem;
   }
@@ -636,10 +645,7 @@ html {
    margin: 0 0 0 0;
   }
   
-  .cta-buttons {
-    flex-direction: column;
-    gap: 1rem;
-  }
+
 
   .circle-1, .circle-2, .circle-3 {
     display: none;
@@ -826,6 +832,12 @@ html {
     background:rgba(99, 102, 241, 0.08);
     transform: rotate(0);
   }
+
+.info-icon-container{
+        min-height: 80px;
+    margin: 0 auto 20px;
+}
+
   .info-card .info-icon{
     color: #4f46e5;
   }
@@ -844,11 +856,12 @@ html {
   .info-cards {
     grid-template-columns: 1fr;
     gap: 20px;
+    padding: 20px;
   }
   
   .info-card {
     padding: 30px 20px;
-    min-height: auto;
+    height: auto;
   }
 }
 
@@ -858,10 +871,6 @@ html {
 
 
 /* ================ TEAM SECTION ================ */
-
-
-/* ESTILOS ORIGINALES (con modificaciones mínimas) */
-/* ESTILOS ORIGINALES (con modificaciones mínimas) */
 /* Estilos para la sección del Equipo*/
 .team-section {
   display: flex;
@@ -1634,6 +1643,9 @@ html {
 
 /* Responsive */
 @media (max-width: 992px) {
+  .team-section h2{
+    font-size: 2rem;
+  }
     .nav-links-container {
     position: fixed;
     top:86px;
@@ -2117,6 +2129,9 @@ html {
 
 /* Responsive adjustments */
 @media (max-width: 992px) {
+  .sub-title{
+    padding: 0 1rem;
+  }
   .tab-content{
     padding: 0;
   }
@@ -2124,7 +2139,7 @@ html {
     font-size: 2rem;
   }
   .section-header{
-    padding: 0 2rem;
+    padding: 0 0 2rem 0;
 
   }
   .title-gradient{
@@ -2233,7 +2248,7 @@ html {
 
 /* ================ FOOTER ================ */
 .footer-section {
-  background-color: #1a1a2e; /* Azul oscuro elegante */
+  background-color: rgb(10 25 47); /* Azul oscuro elegante */
   color: #fff;
   padding: 50px 0;
   font-family: 'Poppins', sans-serif;
@@ -2374,6 +2389,8 @@ html {
 
 /* ================ MEDIA QUERIES ================ */
 @media (max-width: 1000px) {
+
+
 .nav-link::before {
   content: '';
   position: absolute;
@@ -2452,8 +2469,8 @@ html {
   }
 
   .nav-links {
-font-family: 'Inter', sans-serif;
-    font-weight: 600;
+    font-family: "Muli", sans-serif;
+    font-weight: 600 !important;  
     width: 100%;
     backdrop-filter: blur(10px);
     flex-direction: column;
@@ -2485,9 +2502,9 @@ font-family: 'Inter', sans-serif;
 
 
   .nav-links a {
-    font-size: 20px;
     display: block;
     padding: 0 30px;
+    font-size: 20px;
 
   }
   
@@ -2512,7 +2529,7 @@ font-family: 'Inter', sans-serif;
 
   .about-content {
     max-width: 95%;
-    padding: 0 1.3rem;
+    padding: 0 1rem;
   }
 
   .info-card:hover {

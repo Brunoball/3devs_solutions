@@ -516,6 +516,7 @@ const Desarrolladores = () => {
                 <span key={index} className="char">
                   {char === '\n' ? <br /> : char}
                   {index === typedText.length - 1 && showCursor && <span className="typing-cursor">|</span>}
+                  
                 </span>
               ))}
             </h1>
@@ -909,7 +910,9 @@ const Desarrolladores = () => {
       <section className="services-section" id="servicios" ref={el => sectionRefs.current[4] = el}>
         <div className="section-container">
           <div className="section-header">
-            <h2 className="section-title">{translations[language].servicios}</h2>
+            <h2 className="section-title">
+              <span className="title-gradient">{translations[language].servicios}</span>
+            </h2>
             <p className="section-subtitle">{translations[language].servicios_subtitle}</p>
           </div>
           
