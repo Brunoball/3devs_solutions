@@ -1164,6 +1164,7 @@ html {
   margin-bottom: 1rem;
   position: relative;
   display: inline-block;
+  color: #00cc66;
 }
 
 .title-gradient {
@@ -2350,8 +2351,8 @@ html {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: #64ffda;
-  color: #000;
+  background-color: #112240;
+  color: #fff;
   border: none;
   border-radius: 50%;
   width: 45px;
@@ -2368,7 +2369,7 @@ html {
 }
 
 .scroll-to-top-button:hover {
-  background-color: rgb(18, 247, 193);
+  background-color: #1f4587;
 }
 
 /* ================ MEDIA QUERIES ================ */
