@@ -1148,6 +1148,23 @@ html {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* =============== TECH SPHERE SECTION =============== */
 .tech-sphere-section {
   padding: 60px 0;
@@ -1162,6 +1179,7 @@ html {
   padding: 0 40px;
   position: relative;
   z-index: 2;
+  overflow: hidden;
 }
 
 .section-header {
@@ -1183,6 +1201,14 @@ html {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+.title-divider {
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, #0066ff, #00ccff);
+  margin: 15px auto 25px;
+  border-radius: 3px;
 }
 
 .section-subtitle {
@@ -1335,7 +1361,7 @@ html {
 }
 
 .category-btn.active {
-  background: linear-gradient(90deg, #0066ff, #00cc66);
+  background: linear-gradient(90deg, #0066ff, #00ccff);
   font-weight: 600;
   box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3);
   transform: translateY(-2px);
@@ -1360,38 +1386,32 @@ html {
   gap: 15px;
   padding: 20px 0;
   height: 100%;
+  animation: fadeIn 0.5s ease;
+}
+
+.initial-icon {
+  color: #00d1ff;
+  margin-bottom: 15px;
+  opacity: 0.8;
 }
 
 .initial-title {
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   color: white;
   font-weight: 600;
   margin-bottom: 5px;
+  background: linear-gradient(90deg, #00d1ff, #bd00ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .initial-description {
   color: rgba(255, 255, 255, 0.7);
   max-width: 500px;
   margin: 0 auto 15px;
-  line-height: 1.5;
-  font-size: 0.95rem;
-}
-
-.show-tech-button {
-  padding: 10px 20px;
-  border-radius: 30px;
-  background: linear-gradient(90deg, #0066ff, #00cc66);
-  border: none;
-  color: white;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-size: 0.95rem;
-}
-
-.show-tech-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0, 102, 255, 0.3);
+  line-height: 1.6;
+  font-size: 1rem;
 }
 
 .tech-grid {
@@ -1416,14 +1436,13 @@ html {
   height: 90px;
   justify-content: center;
   opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.5s ease forwards;
+  transform: translateX(-20px);
 }
 
-@keyframes fadeInUp {
+@keyframes fadeInLeft {
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(0);
   }
 }
 
@@ -1492,12 +1511,14 @@ html {
 
 .selected-tech-details {
   margin-top: 30px;
-  padding: 20px;
+  padding: 25px;
   background: rgba(255, 255, 255, 0.03);
   border-radius: 15px;
   border: 1px solid rgba(255, 255, 255, 0.05);
   animation: fadeIn 0.5s ease;
-  width: 100%;
+  width: calc(100% - 20px);
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 @keyframes fadeIn {
@@ -1513,7 +1534,7 @@ html {
 
 .tech-name {
   font-size: 1.8rem;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   color: white;
   font-weight: 600;
   background: linear-gradient(90deg, #0066ff, #00cc66);
@@ -1527,33 +1548,41 @@ html {
   color: rgba(255, 255, 255, 0.7);
   margin-bottom: 20px;
   line-height: 1.6;
-  font-size: 0.95rem;
+  font-size: 1rem;
+  text-align: left;
+  padding: 0 10px;
 }
 
 .back-button {
   background: transparent;
   border: none;
   cursor: pointer;
-  padding: 8px;
+  padding: 8px 12px;
   margin: 20px 0 0 -10px;
   align-self: flex-start;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #00d1b2;
+  font-weight: 500;
+  font-size: 0.95rem;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  background: rgba(0, 209, 178, 0.1);
 }
 
 .back-icon {
   color: #00d1b2;
-  font-size: 2rem;
+  font-size: 1.5rem;
   transition: transform 0.3s ease, color 0.3s ease;
-  animation: pulse-move 2s infinite;
 }
 
-@keyframes pulse-move {
-  0%, 100% {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(-5px);
-    color: #00f5c4;
-  }
+.back-button:hover .back-icon {
+  transform: translateX(-3px);
+  color: #00f5c4;
 }
 
 /* Categorías inferiores */
@@ -1645,29 +1674,10 @@ html {
 
 /* Responsive */
 @media (max-width: 992px) {
-  .team-section h2{
-    margin-bottom: 10px;
-    font-size: 2rem;
-  }
-    .nav-links-container {
-    position: fixed;
-    top:86px;
-    right: 0;
-    width: 100%;
-    background-color: var(--secondary-color);
-    flex-direction: column;
-    align-items: start;
-    transform: translateX(100%);
-    transition: transform 0.3s ease-in-out;
-    box-shadow: -10px 0 30px -15px rgba(2, 12, 27, 0.7);
+  .section-container {
+    padding: 0 30px;
   }
   
-  .nav-links-container.open {
-    transform: translateX(0);
-  }
-    .section-container {
-    padding: 0;
-  }
   .section-title {
     font-size: 3rem;
   }
@@ -1675,6 +1685,10 @@ html {
   .tech-sphere {
     width: 220px;
     height: 220px;
+  }
+  
+  .tech-info-panel {
+    padding: 25px;
   }
 }
 
@@ -1686,6 +1700,7 @@ html {
   .tech-info-panel {
     max-width: 100%;
     border-radius: 15px;
+    padding: 20px;
   }
   
   .tech-grid {
@@ -1708,25 +1723,40 @@ html {
   }
   
   .initial-title {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
   }
   
   .initial-description {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+    padding: 0 15px;
+  }
+  
+  .selected-tech-details {
+    padding: 20px 15px;
+    width: calc(100% - 10px);
+  }
+  
+  .tech-name {
+    font-size: 1.6rem;
+  }
+  
+  .tech-description {
+    font-size: 0.95rem;
   }
 }
 
 @media (max-width: 576px) {
-  .Satack {
-    padding: 0 2rem;
+  .section-container {
+    padding: 0 20px;
   }
   
   .section-title {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
   }
   
   .section-subtitle {
-    font-size: 1.1rem;
+    font-size: 1rem;
+    padding: 0 10px;
   }
   
   .tech-sphere {
@@ -1769,15 +1799,10 @@ html {
   }
   
   .initial-title {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
   }
   
   .initial-description {
-    font-size: 0.85rem;
-  }
-  
-  .show-tech-button {
-    padding: 8px 16px;
     font-size: 0.9rem;
   }
   
@@ -1789,10 +1814,16 @@ html {
     padding: 8px 16px;
     font-size: 0.85rem;
   }
+  
+  .back-button {
+    font-size: 0.85rem;
+    padding: 6px 10px;
+  }
+  
+  .back-icon {
+    font-size: 1.2rem;
+  }
 }
-
-
-
 
 
 

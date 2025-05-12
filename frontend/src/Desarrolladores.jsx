@@ -663,19 +663,7 @@ const Desarrolladores = () => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+      
 
       <section className="tech-sphere-section" id="stack">
         <div className="section-container Satack">
@@ -683,6 +671,7 @@ const Desarrolladores = () => {
             <h2 className="section-title">
               <span className="title-gradient">{translations[language].stackTitle}</span>
             </h2>
+            <div className="title-divider"></div>
             <p className="section-subtitle">{translations[language].stackSubtitle}</p>
           </div>
           
@@ -743,6 +732,13 @@ const Desarrolladores = () => {
                     <>
                       {filteredTechs.length === technologies.length ? (
                         <div className="initial-state">
+                          <div className="initial-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                              <circle cx="12" cy="12" r="10"></circle>
+                              <line x1="12" y1="8" x2="12" y2="12"></line>
+                              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                            </svg>
+                          </div>
                           <h3 className="initial-title">
                             {language === "es" ? "Explora mi stack tecnológico" : "Explore my tech stack"}
                           </h3>
@@ -759,6 +755,10 @@ const Desarrolladores = () => {
                               <div 
                                 key={`tech-${i}`} 
                                 className={`tech-grid-item ${tech.category}`}
+                                style={{ 
+                                  animation: `fadeInLeft 0.5s ease forwards`,
+                                  animationDelay: `${i * 0.05}s`
+                                }}
                                 onClick={() => showTechDetails(tech)}
                               >
                                 <div className="tech-grid-icon">
@@ -787,6 +787,7 @@ const Desarrolladores = () => {
                         onClick={() => setSelectedTech(null)}
                       >
                         <HiChevronLeft className="back-icon" />
+                        {language === "es" ? "Volver" : "Back"}
                       </button>
                     </div>
                   )}
