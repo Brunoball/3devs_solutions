@@ -519,8 +519,9 @@ const Desarrolladores = () => {
                   
                 </span>
               ))}
+              <p className="subtitle">{translations[language].subtitle}</p>
             </h1>
-            <p className="subtitle">{translations[language].subtitle}</p>
+            
             <div className="cta-buttons">
               <a href="#contacto" className="cta-button primary">
                 {language === "es" ? "Contáctanos" : "Contact Us"}
