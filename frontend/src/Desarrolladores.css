@@ -1025,33 +1025,23 @@ scroll-margin-top: 4rem;
 .more-btn {
   background: none;
   border: none;
-  border-radius: 30px;
+  margin-top: 10px;
   color: #64ffda;
   cursor: pointer;
-  padding: 10px 2rem;
-  margin-top: 0; /* Esto empujará el botón hacia abajo */
   align-self: center;
-  font-weight: 600;
   transition: all 0.3s ease;
   position: relative; /* Cambiado de absolute a relative */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
 }
+
 
 /* Elimina estos estilos si existen */
 
 .card.expanded .more-btn {
-  bottom: 0;
+  position: absolute;
+  bottom: 1.5rem;
   transform: rotate(180deg);
 }
-.card-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  padding-bottom: 20px; /* Añade espacio en la parte inferior */
-}
+
 
 .expandable-content {
   max-height: 0;
@@ -1060,9 +1050,8 @@ scroll-margin-top: 4rem;
   margin-top: 0;
   padding: 0;
   transition: 
-    max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-    opacity 0.3s ease;
-  flex-grow: 1; /* Ocupa el espacio disponible */
+    max-height 0.3s,
+    opacity 0.4s ease;
 }
 
 .card.expanded .expandable-content {
@@ -1105,7 +1094,10 @@ scroll-margin-top: 4rem;
 /* Responsive */
 @media (max-width: 768px) {
 
-  
+   .more-btn{
+    margin-top: 1rem;
+    cursor: none;
+   }
   .cards-container {
     grid-template-columns: 1fr;
     gap: 20px;
@@ -1170,7 +1162,6 @@ scroll-margin-top: 4rem;
   padding: 0 20px;
   position: relative;
   z-index: 2;
-  overflow: hidden;
 }
 
 .section-header {
@@ -1205,9 +1196,9 @@ scroll-margin-top: 4rem;
 .tech-sphere-wrapper {
   perspective: 1000px;
   width: 250px;
-  height: 250px;
+  height: 200px;
   position: relative;
-  margin: 0 auto 20px;
+  margin: 0 auto;
 }
 
 .tech-sphere {
@@ -1650,7 +1641,15 @@ scroll-margin-top: 4rem;
 
 /* Responsive */
 @media (max-width: 992px) {
-
+ .tech-category-pill.tools{
+  display: flex;
+  justify-content: center;
+ }
+   .tech-category-pill {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    width: 120px;
+  }
   
   .section-title {
     font-size: 3rem;
@@ -1736,9 +1735,10 @@ scroll-margin-top: 4rem;
   }
   
   .tech-node {
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
     margin: -20px 0 0 -20px;
+    cursor: none;
   }
   
   .tech-sphere-wrapper {
@@ -1780,11 +1780,7 @@ scroll-margin-top: 4rem;
   .tech-categories {
     gap: 10px;
   }
-  
-  .tech-category-pill {
-    padding: 8px 16px;
-    font-size: 0.85rem;
-  }
+
   
   .back-button {
     font-size: 0.85rem;
@@ -1898,7 +1894,8 @@ scroll-margin-top: 4rem;
   backdrop-filter: blur(10px);
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(16, 236, 203, 0.2);
+ box-shadow: 0 10px 30px rgba(16, 236, 203, 0.2);
+
 }
 
 .tab-buttons {

@@ -831,7 +831,7 @@ const Desarrolladores = () => {
               <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
               </svg>
-              {translations[language].toolsTitle || "DevOps & Tools"}
+              {translations[language].toolsTitle || "Tools"}
               <span className="tech-category-count">
                 {technologies.filter(t => t.category === 'tools').length}
               </span>
