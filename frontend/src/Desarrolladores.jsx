@@ -3,7 +3,7 @@ import "./Desarrolladores.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin, faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { faAngleUp, faCheckCircle, faExclamationTriangle, faChevronDown } from "@fortawesome/free-solid-svg-icons";
-import { faBullseye, faCogs, faHandshake, faUsers, faCode, faMobileAlt, faDesktop } from '@fortawesome/free-solid-svg-icons';
+import { faBullseye, faCogs, faHandshake, faUsers, faCode, faMobileAlt, faDesktop, faEnvelope, faPhone, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import { HiChevronLeft } from 'react-icons/hi';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
@@ -202,6 +202,57 @@ const Desarrolladores = () => {
       }
     }
   ];
+
+  // Función para manejar el scroll suave sin afectar el historial
+  const smoothScroll = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      // Reemplazar el estado en lugar de pushState
+      window.history.replaceState(null, '', window.location.pathname);
+    }
+  };
+
+  // Efecto para manejar el historial del navegador
+  useEffect(() => {
+    // Configuración inicial para evitar el scroll automático
+ if (window.history.scrollRestoration) {
+  window.history.scrollRestoration = 'manual';
+}
+
+    // Limpiar hashes iniciales
+    if (window.location.hash) {
+      window.history.replaceState(null, '', window.location.pathname);
+    }
+
+    // Función para manejar cambios en el hash
+    const handleHashChange = () => {
+      if (window.location.hash) {
+        // Reemplazar el estado para eliminar el hash sin añadir entrada al historial
+        window.history.replaceState(null, '', window.location.pathname);
+      }
+    };
+
+    // Función para manejar el evento popstate (botón atrás/adelante)
+    const handlePopState = () => {
+      // Si hay un hash en la URL, lo eliminamos
+      if (window.location.hash) {
+        window.history.replaceState(null, '', window.location.pathname);
+      }
+      // Scroll al inicio
+      window.scrollTo(0, 0);
+    };
+
+    // Añadir event listeners
+    window.addEventListener('hashchange', handleHashChange);
+    window.addEventListener('popstate', handlePopState);
+
+    // Limpieza al desmontar el componente
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, []);
 
   const filterTech = (category) => {
     setActiveCategory(category);
@@ -421,7 +472,6 @@ const Desarrolladores = () => {
     setExpandedCard(expandedCard === index ? null : index);
   };
   
-  
   return (
     <div className="page-container" id="inicio">
       {isScrolled && (
@@ -488,12 +538,84 @@ const Desarrolladores = () => {
             
             <div className={`nav-links-container ${isMenuOpen ? "open" : ""}`}>
               <ul className="nav-links">
-                <li><a href="#inicio" onClick={() => setIsMenuOpen(false)} className="nav-link">{language === "es" ? "Inicio" : "Home"}</a></li>
-                <li><a href="#nosotros" onClick={() => setIsMenuOpen(false)} className="nav-link">{language === "es" ? "Nosotros" : "About Us"}</a></li>
-                <li><a href="#equipo" onClick={() => setIsMenuOpen(false)} className="nav-link">{language === "es" ? "Equipo" : "Team"}</a></li>
-                <li><a href="#stack" onClick={() => setIsMenuOpen(false)} className="nav-link">{language === "es" ? "Stack Tecnológico" : "Tech Stack"}</a></li>
-                <li><a href="#servicios" onClick={() => setIsMenuOpen(false)} className="nav-link">{language === "es" ? "Servicios" : "Services"}</a></li>
-                <li><a href="#contacto" onClick={() => setIsMenuOpen(false)} className="nav-link">{language === "es" ? "Contacto" : "Contact"}</a></li>
+                <li>
+                  <a 
+                    href="#inicio" 
+                    onClick={(e) => { 
+                      e.preventDefault(); 
+                      smoothScroll('inicio'); 
+                      setIsMenuOpen(false); 
+                    }} 
+                    className="nav-link"
+                  >
+                    {language === "es" ? "Inicio" : "Home"}
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="#nosotros" 
+                    onClick={(e) => { 
+                      e.preventDefault(); 
+                      smoothScroll('nosotros'); 
+                      setIsMenuOpen(false); 
+                    }} 
+                    className="nav-link"
+                  >
+                    {language === "es" ? "Nosotros" : "About Us"}
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="#equipo" 
+                    onClick={(e) => { 
+                      e.preventDefault(); 
+                      smoothScroll('equipo'); 
+                      setIsMenuOpen(false); 
+                    }} 
+                    className="nav-link"
+                  >
+                    {language === "es" ? "Equipo" : "Team"}
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="#stack" 
+                    onClick={(e) => { 
+                      e.preventDefault(); 
+                      smoothScroll('stack'); 
+                      setIsMenuOpen(false); 
+                    }} 
+                    className="nav-link"
+                  >
+                    {language === "es" ? "Stack Tecnológico" : "Tech Stack"}
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="#servicios" 
+                    onClick={(e) => { 
+                      e.preventDefault(); 
+                      smoothScroll('servicios'); 
+                      setIsMenuOpen(false); 
+                    }} 
+                    className="nav-link"
+                  >
+                    {language === "es" ? "Servicios" : "Services"}
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="#contacto" 
+                    onClick={(e) => { 
+                      e.preventDefault(); 
+                      smoothScroll('contacto'); 
+                      setIsMenuOpen(false); 
+                    }} 
+                    className="nav-link"
+                  >
+                    {language === "es" ? "Contacto" : "Contact"}
+                  </a>
+                </li>
                 <li className="language-switcher">
                   <button onClick={toggleLanguage} className="language-button" aria-label="Change language">
                     <img
@@ -523,10 +645,24 @@ const Desarrolladores = () => {
             </h1>
             
             <div className="cta-buttons">
-              <a href="#contacto" className="cta-button primary">
+              <a 
+                href="#contacto" 
+                onClick={(e) => { 
+                  e.preventDefault(); 
+                  smoothScroll('contacto'); 
+                }} 
+                className="cta-button primary"
+              >
                 {language === "es" ? "Contáctanos" : "Contact Us"}
               </a>
-              <a href="#servicios" className="cta-button secondary">
+              <a 
+                href="#servicios" 
+                onClick={(e) => { 
+                  e.preventDefault(); 
+                  smoothScroll('servicios'); 
+                }} 
+                className="cta-button secondary"
+              >
                 {language === "es" ? "Nuestros Servicios" : "Our Services"}
               </a>
             </div>
@@ -634,36 +770,6 @@ const Desarrolladores = () => {
           ))}
         </div>
       </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      
 
       <section className="tech-sphere-section" id="stack">
         <div className="section-container Satack">
@@ -856,59 +962,6 @@ const Desarrolladores = () => {
         </div>
       </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       <section className="services-section" id="servicios" ref={el => sectionRefs.current[4] = el}>
         <div className="section-container">
           <div className="section-header">
@@ -985,7 +1038,6 @@ const Desarrolladores = () => {
           </div>
         </div>
       </section>
-
 
       <footer className="footer-section" id="contacto">
         <div className="footer-content">
