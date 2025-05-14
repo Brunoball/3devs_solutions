@@ -762,7 +762,7 @@ scroll-margin-top: 4rem;
   transition: all 0.3s ease;
   border: 1px solid rgba(99, 102, 241, 0.2); /* Borde violeta claro */
   box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.08);
-  height: 300px;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -804,6 +804,7 @@ scroll-margin-top: 4rem;
 }
 
 .info-card p {
+  height: 120px;
   color: #ccd6f6; /* Texto gris azulado oscuro */
   line-height: 1.8;
   font-size: 1.05rem;
@@ -823,6 +824,11 @@ scroll-margin-top: 4rem;
 
 /* Responsive */
 @media (max-width: 768px) {
+
+  .info-card p {
+  height: auto;
+
+}
   .info-card:hover .info-icon-container{
     background:rgba(99, 102, 241, 0.08);
     transform: rotate(0);

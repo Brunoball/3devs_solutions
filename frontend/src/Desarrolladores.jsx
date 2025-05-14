@@ -208,50 +208,26 @@ const Desarrolladores = () => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
-      // Reemplazar el estado en lugar de pushState
-      window.history.replaceState(null, '', window.location.pathname);
     }
   };
 
   // Efecto para manejar el historial del navegador
-  useEffect(() => {
-    // Configuración inicial para evitar el scroll automático
- if (window.history.scrollRestoration) {
-  window.history.scrollRestoration = 'manual';
-}
+useEffect(() => {
+  if (window.history.scrollRestoration) {
+    window.history.scrollRestoration = 'manual';
+  }
 
-    // Limpiar hashes iniciales
-    if (window.location.hash) {
-      window.history.replaceState(null, '', window.location.pathname);
-    }
+  const handlePopState = () => {
+    smoothScroll('inicio');
+    window.history.pushState(null, '');
+  };
 
-    // Función para manejar cambios en el hash
-    const handleHashChange = () => {
-      if (window.location.hash) {
-        // Reemplazar el estado para eliminar el hash sin añadir entrada al historial
-        window.history.replaceState(null, '', window.location.pathname);
-      }
-    };
+  window.history.pushState(null, '');
+  window.addEventListener('popstate', handlePopState);
 
-    // Función para manejar el evento popstate (botón atrás/adelante)
-    const handlePopState = () => {
-      // Si hay un hash en la URL, lo eliminamos
-      if (window.location.hash) {
-        window.history.replaceState(null, '', window.location.pathname);
-      }
-      // Scroll al inicio
-      window.scrollTo(0, 0);
-    };
-
-    // Añadir event listeners
-    window.addEventListener('hashchange', handleHashChange);
-    window.addEventListener('popstate', handlePopState);
-
-    // Limpieza al desmontar el componente
-    return () => {
-      window.removeEventListener('hashchange', handleHashChange);
-      window.removeEventListener('popstate', handlePopState);
-    };
+  return () => {
+    window.removeEventListener('popstate', handlePopState);
+  };
   }, []);
 
   const filterTech = (category) => {
