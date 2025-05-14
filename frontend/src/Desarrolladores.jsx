@@ -213,18 +213,38 @@ const Desarrolladores = () => {
 
   // Efecto para manejar el historial del navegador
 useEffect(() => {
+  // Configura el scroll restoration manual
   if (window.history.scrollRestoration) {
     window.history.scrollRestoration = 'manual';
   }
 
+  // Variable para controlar el estado del primer "Atrás"
+  let backPressed = false;
+
   const handlePopState = () => {
-    smoothScroll('inicio');
-    window.history.pushState(null, '');
+    if (!backPressed) {
+      // Primera vez que se presiona "Atrás"
+      smoothScroll('inicio');
+      backPressed = true;
+      
+      // Reemplazar el estado actual para que el próximo "Atrás" salga
+      window.history.replaceState({ canExit: true }, '');
+      
+      // Empujar un nuevo estado para mantener el control
+      window.history.pushState(null, '');
+    } else {
+      // Segunda vez que se presiona "Atrás" - salir
+      window.history.back();
+    }
   };
 
+  // Estado inicial
   window.history.pushState(null, '');
+
+  // Event listener
   window.addEventListener('popstate', handlePopState);
 
+  // Limpieza
   return () => {
     window.removeEventListener('popstate', handlePopState);
   };
