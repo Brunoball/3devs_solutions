@@ -213,40 +213,51 @@ const Desarrolladores = () => {
 
   // Efecto para manejar el historial del navegador
 useEffect(() => {
-  // Configura el scroll restoration manual
   if (window.history.scrollRestoration) {
     window.history.scrollRestoration = 'manual';
   }
 
-  // Variable para controlar el estado del primer "Atrás"
-  let backPressed = false;
+  // Estado para controlar si es la primera vez que se presiona "atrás"
+  let isFirstBack = true;
 
   const handlePopState = () => {
-    if (!backPressed) {
-      // Primera vez que se presiona "Atrás"
+    if (isFirstBack) {
+      // Primera vez: hacer scroll al inicio
       smoothScroll('inicio');
-      backPressed = true;
+      isFirstBack = false;
       
-      // Reemplazar el estado actual para que el próximo "Atrás" salga
-      window.history.replaceState({ canExit: true }, '');
+      // Reemplazar el estado actual
+      window.history.replaceState({ isFirstBack: false }, '');
       
-      // Empujar un nuevo estado para mantener el control
-      window.history.pushState(null, '');
+      // Empujar un nuevo estado
+      window.history.pushState({ isFirstBack: true }, '');
     } else {
-      // Segunda vez que se presiona "Atrás" - salir
+      // Segunda vez: salir de la página
       window.history.back();
     }
   };
 
+  // Función para reiniciar el contador cuando hay interacción
+  const resetBackCounter = () => {
+    isFirstBack = true;
+    // Reemplazar el estado actual para mantener consistencia
+    window.history.replaceState({ isFirstBack: true }, '');
+  };
+
   // Estado inicial
-  window.history.pushState(null, '');
+  window.history.pushState({ isFirstBack: true }, '');
 
-  // Event listener
+  // Event listeners
   window.addEventListener('popstate', handlePopState);
+  // Reiniciar contador al hacer scroll
+  window.addEventListener('scroll', resetBackCounter);
+  // Reiniciar contador al hacer clic
+  window.addEventListener('click', resetBackCounter);
 
-  // Limpieza
   return () => {
     window.removeEventListener('popstate', handlePopState);
+    window.removeEventListener('scroll', resetBackCounter);
+    window.removeEventListener('click', resetBackCounter);
   };
   }, []);
 
