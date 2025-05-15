@@ -701,6 +701,7 @@ useEffect(() => {
               </div>
               <p dangerouslySetInnerHTML={{ __html: translations[language].aboutText3 }} />
             </div>
+            
 
             <div className="info-card">
               <div className="info-icon-container">

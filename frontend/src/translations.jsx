@@ -174,6 +174,20 @@ export const translations = {
       linkedin: "https://www.linkedin.com/in/bruno-ballarino-8275622b7/",
       instagram: "https://www.instagram.com/ballarinobruno/",
     },
+    {
+      name: language === "es" ? "Gaston Villalba" : "Gaston Villalba",
+      role: language === "es" ? "Desarrollador de Software" : "Software Developer",
+      img: "/img/Gaston.jpg",
+      info: language === "es" ? [
+        "Estudiante de tecnicatura superior en desarrollo de software",
+        "Experiencia en desarrollo frontend y desarrollo web",
+      ] : [
+        "Student of Higher Software Development",
+        "Experience in frontend and web development",
+      ],
+      linkedin: "https://www.linkedin.com/in/gaston-villalba-b70500306/",
+      instagram: "https://www.instagram.com/gastonvillalba7373/",
+    },
   ];
   
   
