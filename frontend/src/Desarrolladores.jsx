@@ -213,11 +213,14 @@ const Desarrolladores = () => {
 
   // Efecto para manejar el historial del navegador
 useEffect(() => {
+  // Verificar si estamos en un navegador in-app
+  const isInAppBrowser = /Instagram|Facebook|Twitter/.test(navigator.userAgent);
+  
+  // Configuración inicial del historial
   if (window.history.scrollRestoration) {
     window.history.scrollRestoration = 'manual';
   }
 
-  // Estado para controlar si es la primera vez que se presiona "atrás"
   let isFirstBack = true;
 
   const handlePopState = () => {
@@ -226,40 +229,53 @@ useEffect(() => {
       smoothScroll('inicio');
       isFirstBack = false;
       
-      // Reemplazar el estado actual
-      window.history.replaceState({ isFirstBack: false }, '');
-      
-      // Empujar un nuevo estado
-      window.history.pushState({ isFirstBack: true }, '');
+      try {
+        // Intentar modificar el historial (puede fallar en navegadores in-app)
+        window.history.replaceState({ isFirstBack: false }, '');
+        window.history.pushState({ isFirstBack: true }, '');
+      } catch (e) {
+        console.log('History API no soportada completamente');
+        // Fallback: usar un timeout para resetear el flag
+        setTimeout(() => { isFirstBack = true; }, 1000);
+      }
     } else {
       // Segunda vez: salir de la página
       window.history.back();
     }
   };
 
-  // Función para reiniciar el contador cuando hay interacción
   const resetBackCounter = () => {
     isFirstBack = true;
-    // Reemplazar el estado actual para mantener consistencia
-    window.history.replaceState({ isFirstBack: true }, '');
+    try {
+      window.history.replaceState({ isFirstBack: true }, '');
+    } catch (e) {
+      console.log('No se pudo actualizar el estado del historial');
+    }
   };
 
-  // Estado inicial
-  window.history.pushState({ isFirstBack: true }, '');
+  // Solo intentar modificar el historial si no estamos en un navegador in-app
+  if (!isInAppBrowser) {
+    try {
+      window.history.pushState({ isFirstBack: true }, '');
+    } catch (e) {
+      console.log('No se pudo inicializar el estado del historial');
+    }
+  }
 
-  // Event listeners
+  // Event listeners con fallbacks
   window.addEventListener('popstate', handlePopState);
-  // Reiniciar contador al hacer scroll
   window.addEventListener('scroll', resetBackCounter);
-  // Reiniciar contador al hacer clic
   window.addEventListener('click', resetBackCounter);
+  // Añadir evento touchstart para navegadores móviles
+  window.addEventListener('touchstart', resetBackCounter);
 
   return () => {
     window.removeEventListener('popstate', handlePopState);
     window.removeEventListener('scroll', resetBackCounter);
     window.removeEventListener('click', resetBackCounter);
+    window.removeEventListener('touchstart', resetBackCounter);
   };
-  }, []);
+}, []);
 
   const filterTech = (category) => {
     setActiveCategory(category);
