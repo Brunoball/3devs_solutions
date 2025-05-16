@@ -2212,9 +2212,6 @@ scroll-margin-top: 4rem;
 
 
 
-
-
-
 /* ================ FOOTER ================ */
 .footer-section {
   background: radial-gradient(ellipse at bottom, #0d1d31 0%, #0c0d13 100%);
@@ -2232,6 +2229,7 @@ scroll-margin-top: 4rem;
   gap: 30px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   padding-bottom: 40px;
+  align-items: center;
 }
 
 .footer-logo {
@@ -2239,20 +2237,25 @@ scroll-margin-top: 4rem;
   min-width: 250px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   text-align: center;
+  padding: 20px 0;
 }
 
 .footer-logo-img {
-  max-width: 180px;
+  max-width: 220px;
+  margin-bottom: 8px; /* Reducido de 15px a 8px */
 }
 
 .footer-slogan {
   font-size: 15.5px;
-  margin-top: 10px;
+  margin-top: 5px;
   color: #a1a1a1;
+  line-height: 1.4;
 }
 
+/* El resto del CSS permanece igual */
 .footer-contact {
   flex: 1;
   min-width: 250px;
@@ -2262,7 +2265,7 @@ scroll-margin-top: 4rem;
   font-size: 20px;
   margin-bottom: 10px;
   color: #f8f8f8;
-  border-bottom: 2px solid #4cc9f0; /* Azul claro/acua */
+  border-bottom: 2px solid #4cc9f0;
   display: inline-block;
   padding-bottom: 5px;
 }
@@ -2270,7 +2273,8 @@ scroll-margin-top: 4rem;
 .footer-contact p {
   font-size: 15.5px;
   color: #e2e2e2;
-  margin: 5px 0;
+  margin: 8px 0;
+  line-height: 1.4;
 }
 
 .footer-social {
@@ -2286,7 +2290,7 @@ scroll-margin-top: 4rem;
   font-size: 20px;
   margin-bottom: 15px;
   color: #f8f8f8;
-  border-bottom: 2px solid #4cc9f0; /* Azul claro/acua */
+  border-bottom: 2px solid #4cc9f0;
   display: inline-block;
   padding-bottom: 5px;
 }
@@ -2305,7 +2309,7 @@ scroll-margin-top: 4rem;
 }
 
 .footer-social ul li a:hover {
-  color: #4cc9f0; /* Azul claro/acua al hover */
+  color: #4cc9f0;
 }
 
 .footer-bottom {
@@ -2313,7 +2317,36 @@ scroll-margin-top: 4rem;
   margin-top: 50px;
   font-size: 14px;
   color: #a1a1a1;
+  padding: 0 20px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
