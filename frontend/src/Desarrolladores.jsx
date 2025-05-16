@@ -88,22 +88,18 @@ const Desarrolladores = () => {
   const toggleExpand = (index) => {
     setExpandedCard(expandedCard === index ? null : index);
   };
+const toggleShowAllTeam = () => {
+  // Primero cerramos todas las tarjetas expandidas
+  setExpandedCard(null);
 
-  const toggleShowAllTeam = () => {
-    if (!showAllTeam) {
-      setShowAllTeam(true);
-      // Desplazamiento suave después de que las tarjetas se hayan renderizado
-      setTimeout(() => {
-        if (teamSectionRef.current) {
+  if (!showAllTeam) {
+    setShowAllTeam(true);
+  } else {
 
-        }
-      }, 500); // Coincide con la duración de la animación CSS
-    } else {
-      // Desplazamiento antes de ocultar las tarjetas
+    setTimeout(() => setShowAllTeam(false), 300);
+  }
+};
 
-      setTimeout(() => setShowAllTeam(false), 0);
-    }
-  };
 
   const technologies = [
     {
