@@ -896,7 +896,7 @@ scroll-margin-top: 4rem;
   padding: 30px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
   position: relative;
-  height: 280px;
+  height: 280px; /* Altura inicial */
   border: 1px solid rgba(100, 255, 218, 0.1);
   display: flex;
   flex-direction: column;
@@ -912,6 +912,7 @@ scroll-margin-top: 4rem;
 
 .card.expanded {
   height: 480px;
+  transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Efecto hover */
@@ -1015,7 +1016,7 @@ scroll-margin-top: 4rem;
   margin-top: 0;
   padding: 0;
   transition: 
-    max-height 0.3s,
+    max-height 0.5s,
     opacity 0.4s ease;
 }
 
@@ -1056,12 +1057,87 @@ scroll-margin-top: 4rem;
   50% { transform: translateY(10px); }
 }
 
+/* nuevo personal */
+/* Estilos para el botón "Ver más" */
+
+
+.card.hidden {
+  opacity: 0;
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  border-width: 0;
+  transform: translateY(20px);
+  transition: 
+    opacity 0.4s ease,
+    max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    padding 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    margin 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    border-width 0.3s ease;
+}
+
+.card.show {
+  opacity: 1;
+  padding: 30px;
+  max-height: 460px;
+  margin: 15px 0;
+  border-width: 1px;
+  transform: translateY(0);
+  /* Retraso escalonado para el efecto cascada */
+}
+
+.show-more-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 1rem auto 0;
+  padding: 12px 28px;
+  background: linear-gradient(135deg, rgba(100, 255, 218, 0.1) 0%, rgba(100, 255, 218, 0.2) 100%);
+  color: #64ffda;
+  border: 1px solid rgba(100, 255, 218, 0.5);
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  box-shadow: 0 4px 15px rgba(100, 255, 218, 0.1);
+}
+
+.show-more-button:hover {
+  background: linear-gradient(135deg, rgba(100, 255, 218, 0.2) 0%, rgba(100, 255, 218, 0.3) 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(100, 255, 218, 0.15);
+}
+
+.team-icon {
+  font-size: 1.1rem;
+  transition: transform 0.3s ease;
+}
+
+.show-more-button:hover .team-icon {
+  transform: scale(1.1);
+}
+
+.chevron-icon {
+  transition: all 0.3s ease;
+}
+
+.chevron-icon.expanded {
+  transform: rotate(180deg);
+}
 /* Responsive */
 @media (max-width: 768px) {
+  .show-more-button{
+    cursor:auto;
+  }
 
    .more-btn{
     margin-top: 1rem;
-    cursor: none;
+    cursor: auto;
    }
   .cards-container {
     grid-template-columns: 1fr;

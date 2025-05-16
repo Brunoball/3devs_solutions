@@ -80,7 +80,31 @@ const Desarrolladores = () => {
   const typingTimeoutRef = useRef(null);
   const cursorIntervalRef = useRef(null);
   const sectionRefs = useRef([]);
-  
+  const [showAllTeam, setShowAllTeam] = useState(false);
+  // ... (otros estados existentes)
+  const teamSectionRef = useRef(null);
+  const hiddenCardsRef = useRef([]);
+  const cardsContainerRef = useRef(null);
+  const toggleExpand = (index) => {
+    setExpandedCard(expandedCard === index ? null : index);
+  };
+
+  const toggleShowAllTeam = () => {
+    if (!showAllTeam) {
+      setShowAllTeam(true);
+      // Desplazamiento suave después de que las tarjetas se hayan renderizado
+      setTimeout(() => {
+        if (teamSectionRef.current) {
+
+        }
+      }, 500); // Coincide con la duración de la animación CSS
+    } else {
+      // Desplazamiento antes de ocultar las tarjetas
+
+      setTimeout(() => setShowAllTeam(false), 0);
+    }
+  };
+
   const technologies = [
     {
       name: "HTML5",
@@ -491,9 +515,7 @@ useEffect(() => {
     document.title = "3 Devs Solutions";
   }, []);
 
-  const toggleExpand = (index) => {
-    setExpandedCard(expandedCard === index ? null : index);
-  };
+
   
   return (
     <div className="page-container" id="inicio">
@@ -729,71 +751,93 @@ useEffect(() => {
         </div>
       </section>
 
-      <section className="team-section" id="equipo">
-        <h2>{translations[language].teamTitle}</h2>
-        <p className="sub-title">{translations[language].teamSubtitle}</p>
-        <div className="cards-container">
-          {developersData(language).map((dev, index) => (
-            <div
-              key={index}
-              className={`card ${expandedCard === index ? "expanded" : ""}`}
-            >
-              <div className="card-content">
-                <div className="avatar-container">
-                  <img 
-                    src={dev.img} 
-                    alt={dev.name} 
-                    className="avatar"
-                    loading="lazy"
-                    width={100}
-                    height={100}
-                  />
-                </div>
-                <h3 className="name">{dev.name}</h3>
-                <p className="role">{dev.role}</p>
-                
-                <div className="expandable-content">
-                  <ul className="info">
-                    {dev.info.map((point, idx) => (
-                      <li key={idx}>{point}</li>
-                    ))}
-                  </ul>
-                  <div className="social-icons">
-                    <a 
-                      href={dev.linkedin} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      aria-label={`${dev.name} LinkedIn`}
-                    >
-                      <FontAwesomeIcon icon={faLinkedin} className="social-icon" />
-                    </a>
-                    <a 
-                      href={dev.instagram} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      aria-label={`${dev.name} Instagram`}
-                    >
-                      <FontAwesomeIcon icon={faInstagram} className="social-icon" />
-                    </a>
-                  </div>
-                </div>
-                
-                <button 
-                  className="more-btn"
-                  onClick={() => toggleExpand(index)}
-                  aria-expanded={expandedCard === index}
-                  aria-label={expandedCard === index ? "Contraer información" : "Expandir información"}
-                >
-                  <FontAwesomeIcon 
-                    icon={faChevronDown} 
-                    className={`chevron-icon ${expandedCard === index ? "expanded" : ""}`} 
-                  />
-                </button>
+      <section className="team-section" id="equipo" ref={teamSectionRef}>
+      <h2>{translations[language].teamTitle}</h2>
+      <p className="sub-title">{translations[language].teamSubtitle}</p>
+      
+      <div className="cards-container" ref={cardsContainerRef}>
+        {developersData(language).map((dev, index) => (
+          <div
+            key={index}
+            className={`card ${expandedCard === index ? "expanded" : ""} ${
+              index >= 3 ? (showAllTeam ? "show" : "hidden") : ""
+            }`}
+          >
+            <div className="card-content">
+              <div className="avatar-container">
+                <img 
+                  src={dev.img} 
+                  alt={dev.name} 
+                  className="avatar"
+                  loading="lazy"
+                  width={100}
+                  height={100}
+                />
               </div>
+              <h3 className="name">{dev.name}</h3>
+              <p className="role">{dev.role}</p>
+              
+              <div className="expandable-content">
+                <ul className="info">
+                  {dev.info.map((point, idx) => (
+                    <li key={idx}>{point}</li>
+                  ))}
+                </ul>
+                <div className="social-icons">
+                  <a 
+                    href={dev.linkedin} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    aria-label={`${dev.name} LinkedIn`}
+                  >
+                    <FontAwesomeIcon icon={faLinkedin} className="social-icon" />
+                  </a>
+                  <a 
+                    href={dev.instagram} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    aria-label={`${dev.name} Instagram`}
+                  >
+                    <FontAwesomeIcon icon={faInstagram} className="social-icon" />
+                  </a>
+                </div>
+              </div>
+              
+              <button 
+                className="more-btn"
+                onClick={() => toggleExpand(index)}
+                aria-expanded={expandedCard === index}
+                aria-label={expandedCard === index ? 
+                  (language === "es" ? "Contraer información" : "Collapse info") : 
+                  (language === "es" ? "Expandir información" : "Expand info")}
+              >
+                <FontAwesomeIcon 
+                  icon={faChevronDown} 
+                  className={`chevron-icon ${expandedCard === index ? "expanded" : ""}`} 
+                />
+              </button>
             </div>
-          ))}
-        </div>
-      </section>
+          </div>
+        ))}
+      </div>
+      
+      {developersData(language).length > 3 && (
+        <button 
+          className="show-more-button"
+          onClick={toggleShowAllTeam}
+          aria-expanded={showAllTeam}
+        >
+          <FontAwesomeIcon icon={faUsers} className="team-icon" />
+          {showAllTeam 
+            ? translations[language].showLessTeam 
+            : translations[language].showMoreTeam}
+          <FontAwesomeIcon 
+            icon={faChevronDown} 
+            className={`chevron-icon ${showAllTeam ? "expanded" : ""}`}
+          />
+        </button>
+      )}
+    </section>
 
       <section className="tech-sphere-section" id="stack">
         <div className="section-container Satack">
