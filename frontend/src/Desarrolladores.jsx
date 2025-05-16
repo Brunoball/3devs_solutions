@@ -1110,7 +1110,7 @@ useEffect(() => {
       <footer className="footer-section" id="contacto">
         <div className="footer-content">
           <div className="footer-logo">
-            <img src="/img/logo_blanco.png" alt="Logo" className="footer-logo-img" />
+            <img src="/img/lg_blanco_horizontal.png" alt="Logo" className="footer-logo-img" />
             <p className="footer-slogan">{translations[language].footerText}</p>
           </div>
           <div className="footer-contact">
