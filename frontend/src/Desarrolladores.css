@@ -670,7 +670,7 @@ scroll-margin-top: 4rem;
 
 /* ================ SECTION COMMON STYLES ================ */
 .about-section {
-  padding:60px 0;
+  padding: 3rem 0;
   background: radial-gradient(ellipse at bottom, #0d1d31 0%, #0c0d13 100%);
   color: #2d3748; /* Texto principal gris azulado oscuro */
   position: relative;
@@ -840,7 +840,7 @@ scroll-margin-top: 4rem;
   background: radial-gradient(ellipse at bottom, #0d1d31 0%, #0c0d13 100%);
   color: #ccd6f6;
   text-align: center;
-  padding: 60px 20px;
+  padding: 3rem 20px;
 }
 
 .team-section h2 {
@@ -1192,7 +1192,7 @@ scroll-margin-top: 4rem;
 
 /* =============== TECH SPHERE SECTION =============== */
 .tech-sphere-section {
-  padding: 60px 0;
+  padding: 3rem 0;
   background: radial-gradient(ellipse at bottom, #0d1d31 0%, #0c0d13 100%);
   position: relative;
   overflow: hidden;
@@ -1924,7 +1924,7 @@ scroll-margin-top: 4rem;
 
 /* ================ SERVICES SECTION ================ */
 .services-section {
-  padding: 60px 20px;
+  padding: 3rem 20px;
   background: radial-gradient(ellipse at bottom, #0d1d31 0%, #0c0d13 100%);
   color: white;
 }
