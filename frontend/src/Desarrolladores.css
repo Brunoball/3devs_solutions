@@ -670,7 +670,7 @@ scroll-margin-top: 4rem;
 
 /* ================ SECTION COMMON STYLES ================ */
 .about-section {
-  padding: 100px 0;
+  padding:60px 0;
   background: radial-gradient(ellipse at bottom, #0d1d31 0%, #0c0d13 100%);
   color: #2d3748; /* Texto principal gris azulado oscuro */
   position: relative;
@@ -689,11 +689,12 @@ scroll-margin-top: 4rem;
   position: relative;
   background: linear-gradient(90deg, #00d1ff, #bd00ff);
   -webkit-background-clip: text;
-  background-clip: text;
+  background-clip: text; 
   color: transparent;
   display: inline-block;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 0;
 }
 
 .about-content h2::after {
@@ -839,7 +840,7 @@ scroll-margin-top: 4rem;
   background: radial-gradient(ellipse at bottom, #0d1d31 0%, #0c0d13 100%);
   color: #ccd6f6;
   text-align: center;
-  padding: 80px 20px;
+  padding: 60px 20px;
 }
 
 .team-section h2 {
@@ -854,6 +855,7 @@ scroll-margin-top: 4rem;
   display: inline-block;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 0;
 }
 
 .team-section h2::after {
@@ -2669,8 +2671,4 @@ scroll-margin-top: 4rem;
   .servicios-card:hover {
     transform: translateY(0px);
   }
-}
-
-#nosotros {
-  padding-top: 100px; /* Ajusta este valor según la altura de tu barra de navegación */
 }
