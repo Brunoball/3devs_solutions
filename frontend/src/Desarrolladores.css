@@ -670,11 +670,12 @@ scroll-margin-top: 4rem;
 
 /* ================ SECTION COMMON STYLES ================ */
 .about-section {
-  padding: 100px 0;
+  padding: 80px 0;
   background: radial-gradient(ellipse at bottom, #0d1d31 0%, #0c0d13 100%);
   color: #2d3748; /* Texto principal gris azulado oscuro */
   position: relative;
   overflow: hidden;
+  border: 1px solid white;
 }
 
 .about-content {
@@ -695,6 +696,7 @@ scroll-margin-top: 4rem;
   display: inline-block;
   margin-left: auto;
   margin-right: auto;
+  border: 1px solid white;
 }
 
 .about-content h2::after {
@@ -2320,7 +2322,7 @@ scroll-margin-top: 4rem;
 }
 
 .footer-logo-img {
-  max-width: 220px;
+  max-width: 160px;
   margin-bottom: 8px; /* Reducido de 15px a 8px */
 }
 
