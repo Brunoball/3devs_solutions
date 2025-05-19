@@ -1111,7 +1111,7 @@ useEffect(() => {
           </div>
           <div className="footer-contact">
             <h3>{translations[language].contactTitle}</h3>
-            <p>Email: 3devs.soluciones@gmail.com</p>
+            <p>Email: 3devs.solutions@gmail.com</p>
             <p>Teléfono: +54 3564-672341</p>
             <p>Dirección: San Francisco/Rafaela, Argentina</p>
           </div>
@@ -1124,7 +1124,7 @@ useEffect(() => {
                 </a>
               </li>
               <li>
-                <a href="https://www.instagram.com/3devs_solutions/" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.instagram.com/3devs.solutions/" target="_blank" rel="noopener noreferrer">
                   <FontAwesomeIcon icon={faInstagram} />
                 </a>
               </li>
