@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./Desarrolladores.css";
+import "./Servicios.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin, faInstagram } from "@fortawesome/free-brands-svg-icons";
 import {
@@ -17,6 +18,7 @@ import {
   faEnvelope,
   faPhone,
   faMapMarkerAlt,
+  faArrowRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
@@ -1155,6 +1157,10 @@ const Desarrolladores = () => {
   };
 
   const showTechDetails = (tech) => {
+    // Sincroniza la tecnología seleccionada con su pestaña/categoría.
+    // De esta forma, al elegir un elemento desde el carrusel, también
+    // queda resaltada la pestaña correspondiente en el panel inferior.
+    setActiveCategory(tech.category);
     setSelectedTech(tech);
   };
 
@@ -1436,7 +1442,7 @@ const Desarrolladores = () => {
 
         <div className="lottie-animation-container">
           <DotLottieReact
-            src="https://lottie.host/27615f6b-e468-45da-a344-0c0be8dc3a38/Z9R0OeBeXF.lottie"
+            src="/animations/3devs-hero.lottie"
             loop
             autoplay
             style={{
@@ -1975,77 +1981,111 @@ const Desarrolladores = () => {
         </div>
       </section>
 
-      <section className="services-section" id="servicios" ref={(el) => (sectionRefs.current[4] = el)}>
-        <div className="section-container">
-          <div className="section-header">
+      <section className="services-section services-section--refined" id="servicios" ref={(el) => (sectionRefs.current[4] = el)}>
+        <div className="section-container services-container">
+          <div className="section-header services-header">
             <h2 className="section-title">
               <span className="title-gradient">{translations[language].servicios}</span>
             </h2>
             <p className="section-subtitle">{translations[language].servicios_subtitle}</p>
           </div>
 
-          <div className="services-tabs">
-            <div className="tab-buttons">
+          <div className="services-tabs services-shell">
+            <div className="tab-buttons services-nav" role="tablist" aria-label={language === "es" ? "Tipos de servicio" : "Service types"}>
               {serviciosData[language].map((service, index) => (
                 <button
                   key={index}
-                  className={`tab-button ${activeService === index ? "active" : ""}`}
+                  type="button"
+                  role="tab"
+                  aria-selected={activeService === index}
+                  className={`tab-button service-tab ${activeService === index ? "active" : ""}`}
                   onClick={() => setActiveService(index)}
                 >
-                  <FontAwesomeIcon icon={index === 0 ? faCode : index === 1 ? faDesktop : faMobileAlt} />
-                  <span>{service.title}</span>
+                  <span className="service-tab-icon" aria-hidden="true">
+                    <FontAwesomeIcon icon={index === 0 ? faCode : index === 1 ? faDesktop : faMobileAlt} />
+                  </span>
+                  <span className="service-tab-label">{service.title}</span>
+                  <span className="service-tab-line" aria-hidden="true"></span>
                 </button>
               ))}
             </div>
 
-            <div className="tab-content">
-              <div className="service-details">
-                <div className="service-image">
-                  <img
-                    src={serviciosData[language][activeService].image}
-                    alt={serviciosData[language][activeService].title}
-                  />
+            <div className="tab-content services-panel">
+              <div
+                className="service-details service-details--refined"
+                key={`${language}-${activeService}`}
+              >
+                <div className="service-image service-visual">
+                  <div className="service-visual-glow" aria-hidden="true"></div>
+                  <div className="service-visual-frame">
+                    <img
+                      src={serviciosData[language][activeService].image}
+                      alt={serviciosData[language][activeService].title}
+                    />
+                  </div>
+                  <span className="service-visual-index" aria-hidden="true">
+                    {String(activeService + 1).padStart(2, "0")}
+                  </span>
                 </div>
-                <div className="service-info">
-                  <h3>{serviciosData[language][activeService].title}</h3>
-                  <p className="service-description">
-                    {serviciosData[language][activeService].subtitle}
-                  </p>
 
-                  <div className="pros-cons">
-                    <div className="pros">
-                      <h4>{language === "es" ? "Ventajas" : "Pros"}</h4>
+                <div className="service-info service-copy">
+                  <div className="service-copy-heading">
+                    <span className="service-eyebrow">
+                      {language === "es" ? "SOLUCIÓN 3DEVS" : "3DEVS SOLUTION"}
+                    </span>
+                    <h3>{serviciosData[language][activeService].title}</h3>
+                    <p className="service-description">
+                      {serviciosData[language][activeService].subtitle}
+                    </p>
+                  </div>
+
+                  <div className="pros-cons service-benefit-grid">
+                    <div className="pros service-benefit-card service-benefit-card--pros">
+                      <div className="service-benefit-title">
+                        <span className="service-benefit-icon service-benefit-icon--pros">
+                          <FontAwesomeIcon icon={faCheckCircle} />
+                        </span>
+                        <h4>{language === "es" ? "Ventajas" : "Pros"}</h4>
+                      </div>
                       <ul>
                         {serviciosData[language][activeService].pros.map((pro, idx) => (
                           <li key={`pro-${idx}`}>
                             <FontAwesomeIcon icon={faCheckCircle} className="pro-icon" />
-                            {pro}
+                            <span>{pro}</span>
                           </li>
                         ))}
                       </ul>
                     </div>
 
-                    <div className="cons">
-                      <h4>{language === "es" ? "Consideraciones" : "Cons"}</h4>
+                    <div className="cons service-benefit-card service-benefit-card--cons">
+                      <div className="service-benefit-title">
+                        <span className="service-benefit-icon service-benefit-icon--cons">
+                          <FontAwesomeIcon icon={faExclamationTriangle} />
+                        </span>
+                        <h4>{language === "es" ? "Consideraciones" : "Considerations"}</h4>
+                      </div>
                       <ul>
                         {serviciosData[language][activeService].contras.map((contra, idx) => (
                           <li key={`contra-${idx}`}>
                             <FontAwesomeIcon icon={faExclamationTriangle} className="con-icon" />
-                            {contra}
+                            <span>{contra}</span>
                           </li>
                         ))}
                       </ul>
                     </div>
                   </div>
 
-                  <a
-                    href={`https://api.whatsapp.com/send?phone=3564672341&text=¡Hola!%20Estoy%20interesado%20en%20el%20servicio%20de%20${serviciosData[language][activeService].title}.%20¿Podrían%20darme%20más%20información?`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="service-cta"
-                  >
-                    {translations[language].consultar_servicio}
-                  </a>
+                  <div className="service-actions">
+                    <a
+                      href={`https://api.whatsapp.com/send?phone=3564672341&text=¡Hola!%20Estoy%20interesado%20en%20el%20servicio%20de%20${serviciosData[language][activeService].title}.%20¿Podrían%20darme%20más%20información?`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="service-cta service-cta--refined"
+                    >
+                      <span>{translations[language].consultar_servicio}</span>
+                      <FontAwesomeIcon icon={faArrowRight} className="service-cta-icon" />
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -2131,7 +2171,11 @@ const Desarrolladores = () => {
               onClick={() => smoothScroll("contacto")}
             >
               {language === "es" ? "Hablemos de tu proyecto" : "Let's talk about your project"}
-              <span aria-hidden="true">→</span>
+              <FontAwesomeIcon
+                icon={faArrowRight}
+                className="success-cta-button-icon"
+                aria-hidden="true"
+              />
             </button>
           </div>
           <div className="clients-strip" aria-label={language === "es" ? "Clientes de 3devs" : "3devs clients"}>
