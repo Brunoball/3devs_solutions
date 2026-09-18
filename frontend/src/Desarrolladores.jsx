@@ -18,13 +18,389 @@ import {
   faPhone,
   faMapMarkerAlt,
 } from "@fortawesome/free-solid-svg-icons";
-import { HiChevronLeft } from "react-icons/hi";
+import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 import { translations, developersData, serviciosData } from "./translations";
 
 const esFlag = "/img/es-flag.png";
 const usFlag = "/img/us-flag.png";
+
+// Imágenes de Casos de Éxito:
+// Cada sistema tiene su propia carpeta dentro de public/img-caso-exito/.
+// Las rutas respetan exactamente la estructura/nombres de las capturas disponibles.
+const successCasesData = {
+  es: [
+    {
+      name: "LALCEC",
+      client: "LALCEC San Francisco",
+      category: "Gestión institucional",
+      images: [
+        "/img-caso-exito/Lalcec/01_dashboard.png",
+        "/img-caso-exito/Lalcec/02_socios.png",
+        "/img-caso-exito/Lalcec/03_cuotas.png",
+        "/img-caso-exito/Lalcec/04_ingresos.png",
+        "/img-caso-exito/Lalcec/05_resumen_contable.png",
+        "/img-caso-exito/Lalcec/06_panel_bot_conversacion.png",
+        "/img-caso-exito/Lalcec/07_bot_whatsapp.png",
+      ],
+      imageDetails: [
+        {
+          title: "Panel de gestión",
+          description:
+            "Vista general con indicadores de socios, cuotas registradas, recaudación y calidad de los datos para consultar el estado de la institución de un vistazo.",
+        },
+        {
+          title: "Gestión de socios",
+          description:
+            "Centraliza la ficha de cada socio y permite encontrar rápidamente su información, estado de cuota y deuda, evitando búsquedas dispersas y facilitando la gestión diaria.",
+        },
+        {
+          title: "Control de cuotas",
+          description:
+            "Permite detectar quién está al día o adeuda cuotas, filtrar por período y gestionar varios registros a la vez para agilizar el seguimiento de cobranzas.",
+        },
+        {
+          title: "Registro de ingresos",
+          description:
+            "Reúne cada cobro con su fecha, período, medio de pago y monto para mantener trazabilidad sobre lo recaudado y consultar movimientos sin perder contexto.",
+        },
+        {
+          title: "Resumen contable",
+          description:
+            "Resume ingresos, egresos y resultado en una única vista para entender rápidamente la situación económica y seguir su evolución a lo largo del año.",
+        },
+        {
+          title: "Panel del Bot de WhatsApp",
+          description:
+            "Centraliza las conversaciones del asistente para supervisar contactos, pagos y comprobantes, dando seguimiento a la atención automatizada desde un solo panel.",
+        },
+        {
+          title: "Asistente por WhatsApp",
+          description:
+            "Permite que el socio consulte opciones y avance en gestiones desde WhatsApp, reduciendo pasos manuales y guiando el proceso de pago de forma simple.",
+        },
+      ],
+      summary:
+        "Plataforma web desarrollada para centralizar la gestión de socios, grupos familiares, cuotas, cobranzas y movimientos administrativos.",
+      challenge:
+        "Ordenar procesos que requerían consultar información de socios, pagos y cobranzas desde distintos puntos de gestión.",
+      solution:
+        "Un sistema centralizado con administración de socios, cuotas, pagos, saldos, comprobantes, ingresos, egresos y reportes.",
+      result:
+        "La institución dispone de una única herramienta para consultar y registrar su operatoria cotidiana con mayor trazabilidad.",
+      tags: ["Socios", "Cuotas", "Cobranzas", "Contabilidad", "Reportes"],
+    },
+    {
+      name: "Círculo RH Negativo",
+      client: "Círculo RH Negativo",
+      category: "Gestión de socios",
+      images: [
+        "/img-caso-exito/Rh/01_dashboard.png",
+        "/img-caso-exito/Rh/02_socios.png",
+        "/img-caso-exito/Rh/03_cuotas.png",
+        "/img-caso-exito/Rh/04_ingresos.png",
+      ],
+      imageDetails: [
+        {
+          title: "Panel de gestión",
+          description:
+            "Vista general con indicadores de socios, cuotas, cobranzas y movimientos para consultar rápidamente el estado general de la organización.",
+        },
+        {
+          title: "Gestión de socios",
+          description:
+            "Organiza la información de cada socio y su grupo familiar para agilizar búsquedas, revisar estados y mantener actualizados los datos principales desde un solo lugar.",
+        },
+        {
+          title: "Control de cuotas",
+          description:
+            "Facilita el seguimiento de cuotas, estados de pago y registros pendientes para ordenar cobranzas y actuar más rápido sobre deudas o períodos adeudados.",
+        },
+        {
+          title: "Registro de ingresos",
+          description:
+            "Concentra cobranzas y movimientos económicos con su detalle correspondiente para mantener trazabilidad sobre lo recaudado y consultar ingresos sin perder contexto.",
+        },
+      ],
+      summary:
+        "Sistema orientado a la administración de socios y familias, con control de cuotas, pagos, saldos y movimientos de la organización.",
+      challenge:
+        "Centralizar la información de socios y mejorar el seguimiento de cuotas, cobranzas, saldos y comprobantes.",
+      solution:
+        "Una plataforma web con gestión de socios, familias, pagos múltiples, saldos a favor, comprobantes e información contable.",
+      result:
+        "Los procesos de consulta, cobro y seguimiento quedan integrados en una misma experiencia de trabajo.",
+      tags: ["Socios", "Familias", "Pagos", "Saldos", "Ingresos"],
+    },
+    {
+      name: "LERNA",
+      client: "Gestión educativa",
+      category: "Mesas de examen",
+      images: [
+        "/img-caso-exito/Lerna/01_dashboard_portada.png",
+        "/img-caso-exito/Lerna/02_mesas_examen.png",
+        "/img-caso-exito/Lerna/03_previas.png",
+        "/img-caso-exito/Lerna/04_catedras.png",
+        "/img-caso-exito/Lerna/05_estadisticas.png",
+        "/img-caso-exito/Lerna/06_formulario_inscripcion.png",
+      ],
+      imageDetails: [
+        {
+          title: "Panel principal",
+          description:
+            "Presenta de forma resumida el estado general del sistema, con accesos a módulos clave y una vista rápida para ubicar la información académica más importante.",
+        },
+        {
+          title: "Mesas de examen",
+          description:
+            "Permite organizar y consultar las mesas disponibles con sus fechas, docentes y estados para administrar el proceso de examen de forma más clara y ordenada.",
+        },
+        {
+          title: "Materias previas",
+          description:
+            "Ordena el seguimiento de asignaturas pendientes para identificar rápidamente qué previas tiene cada alumno y acompañar mejor el proceso de inscripción.",
+        },
+        {
+          title: "Cátedras",
+          description:
+            "Centraliza materias, cursos y docentes vinculados para mantener la estructura académica organizada y facilitar la carga o consulta de información relacionada.",
+        },
+        {
+          title: "Estadísticas",
+          description:
+            "Resume datos e indicadores del sistema para analizar participación, actividad y evolución del proceso académico desde una vista más analítica.",
+        },
+        {
+          title: "Formulario de inscripción",
+          description:
+            "Simplifica la inscripción de alumnos a las mesas mediante un flujo claro y ordenado, reduciendo errores y facilitando la carga de datos necesarios.",
+        },
+      ],
+      summary:
+        "Plataforma creada para organizar el circuito de mesas de examen, docentes, inscripciones y resultados desde un único sistema.",
+      challenge:
+        "Simplificar la organización de mesas y reducir tareas manuales al momento de administrar docentes, alumnos e inscripciones.",
+      solution:
+        "Un sistema que reúne mesas actuales, historial, docentes, inscripciones, confirmaciones y registro de resultados.",
+      result:
+        "La información académica queda organizada y disponible para acompañar cada etapa del proceso de examen.",
+      tags: ["Mesas", "Docentes", "Inscripciones", "Resultados", "Historial"],
+    },
+    {
+      name: "BALTO",
+      client: "BALTO",
+      category: "Gestión empresarial",
+      images: [
+        "/img-caso-exito/Balto/01_dashboard_menu_abierto.png",
+        "/img-caso-exito/Balto/02_ventas.png",
+        "/img-caso-exito/Balto/03_stock.png",
+        "/img-caso-exito/Balto/04_servicios.png",
+        "/img-caso-exito/Balto/05_flujo_de_caja.png",
+        "/img-caso-exito/Balto/06_dashboard_alternativo.png",
+      ],
+      imageDetails: [
+        {
+          title: "Panel principal",
+          description:
+            "Presenta una vista general del sistema con acceso a módulos clave para consultar rápidamente la operación comercial, administrativa y financiera del negocio.",
+        },
+        {
+          title: "Gestión de ventas",
+          description:
+            "Organiza ventas, clientes y movimientos comerciales en una misma pantalla para agilizar la operatoria diaria y mejorar el seguimiento de cada transacción.",
+        },
+        {
+          title: "Control de stock",
+          description:
+            "Permite revisar existencias, movimientos y disponibilidad de productos para mantener el inventario más ordenado y tomar decisiones con información actualizada.",
+        },
+        {
+          title: "Gestión de servicios",
+          description:
+            "Centraliza la administración de servicios, materiales y recursos vinculados para coordinar mejor la operación y mantener cada trabajo bajo control.",
+        },
+        {
+          title: "Flujo de caja",
+          description:
+            "Resume ingresos, egresos y movimientos financieros para visualizar la salud económica del negocio y acompañar el control diario de caja.",
+        },
+        {
+          title: "Dashboard alternativo",
+          description:
+            "Ofrece otra lectura visual del rendimiento general del sistema, con indicadores y accesos que ayudan a analizar el negocio desde una perspectiva más estratégica.",
+        },
+      ],
+      summary:
+        "Ecosistema de gestión para empresas de servicios y comercios, pensado para integrar operación, administración y finanzas.",
+      challenge:
+        "Reunir en una sola plataforma procesos comerciales, stock, clientes, proveedores, cuentas corrientes y análisis financiero.",
+      solution:
+        "Módulos conectados para ventas, servicios, inventario, cobranzas, pagos, caja, reportes y configuración del negocio.",
+      result:
+        "La operatoria diaria y la información financiera se consultan desde un entorno centralizado y preparado para crecer.",
+      tags: ["Ventas", "Servicios", "Stock", "Finanzas", "Reportes"],
+    },
+  ],
+  en: [
+    {
+      name: "LALCEC",
+      client: "LALCEC San Francisco",
+      category: "Institutional management",
+      images: [
+        "/img-caso-exito/Lalcec/01_dashboard.png",
+        "/img-caso-exito/Lalcec/02_socios.png",
+        "/img-caso-exito/Lalcec/03_cuotas.png",
+        "/img-caso-exito/Lalcec/04_ingresos.png",
+        "/img-caso-exito/Lalcec/05_resumen_contable.png",
+        "/img-caso-exito/Lalcec/06_panel_bot_conversacion.png",
+        "/img-caso-exito/Lalcec/07_bot_whatsapp.png",
+      ],
+      imageDetails: [
+        {
+          title: "Management dashboard",
+          description:
+            "Overview with member, registered-fee, collection and data-quality indicators to understand the institution's status at a glance.",
+        },
+        {
+          title: "Member management",
+          description:
+            "Centralizes each member record and makes information, fee status and debt easy to find, reducing scattered searches and speeding up daily management.",
+        },
+        {
+          title: "Fee tracking",
+          description:
+            "Makes it easy to identify who is up to date or owes fees, filter by period and manage multiple records at once to streamline collection follow-up.",
+        },
+        {
+          title: "Income records",
+          description:
+            "Keeps every collection traceable by date, paid period, payment method and amount, making recorded income easier to review without losing context.",
+        },
+        {
+          title: "Accounting summary",
+          description:
+            "Brings income, expenses and results into one view so the institution can quickly understand its financial position and follow its evolution throughout the year.",
+        },
+        {
+          title: "WhatsApp Bot panel",
+          description:
+            "Centralizes assistant conversations so contacts, payments and receipts can be supervised from one place while keeping automated support traceable.",
+        },
+        {
+          title: "WhatsApp assistant",
+          description:
+            "Lets members move through common tasks from WhatsApp, reducing manual steps and guiding the payment process in a simple, assisted flow.",
+        },
+      ],
+      summary:
+        "A web platform built to centralize member, family group, fee, collection and administrative management.",
+      challenge:
+        "Organize processes that required checking member, payment and collection information across different workflows.",
+      solution:
+        "A centralized system for members, fees, payments, balances, receipts, income, expenses and reports.",
+      result:
+        "The institution now has one tool to register and review its daily operations with better traceability.",
+      tags: ["Members", "Fees", "Collections", "Accounting", "Reports"],
+    },
+    {
+      name: "Círculo RH Negativo",
+      client: "Círculo RH Negativo",
+      category: "Member management",
+      images: [
+        "/img-caso-exito/Rh/01_dashboard.png",
+        "/img-caso-exito/Rh/02_socios.png",
+        "/img-caso-exito/Rh/03_cuotas.png",
+        "/img-caso-exito/Rh/04_ingresos.png",
+      ],
+      imageDetails: [
+        {
+          title: "Management dashboard",
+          description:
+            "Overview with member, fee, collection and movement indicators so the organization can quickly understand its current operating status.",
+        },
+        {
+          title: "Member management",
+          description:
+            "Organizes each member and family-group record in one place, making searches faster and helping the team keep key information updated.",
+        },
+        {
+          title: "Fee tracking",
+          description:
+            "Makes fee status and pending records easier to follow so collections can be organized and overdue periods can be reviewed more efficiently.",
+        },
+        {
+          title: "Income records",
+          description:
+            "Brings collections and financial movements together with their details to keep income traceable and easier to review without losing context.",
+        },
+      ],
+      summary:
+        "A system focused on member and family administration, with fee, payment, balance and organization movement tracking.",
+      challenge:
+        "Centralize member information and improve the tracking of fees, collections, balances and receipts.",
+      solution:
+        "A web platform with member and family management, multiple payments, credit balances, receipts and accounting information.",
+      result:
+        "Daily consultation, collection and follow-up processes are integrated into the same working experience.",
+      tags: ["Members", "Families", "Payments", "Balances", "Income"],
+    },
+    {
+      name: "LERNA",
+      client: "Education management",
+      category: "Exam sessions",
+      images: [
+        "/img-caso-exito/Lerna/01_dashboard_portada.png",
+        "/img-caso-exito/Lerna/02_mesas_examen.png",
+        "/img-caso-exito/Lerna/03_previas.png",
+        "/img-caso-exito/Lerna/04_catedras.png",
+        "/img-caso-exito/Lerna/05_estadisticas.png",
+        "/img-caso-exito/Lerna/06_formulario_inscripcion.png",
+      ],
+      summary:
+        "A platform created to organize exam sessions, teachers, registrations and results from a single system.",
+      challenge:
+        "Simplify exam-session organization and reduce manual work when managing teachers, students and registrations.",
+      solution:
+        "A system that brings together current sessions, history, teachers, registrations, confirmations and result records.",
+      result:
+        "Academic information remains organized and available throughout every stage of the examination process.",
+      tags: ["Sessions", "Teachers", "Registrations", "Results", "History"],
+    },
+    {
+      name: "BALTO",
+      client: "BALTO",
+      category: "Business management",
+      images: [
+        "/img/casos-exito/balto-dashboard.png",
+        "/img/casos-exito/balto-servicios.png",
+        "/img/casos-exito/balto-ventas.png",
+        "/img/casos-exito/balto-analisis-financiero.png",
+      ],
+      summary:
+        "A management ecosystem for service companies and retailers, designed to integrate operations, administration and finance.",
+      challenge:
+        "Bring commercial processes, stock, customers, suppliers, current accounts and financial analysis into one platform.",
+      solution:
+        "Connected modules for sales, services, inventory, collections, payments, cash flow, reports and business settings.",
+      result:
+        "Daily operations and financial information can be managed from a centralized environment built to scale.",
+      tags: ["Sales", "Services", "Stock", "Finance", "Reports"],
+    },
+  ],
+};
+
+// Logos reales de clientes disponibles en public/img-clientes/.
+// Se mantienen siete elementos para el carrusel continuo y sutil.
+const clientsData = [
+  { id: 1, name: "IPET 50", image: "/img-clientes/01_ipet_50.png" },
+  { id: 2, name: "LALCEC", image: "/img-clientes/02_lalcec.png" },
+  { id: 3, name: "Círculo RH Negativo", image: "/img-clientes/03_rh_negativo.png" },
+  { id: 4, name: "MR Natural", image: "/img-clientes/04_mr_natural.png" },
+  { id: 5, name: "EVSF 2.0", image: "/img-clientes/05_evsf_2_0.png" },
+  { id: 6, name: "QARA", image: "/img-clientes/06_qara.png" },
+  { id: 7, name: "JYG", image: "/img-clientes/07_jyg.png" },
+];
 
 const TechCategoryCard = ({
   category,
@@ -83,6 +459,460 @@ const TechCategoryCard = ({
   );
 };
 
+
+const SuccessCaseCard = ({ successCase, caseIndex, language }) => {
+  const [imageIndex, setImageIndex] = useState(0);
+  const [imageFailed, setImageFailed] = useState(false);
+  const [isImageModalOpen, setIsImageModalOpen] = useState(false);
+  const [imageAspectRatio, setImageAspectRatio] = useState(2.1);
+  const images = successCase.images || [];
+  const imageDetails = successCase.imageDetails || [];
+  const currentImageDetail = imageDetails[imageIndex] || null;
+  const isLalcec = successCase.name === "LALCEC";
+  const isRh = successCase.name === "Círculo RH Negativo";
+  const isLerna = successCase.name === "LERNA";
+  const isBalto = successCase.name === "BALTO";
+  const isFeaturedInstitutionCase = isLalcec || isRh || isLerna || isBalto;
+  const isLalcecDashboard = isLalcec && imageIndex === 0;
+  const isRhDashboard = isRh && imageIndex === 0;
+  const isLernaDashboard = isLerna && imageIndex === 0;
+  const isBaltoDashboard = isBalto && imageIndex === 0;
+  const isFeaturedDashboard = isFeaturedInstitutionCase && imageIndex === 0;
+  const showGeneralCaseInfo = !isFeaturedInstitutionCase || isFeaturedDashboard;
+  const isLalcecDetailView = isLalcec && imageIndex > 0;
+  const isRhDetailView = isRh && imageIndex > 0;
+  const isLernaDetailView = isLerna && imageIndex > 0;
+  const isBaltoDetailView = isBalto && imageIndex > 0;
+  const isFeaturedDetailView = isFeaturedInstitutionCase && imageIndex > 0;
+  // En LALCEC, las primeras seis capturas son panorámicas.
+  // La última (WhatsApp) conserva un formato más compacto/vertical.
+  const isLalcecWideImage = isLalcec && imageIndex < 6;
+  const isLalcecCompactImage = isLalcec && imageIndex >= 6;
+  // RH utiliza capturas panorámicas que se muestran como tarjeta interna.
+  const isRhWideImage = isRh;
+  // LERNA también utiliza capturas panorámicas con tratamiento tipo tarjeta.
+  const isLernaWideImage = isLerna;
+  // BALTO utiliza capturas panorámicas con el mismo tratamiento tipo tarjeta.
+  const isBaltoWideImage = isBalto;
+
+  // Solo reinicia la captura cuando realmente cambia el proyecto.
+  // Un cambio de idioma conserva tanto el caso activo como la imagen interna.
+  useEffect(() => {
+    setImageIndex(0);
+    setImageFailed(false);
+    setIsImageModalOpen(false);
+    setImageAspectRatio(2.1);
+  }, [successCase.name]);
+
+  // Precarga las capturas del caso activo sin modificar la posición actual.
+  useEffect(() => {
+    images.forEach((src) => {
+      const image = new Image();
+      image.src = src;
+    });
+  }, [successCase.name, images]);
+
+  useEffect(() => {
+    if (!isImageModalOpen) return undefined;
+
+    // Bloquea el fondo sin sacar el body del flujo de la página.
+    // De esta forma la posición de scroll se conserva naturalmente y,
+    // al cerrar el modal, no existe el salto momentáneo hacia el inicio.
+    const body = document.body;
+    const html = document.documentElement;
+    const scrollbarWidth = window.innerWidth - html.clientWidth;
+
+    const previousBodyStyles = {
+      overflow: body.style.overflow,
+      paddingRight: body.style.paddingRight,
+      overscrollBehavior: body.style.overscrollBehavior,
+    };
+    const previousHtmlStyles = {
+      overflow: html.style.overflow,
+      overscrollBehavior: html.style.overscrollBehavior,
+    };
+
+    html.style.overflow = "hidden";
+    html.style.overscrollBehavior = "none";
+    body.style.overflow = "hidden";
+    body.style.overscrollBehavior = "none";
+
+    if (scrollbarWidth > 0) {
+      body.style.paddingRight = `${scrollbarWidth}px`;
+    }
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setIsImageModalOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      html.style.overflow = previousHtmlStyles.overflow;
+      html.style.overscrollBehavior = previousHtmlStyles.overscrollBehavior;
+      body.style.overflow = previousBodyStyles.overflow;
+      body.style.paddingRight = previousBodyStyles.paddingRight;
+      body.style.overscrollBehavior = previousBodyStyles.overscrollBehavior;
+    };
+  }, [isImageModalOpen]);
+
+  const changeImage = (direction) => {
+    if (images.length <= 1) return;
+
+    setImageIndex((currentIndex) => {
+      if (direction === "next") {
+        return (currentIndex + 1) % images.length;
+      }
+
+      return (currentIndex - 1 + images.length) % images.length;
+    });
+    setImageFailed(false);
+  };
+
+  const imageAlt = currentImageDetail
+    ? `${successCase.name} - ${currentImageDetail.title}`
+    : `${successCase.name} - ${
+        language === "es" ? "captura del sistema" : "system screenshot"
+      } ${imageIndex + 1}`;
+
+  return (
+    <>
+      <article className={`success-card ${isLalcec ? "success-card--lalcec" : ""} ${isRh ? "success-card--rh" : ""} ${isLerna ? "success-card--lerna" : ""} ${isBalto ? "success-card--balto" : ""} ${caseIndex % 2 !== 0 ? "success-card--reverse" : ""}`}>
+        <div
+          className={`success-card-media ${
+            isLalcecWideImage ? "success-card-media--lalcec-wide" : ""
+          } ${
+            isLalcecCompactImage ? "success-card-media--lalcec-compact" : ""
+          } ${
+            isRhWideImage ? "success-card-media--rh-wide" : ""
+          } ${
+            isLernaWideImage ? "success-card-media--lerna-wide" : ""
+          } ${
+            isBaltoWideImage ? "success-card-media--balto-wide" : ""
+          }`}
+          style={{
+            "--success-image-ratio": imageAspectRatio,
+            "--success-current-image":
+              images.length > 0 && !imageFailed
+                ? `url("${images[imageIndex]}")`
+                : "none",
+          }}
+        >
+          {(images.length === 0 || imageFailed) && (
+            <div className="success-media-placeholder" aria-hidden="true">
+              <span className="success-media-brand">3DEVS</span>
+              <strong>{successCase.name}</strong>
+              <small>
+                {language === "es" ? "Captura no disponible" : "Screenshot unavailable"}
+              </small>
+            </div>
+          )}
+
+          {images.length > 0 && !imageFailed && (
+            <>
+              <img
+                key={`${successCase.name}-screenshot-${imageIndex}`}
+                src={images[imageIndex]}
+                alt={imageAlt}
+                className="success-system-image"
+                loading="lazy"
+                onLoad={(event) => {
+                  const { naturalWidth, naturalHeight } = event.currentTarget;
+                  if (naturalWidth && naturalHeight) {
+                    setImageAspectRatio(naturalWidth / naturalHeight);
+                  }
+                }}
+                onError={() => setImageFailed(true)}
+              />
+
+              <button
+                type="button"
+                className="success-image-expand"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  setIsImageModalOpen(true);
+                }}
+                aria-label={
+                  language === "es"
+                    ? "Ampliar imagen"
+                    : "Expand image"
+                }
+                title={language === "es" ? "Ampliar imagen" : "Expand image"}
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5" />
+                  <path d="M3 8l6-6M21 8l-6-6M3 16l6 6M21 16l-6 6" />
+                </svg>
+              </button>
+            </>
+          )}
+
+          {images.length > 1 && (
+            <>
+              <button
+                type="button"
+                className="success-image-arrow success-image-arrow--left"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  changeImage("prev");
+                }}
+                aria-label={language === "es" ? "Imagen anterior" : "Previous image"}
+              >
+                <HiChevronLeft />
+              </button>
+              <button
+                type="button"
+                className="success-image-arrow success-image-arrow--right"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  changeImage("next");
+                }}
+                aria-label={language === "es" ? "Imagen siguiente" : "Next image"}
+              >
+                <HiChevronRight />
+              </button>
+
+              <div className="success-image-pagination" aria-label={language === "es" ? "Imágenes del sistema" : "System images"}>
+                {images.map((_, index) => (
+                  <button
+                    type="button"
+                    key={`${successCase.name}-image-dot-${index}`}
+                    className={`success-image-dot ${index === imageIndex ? "active" : ""}`}
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      setImageIndex(index);
+                      setImageFailed(false);
+                    }}
+                    aria-label={`${language === "es" ? "Ver imagen" : "View image"} ${index + 1}`}
+                  />
+                ))}
+              </div>
+            </>
+          )}
+
+          <span className="success-case-number">
+            {String(caseIndex + 1).padStart(2, "0")}
+          </span>
+        </div>
+
+        <div
+          className={`success-card-content ${
+            isLalcec ? "success-card-content--lalcec" : ""
+          } ${
+            isRh ? "success-card-content--rh" : ""
+          } ${
+            isLerna ? "success-card-content--lerna" : ""
+          } ${
+            isBalto ? "success-card-content--balto" : ""
+          } ${
+            isFeaturedDashboard ? "success-card-content--featured-dashboard" : ""
+          } ${
+            isFeaturedDetailView ? "success-card-content--image-only" : ""
+          }`}
+        >
+          {isFeaturedInstitutionCase ? (
+            <div className="success-card-fixed-header">
+              <div className="success-card-topline">
+                <span className="success-category">{successCase.category}</span>
+                <span className="success-status">
+                  <span className="success-status-dot"></span>
+                  {language === "es" ? "EN FUNCIONAMIENTO" : "LIVE SYSTEM"}
+                </span>
+              </div>
+
+              <div className="success-card-identity">
+                <p className="success-client">{successCase.client}</p>
+                <h3>{successCase.name}</h3>
+              </div>
+            </div>
+          ) : (
+            <>
+              <div className="success-card-topline">
+                <span className="success-category">{successCase.category}</span>
+                <span className="success-status">
+                  <span className="success-status-dot"></span>
+                  {language === "es" ? "EN FUNCIONAMIENTO" : "LIVE SYSTEM"}
+                </span>
+              </div>
+
+              <p className="success-client">{successCase.client}</p>
+              <h3>{successCase.name}</h3>
+            </>
+          )}
+
+          {showGeneralCaseInfo && !isFeaturedDashboard && (
+            <p className="success-summary">{successCase.summary}</p>
+          )}
+
+          {currentImageDetail && !isFeaturedDashboard && (
+            <div
+              className={`success-image-context ${
+                isFeaturedDetailView ? "success-image-context--focus" : ""
+              }`}
+              key={`${successCase.name}-context-${imageIndex}`}
+            >
+              <span className="success-image-context-kicker">
+                {isLalcecDetailView
+                  ? language === "es"
+                    ? "QUÉ RESUELVE"
+                    : "WHAT IT SOLVES"
+                  : language === "es"
+                    ? "EN ESTA CAPTURA"
+                    : "IN THIS SCREENSHOT"}
+              </span>
+              <strong>{currentImageDetail.title}</strong>
+              <p>{currentImageDetail.description}</p>
+            </div>
+          )}
+
+          {showGeneralCaseInfo && (
+            <>
+              <div className={`success-story-grid ${isFeaturedDashboard ? "success-story-grid--dashboard" : ""}`}>
+                <div className="success-story-item">
+                  <span>{language === "es" ? "EL DESAFÍO" : "THE CHALLENGE"}</span>
+                  <p>{successCase.challenge}</p>
+                </div>
+
+                {!isFeaturedDashboard && (
+                  <div className="success-story-item">
+                    <span>{language === "es" ? "LA SOLUCIÓN" : "THE SOLUTION"}</span>
+                    <p>{successCase.solution}</p>
+                  </div>
+                )}
+
+                <div className="success-story-item success-story-item--result">
+                  <span>{language === "es" ? "EL RESULTADO" : "THE RESULT"}</span>
+                  <p>{successCase.result}</p>
+                </div>
+              </div>
+
+              {!isFeaturedDashboard && (
+                <div className="success-tags">
+                  {successCase.tags.map((tag) => (
+                    <span key={`${successCase.name}-${tag}`}>{tag}</span>
+                  ))}
+                </div>
+              )}
+            </>
+          )}
+        </div>
+      </article>
+
+      {isImageModalOpen && images.length > 0 && !imageFailed && (
+        <div
+          className="success-image-modal"
+          role="dialog"
+          aria-modal="true"
+          aria-label={
+            language === "es"
+              ? `Vista ampliada de ${successCase.name}`
+              : `Expanded view of ${successCase.name}`
+          }
+        >
+          <div className="success-image-modal-panel">
+            <div className="success-image-modal-header">
+              <div className="success-image-modal-heading">
+                <span className="success-image-modal-kicker">
+                  {language === "es" ? "CASO DE ÉXITO" : "SUCCESS CASE"}
+                </span>
+                <div className="success-image-modal-title-row">
+                  <strong>{successCase.name}</strong>
+                  <span className="success-image-modal-counter">
+                    {imageIndex + 1} / {images.length}
+                  </span>
+                </div>
+                {currentImageDetail && (
+                  <span className="success-image-modal-screen-name">
+                    {currentImageDetail.title}
+                  </span>
+                )}
+              </div>
+
+              <button
+                type="button"
+                className="success-image-modal-close"
+                onClick={() => setIsImageModalOpen(false)}
+                aria-label={language === "es" ? "Cerrar imagen" : "Close image"}
+              >
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+
+            <div className="success-image-modal-stage">
+              <img
+                src={images[imageIndex]}
+                alt={imageAlt}
+                className="success-image-modal-image"
+              />
+
+              {images.length > 1 && (
+                <>
+                  <button
+                    type="button"
+                    className="success-modal-arrow success-modal-arrow--left"
+                    onClick={() => changeImage("prev")}
+                    aria-label={language === "es" ? "Imagen anterior" : "Previous image"}
+                  >
+                    <HiChevronLeft />
+                  </button>
+                  <button
+                    type="button"
+                    className="success-modal-arrow success-modal-arrow--right"
+                    onClick={() => changeImage("next")}
+                    aria-label={language === "es" ? "Imagen siguiente" : "Next image"}
+                  >
+                    <HiChevronRight />
+                  </button>
+                </>
+              )}
+            </div>
+
+            <div
+              className={`success-image-modal-footer ${
+                currentImageDetail ? "success-image-modal-footer--with-copy" : ""
+              }`}
+            >
+              <span>
+                {language === "es" ? "Captura" : "Screenshot"} {imageIndex + 1} / {images.length}
+              </span>
+
+              {currentImageDetail && (
+                <div
+                  className="success-image-modal-copy"
+                  key={`${successCase.name}-modal-copy-${imageIndex}`}
+                >
+                  <strong>{currentImageDetail.title}</strong>
+                  <p>{currentImageDetail.description}</p>
+                </div>
+              )}
+
+              {images.length > 1 && (
+                <div className="success-image-modal-dots" aria-label={language === "es" ? "Imágenes del sistema" : "System images"}>
+                  {images.map((_, index) => (
+                    <button
+                      type="button"
+                      key={`${successCase.name}-modal-dot-${index}`}
+                      className={`success-image-modal-dot ${index === imageIndex ? "active" : ""}`}
+                      onClick={() => {
+                        setImageIndex(index);
+                        setImageFailed(false);
+                      }}
+                      aria-label={`${language === "es" ? "Ver imagen" : "View image"} ${index + 1}`}
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
+
 const Desarrolladores = () => {
   const [expandedCard, setExpandedCard] = useState(null);
   const [language, setLanguage] = useState("es");
@@ -94,6 +924,8 @@ const Desarrolladores = () => {
   const [activeService, setActiveService] = useState(0);
   const [selectedTech, setSelectedTech] = useState(null);
   const [activeCategory, setActiveCategory] = useState("all");
+  const [activeSuccessCase, setActiveSuccessCase] = useState(0);
+  const [successCaseDirection, setSuccessCaseDirection] = useState("next");
   const canvasRef = useRef(null);
   const typingTimeoutRef = useRef(null);
   const cursorIntervalRef = useRef(null);
@@ -531,6 +1363,8 @@ const Desarrolladores = () => {
     document.title = "3 Devs Solutions";
   }, []);
 
+
+
   /* =========================================================
      ✅ ARREGLOS PEDIDOS:
      - Eliminar caja de "Joaquin Mullasano"
@@ -542,6 +1376,26 @@ const Desarrolladores = () => {
     "Bruno Ballarino": language === "es" ? "Desarrollador Backend" : "Backend Developer",
     "Gaston Villalba": language === "es" ? "Desarrollador Frontend" : "Frontend Developer",
     "Gastón Villalba": language === "es" ? "Desarrollador Frontend" : "Frontend Developer",
+  };
+
+  const successCases = successCasesData[language];
+  const currentSuccessCase = successCases[activeSuccessCase];
+
+  const changeSuccessCase = (direction) => {
+    setSuccessCaseDirection(direction);
+    setActiveSuccessCase((currentIndex) => {
+      if (direction === "next") {
+        return (currentIndex + 1) % successCases.length;
+      }
+
+      return (currentIndex - 1 + successCases.length) % successCases.length;
+    });
+  };
+
+  const selectSuccessCase = (index) => {
+    if (index === activeSuccessCase) return;
+    setSuccessCaseDirection(index > activeSuccessCase ? "next" : "prev");
+    setActiveSuccessCase(index);
   };
 
   const teamDevs = developersData(language)
@@ -684,6 +1538,19 @@ const Desarrolladores = () => {
                     className="nav-link"
                   >
                     {language === "es" ? "Servicios" : "Services"}
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#casos-exito"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      smoothScroll("casos-exito");
+                      setIsMenuOpen(false);
+                    }}
+                    className="nav-link"
+                  >
+                    {language === "es" ? "Casos de éxito" : "Success Stories"}
                   </a>
                 </li>
                 <li>
@@ -1180,6 +2047,129 @@ const Desarrolladores = () => {
                     {translations[language].consultar_servicio}
                   </a>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="success-section" id="casos-exito">
+        <div className="success-container">
+          <div className="section-header success-header">
+            <h2 className="section-title">
+              <span className="title-gradient">
+                {language === "es" ? "Casos de éxito" : "Success stories"}
+              </span>
+            </h2>
+            <p className="section-subtitle success-section-subtitle">
+              {language === "es"
+                ? "Soluciones que ya están trabajando. Sistemas desarrollados por 3devs que acompañan procesos reales de organizaciones, instituciones y empresas."
+                : "Solutions already at work. Systems developed by 3devs supporting real processes across organizations, institutions and businesses."}
+            </p>
+          </div>
+
+          <div className="success-carousel">
+            <button
+              type="button"
+              className="success-project-arrow success-project-arrow--left"
+              onClick={() => changeSuccessCase("prev")}
+              aria-label={language === "es" ? "Proyecto anterior" : "Previous project"}
+            >
+              <HiChevronLeft />
+            </button>
+
+            <div className={`success-list success-list--${successCaseDirection}`}>
+              {currentSuccessCase && (
+                <SuccessCaseCard
+                  key={currentSuccessCase.name}
+                  successCase={currentSuccessCase}
+                  caseIndex={activeSuccessCase}
+                  language={language}
+                />
+              )}
+            </div>
+
+            <button
+              type="button"
+              className="success-project-arrow success-project-arrow--right"
+              onClick={() => changeSuccessCase("next")}
+              aria-label={language === "es" ? "Proyecto siguiente" : "Next project"}
+            >
+              <HiChevronRight />
+            </button>
+          </div>
+
+          <div className="success-project-pagination" aria-label={language === "es" ? "Proyectos" : "Projects"}>
+            {successCases.map((successCase, index) => (
+              <button
+                type="button"
+                key={`${successCase.name}-project-dot`}
+                className={`success-project-dot ${index === activeSuccessCase ? "active" : ""}`}
+                onClick={() => selectSuccessCase(index)}
+                aria-label={`${language === "es" ? "Ver proyecto" : "View project"} ${successCase.name}`}
+              />
+            ))}
+          </div>
+
+          <div className="success-cta">
+            <div>
+              <span className="success-cta-kicker">3DEVS SOLUTIONS</span>
+              <h3>
+                {language === "es"
+                  ? "¿Tu organización necesita una solución similar?"
+                  : "Does your organization need a similar solution?"}
+              </h3>
+              <p>
+                {language === "es"
+                  ? "Desarrollamos software adaptado a la forma en que trabaja tu empresa o institución."
+                  : "We build software tailored to the way your company or institution works."}
+              </p>
+            </div>
+            <button
+              type="button"
+              className="success-cta-button"
+              onClick={() => smoothScroll("contacto")}
+            >
+              {language === "es" ? "Hablemos de tu proyecto" : "Let's talk about your project"}
+              <span aria-hidden="true">→</span>
+            </button>
+          </div>
+          <div className="clients-strip" aria-label={language === "es" ? "Clientes de 3devs" : "3devs clients"}>
+            <div className="clients-strip-label">
+              <span aria-hidden="true"></span>
+              {language === "es" ? "Clientes que confían en 3devs" : "Clients who trust 3devs"}
+            </div>
+
+            <div className="clients-marquee">
+              <div className="clients-track">
+                {[0, 1].map((groupIndex) => (
+                  <div
+                    className="clients-group"
+                    key={`clients-group-${groupIndex}`}
+                    aria-hidden={groupIndex === 1 ? "true" : undefined}
+                  >
+                    {clientsData.map((client) => (
+                      <div className="client-logo-item" key={`${groupIndex}-${client.id}`}>
+                        <div className="client-logo-placeholder">
+                          <strong>{language === "es" ? "Cliente" : "Client"} {String(client.id).padStart(2, "0")}</strong>
+                        </div>
+                        <img
+                          src={client.image}
+                          alt={`${language === "es" ? "Logo de" : "Logo of"} ${client.name}`}
+                          className="client-logo-image"
+                          loading="lazy"
+                          onLoad={(event) => {
+                            const placeholder = event.currentTarget.previousElementSibling;
+                            if (placeholder) placeholder.style.display = "none";
+                          }}
+                          onError={(event) => {
+                            event.currentTarget.style.display = "none";
+                          }}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                ))}
               </div>
             </div>
           </div>
