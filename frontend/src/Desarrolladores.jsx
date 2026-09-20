@@ -190,6 +190,60 @@ const successCasesData = {
       tags: ["Mesas", "Docentes", "Inscripciones", "Resultados", "Historial"],
     },
     {
+      name: "Cooperadora IPET 50",
+      client: "Cooperadora IPET 50",
+      category: "Gestión de cooperadora escolar",
+      images: [
+        "/img-caso-exito/Cooperadora/01_dashboard_panel_gestion.png",
+        "/img-caso-exito/Cooperadora/02_gestion_alumnos.png",
+        "/img-caso-exito/Cooperadora/03_gestion_cuotas.png",
+        "/img-caso-exito/Cooperadora/04_ventas_escolares.png",
+        "/img-caso-exito/Cooperadora/05_panel_bot_whatsapp.png",
+        "/img-caso-exito/Cooperadora/06_bot_whatsapp_resumen_pago.png",
+      ],
+      imageDetails: [
+        {
+          title: "Panel de gestión",
+          description:
+            "Reúne los accesos principales de la cooperadora en una única pantalla para ingresar rápidamente a alumnos, cuotas, ventas escolares, administración y contabilidad.",
+        },
+        {
+          title: "Gestión de alumnos",
+          description:
+            "Centraliza la información de los alumnos y permite buscar, filtrar, registrar altas, consultar familias y exportar datos para mantener el padrón escolar ordenado.",
+        },
+        {
+          title: "Gestión de cuotas",
+          description:
+            "Permite consultar cuotas pendientes por período, categoría y cobrador, identificar estados de pago y ejecutar acciones de cobranza desde una vista unificada.",
+        },
+        {
+          title: "Ventas escolares",
+          description:
+            "Organiza conceptos y campañas de venta de la cooperadora, con precios, vigencia, productos asociados, cantidad de ventas y estado de cada propuesta.",
+        },
+        {
+          title: "Panel del Bot de WhatsApp",
+          description:
+            "Centraliza las conversaciones del asistente para supervisar consultas y pagos de las familias, manteniendo el seguimiento de cada interacción desde un solo panel.",
+        },
+        {
+          title: "Pago asistido por WhatsApp",
+          description:
+            "El bot identifica al alumno, resume los períodos adeudados y facilita el acceso al pago desde WhatsApp, reduciendo tareas manuales y simplificando la cobranza.",
+        },
+      ],
+      summary:
+        "Sistema web desarrollado para centralizar la gestión de alumnos, cuotas, ventas escolares, administración y cobranzas de una cooperadora escolar.",
+      challenge:
+        "Ordenar información de alumnos y familias, mejorar el seguimiento de cuotas y simplificar procesos de cobranza que requerían múltiples tareas manuales.",
+      solution:
+        "Una plataforma integrada con gestión de alumnos, cuotas, ventas escolares, administración, contabilidad y un asistente de WhatsApp conectado al circuito de pagos.",
+      result:
+        "La cooperadora dispone de una única herramienta para gestionar su operatoria diaria y acompañar a las familias con un proceso de consulta y pago más directo.",
+      tags: ["Alumnos", "Cuotas", "Ventas", "WhatsApp", "Contabilidad"],
+    },
+    {
       name: "BALTO",
       client: "BALTO",
       category: "Gestión empresarial",
@@ -370,6 +424,60 @@ const successCasesData = {
       tags: ["Sessions", "Teachers", "Registrations", "Results", "History"],
     },
     {
+      name: "Cooperadora IPET 50",
+      client: "Cooperadora IPET 50",
+      category: "School cooperative management",
+      images: [
+        "/img-caso-exito/Cooperadora/01_dashboard_panel_gestion.png",
+        "/img-caso-exito/Cooperadora/02_gestion_alumnos.png",
+        "/img-caso-exito/Cooperadora/03_gestion_cuotas.png",
+        "/img-caso-exito/Cooperadora/04_ventas_escolares.png",
+        "/img-caso-exito/Cooperadora/05_panel_bot_whatsapp.png",
+        "/img-caso-exito/Cooperadora/06_bot_whatsapp_resumen_pago.png",
+      ],
+      imageDetails: [
+        {
+          title: "Management dashboard",
+          description:
+            "Brings the cooperative's main areas into one screen so the team can quickly access students, fees, school sales, administration and accounting.",
+        },
+        {
+          title: "Student management",
+          description:
+            "Centralizes student information with search, filters, registrations, family records and data exports to keep the school roster organized.",
+        },
+        {
+          title: "Fee management",
+          description:
+            "Makes pending fees easier to review by period, category and collector, while keeping payment status and collection actions together in one view.",
+        },
+        {
+          title: "School sales",
+          description:
+            "Organizes the cooperative's sales concepts and campaigns, including prices, availability, linked products, sales volume and current status.",
+        },
+        {
+          title: "WhatsApp Bot panel",
+          description:
+            "Centralizes assistant conversations so family inquiries and payments can be supervised while keeping every interaction traceable from one panel.",
+        },
+        {
+          title: "WhatsApp-assisted payment",
+          description:
+            "The bot identifies the student, summarizes outstanding periods and provides a direct payment path from WhatsApp, reducing manual collection work.",
+        },
+      ],
+      summary:
+        "A web system built to centralize student, fee, school sales, administration and collection management for a school cooperative.",
+      challenge:
+        "Organize student and family information, improve fee tracking and simplify collection processes that previously required multiple manual tasks.",
+      solution:
+        "An integrated platform for students, fees, school sales, administration and accounting, plus a WhatsApp assistant connected to the payment workflow.",
+      result:
+        "The cooperative now has one tool for its daily operations and a more direct consultation and payment experience for families.",
+      tags: ["Students", "Fees", "Sales", "WhatsApp", "Accounting"],
+    },
+    {
       name: "BALTO",
       client: "BALTO",
       category: "Business management",
@@ -474,17 +582,20 @@ const SuccessCaseCard = ({ successCase, caseIndex, language }) => {
   const isRh = successCase.name === "Círculo RH Negativo";
   const isLerna = successCase.name === "LERNA";
   const isBalto = successCase.name === "BALTO";
-  const isFeaturedInstitutionCase = isLalcec || isRh || isLerna || isBalto;
+  const isCooperadora = successCase.name === "Cooperadora IPET 50";
+  const isFeaturedInstitutionCase = isLalcec || isRh || isLerna || isBalto || isCooperadora;
   const isLalcecDashboard = isLalcec && imageIndex === 0;
   const isRhDashboard = isRh && imageIndex === 0;
   const isLernaDashboard = isLerna && imageIndex === 0;
   const isBaltoDashboard = isBalto && imageIndex === 0;
+  const isCooperadoraDashboard = isCooperadora && imageIndex === 0;
   const isFeaturedDashboard = isFeaturedInstitutionCase && imageIndex === 0;
   const showGeneralCaseInfo = !isFeaturedInstitutionCase || isFeaturedDashboard;
   const isLalcecDetailView = isLalcec && imageIndex > 0;
   const isRhDetailView = isRh && imageIndex > 0;
   const isLernaDetailView = isLerna && imageIndex > 0;
   const isBaltoDetailView = isBalto && imageIndex > 0;
+  const isCooperadoraDetailView = isCooperadora && imageIndex > 0;
   const isFeaturedDetailView = isFeaturedInstitutionCase && imageIndex > 0;
   // En LALCEC, las primeras seis capturas son panorámicas.
   // La última (WhatsApp) conserva un formato más compacto/vertical.
@@ -496,6 +607,8 @@ const SuccessCaseCard = ({ successCase, caseIndex, language }) => {
   const isLernaWideImage = isLerna;
   // BALTO utiliza capturas panorámicas con el mismo tratamiento tipo tarjeta.
   const isBaltoWideImage = isBalto;
+  // Cooperadora combina capturas panorámicas del sistema y del Bot de WhatsApp.
+  const isCooperadoraWideImage = isCooperadora;
 
   // Solo reinicia la captura cuando realmente cambia el proyecto.
   // Un cambio de idioma conserva tanto el caso activo como la imagen interna.
@@ -582,7 +695,7 @@ const SuccessCaseCard = ({ successCase, caseIndex, language }) => {
 
   return (
     <>
-      <article className={`success-card ${isLalcec ? "success-card--lalcec" : ""} ${isRh ? "success-card--rh" : ""} ${isLerna ? "success-card--lerna" : ""} ${isBalto ? "success-card--balto" : ""} ${caseIndex % 2 !== 0 ? "success-card--reverse" : ""}`}>
+      <article className={`success-card ${isLalcec ? "success-card--lalcec" : ""} ${isRh ? "success-card--rh" : ""} ${isLerna ? "success-card--lerna" : ""} ${isBalto ? "success-card--balto" : ""} ${isCooperadora ? "success-card--cooperadora" : ""} ${caseIndex % 2 !== 0 ? "success-card--reverse" : ""}`}>
         <div
           className={`success-card-media ${
             isLalcecWideImage ? "success-card-media--lalcec-wide" : ""
@@ -594,6 +707,8 @@ const SuccessCaseCard = ({ successCase, caseIndex, language }) => {
             isLernaWideImage ? "success-card-media--lerna-wide" : ""
           } ${
             isBaltoWideImage ? "success-card-media--balto-wide" : ""
+          } ${
+            isCooperadoraWideImage ? "success-card-media--cooperadora-wide" : ""
           }`}
           style={{
             "--success-image-ratio": imageAspectRatio,
@@ -709,6 +824,8 @@ const SuccessCaseCard = ({ successCase, caseIndex, language }) => {
             isLerna ? "success-card-content--lerna" : ""
           } ${
             isBalto ? "success-card-content--balto" : ""
+          } ${
+            isCooperadora ? "success-card-content--cooperadora" : ""
           } ${
             isFeaturedDashboard ? "success-card-content--featured-dashboard" : ""
           } ${
